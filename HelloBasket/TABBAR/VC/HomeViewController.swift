@@ -24,7 +24,7 @@ extension HomeViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let sideMenuNavigationController = segue.destination as?
             SideMenuNavigationController else { return }
-        sideMenuNavigationController.enableTapToDismissGesture = true
+
         sideMenuNavigationController.settings = Utils.makeSettings()
     }
     
