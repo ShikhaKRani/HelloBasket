@@ -1,0 +1,548 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		751A93697EAFBCA139A68D12 /* Pods_HelloBasket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D446E018610381DAE25704BC /* Pods_HelloBasket.framework */; };
+		BF2EE6D42529C69100D1099F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2EE6D32529C69100D1099F /* AppDelegate.swift */; };
+		BF2EE6DB2529C69100D1099F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF2EE6D92529C69100D1099F /* Main.storyboard */; };
+		BF2EE6DD2529C69500D1099F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF2EE6DC2529C69500D1099F /* Assets.xcassets */; };
+		BF2EE6E02529C69500D1099F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF2EE6DE2529C69500D1099F /* LaunchScreen.storyboard */; };
+		BF2EE6F12529CAD600D1099F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2EE6F02529CAD600D1099F /* LoginViewController.swift */; };
+		BF2EE7252529E8CC00D1099F /* HBTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2EE7242529E8CC00D1099F /* HBTabBarViewController.swift */; };
+		BFCFC4AB2529F39A0015E011 /* TabbarMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFCFC4AA2529F39A0015E011 /* TabbarMenu.storyboard */; };
+		BFCFC4CD2529F42A0015E011 /* sideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFC4BB2529F4290015E011 /* sideMenuTableViewCell.swift */; };
+		BFCFC4CE2529F42A0015E011 /* SidemenuBottomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFCFC4BC2529F4290015E011 /* SidemenuBottomTableViewCell.xib */; };
+		BFCFC4CF2529F42A0015E011 /* SidemenuBottomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFC4BD2529F4290015E011 /* SidemenuBottomTableViewCell.swift */; };
+		BFCFC4D02529F42A0015E011 /* SideNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFC4BE2529F4290015E011 /* SideNavigationViewController.swift */; };
+		BFCFC4F82529F9690015E011 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFC4F72529F9690015E011 /* HomeViewController.swift */; };
+		BFCFC4FC2529FA3E0015E011 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFC4FB2529FA3E0015E011 /* Utils.swift */; };
+		BFCFC50E2529FE320015E011 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFC4FF2529FE300015E011 /* Extensions.swift */; };
+		BFCFC50F2529FE320015E011 /* SideMenuTransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFC5002529FE300015E011 /* SideMenuTransitionController.swift */; };
+		BFCFC5102529FE320015E011 /* Deprecations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFC5022529FE300015E011 /* Deprecations.swift */; };
+		BFCFC5112529FE320015E011 /* SideMenuPresentationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFC5032529FE300015E011 /* SideMenuPresentationStyle.swift */; };
+		BFCFC5122529FE320015E011 /* Print.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFC5042529FE300015E011 /* Print.swift */; };
+		BFCFC5132529FE320015E011 /* SideMenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFC5052529FE310015E011 /* SideMenuNavigationController.swift */; };
+		BFCFC5142529FE320015E011 /* Initializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFC5062529FE310015E011 /* Initializable.swift */; };
+		BFCFC5152529FE320015E011 /* SideMenuAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFC5072529FE310015E011 /* SideMenuAnimationController.swift */; };
+		BFCFC5162529FE320015E011 /* Protected.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFC5082529FE310015E011 /* Protected.swift */; };
+		BFCFC5172529FE320015E011 /* SideMenuPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFC5092529FE320015E011 /* SideMenuPresentationController.swift */; };
+		BFCFC5182529FE320015E011 /* SideMenuInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFC50A2529FE320015E011 /* SideMenuInteractionController.swift */; };
+		BFCFC5192529FE320015E011 /* SideMenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFC50B2529FE320015E011 /* SideMenuManager.swift */; };
+		BFCFC51A2529FE320015E011 /* SideMenuPushCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFC50C2529FE320015E011 /* SideMenuPushCoordinator.swift */; };
+		BFCFC51B2529FE320015E011 /* UITableViewVibrantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFC50D2529FE320015E011 /* UITableViewVibrantCell.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		526254B1FCAAAB3A484CDB7B /* Pods-HelloBasket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloBasket.debug.xcconfig"; path = "Target Support Files/Pods-HelloBasket/Pods-HelloBasket.debug.xcconfig"; sourceTree = "<group>"; };
+		BF2EE6D02529C69100D1099F /* HelloBasket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloBasket.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF2EE6D32529C69100D1099F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BF2EE6DA2529C69100D1099F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BF2EE6DC2529C69500D1099F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BF2EE6DF2529C69500D1099F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BF2EE6E12529C69500D1099F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF2EE6F02529CAD600D1099F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		BF2EE7242529E8CC00D1099F /* HBTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBTabBarViewController.swift; sourceTree = "<group>"; };
+		BFCFC4AA2529F39A0015E011 /* TabbarMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabbarMenu.storyboard; sourceTree = "<group>"; };
+		BFCFC4BB2529F4290015E011 /* sideMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sideMenuTableViewCell.swift; sourceTree = "<group>"; };
+		BFCFC4BC2529F4290015E011 /* SidemenuBottomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidemenuBottomTableViewCell.xib; sourceTree = "<group>"; };
+		BFCFC4BD2529F4290015E011 /* SidemenuBottomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidemenuBottomTableViewCell.swift; sourceTree = "<group>"; };
+		BFCFC4BE2529F4290015E011 /* SideNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideNavigationViewController.swift; sourceTree = "<group>"; };
+		BFCFC4F72529F9690015E011 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		BFCFC4FB2529FA3E0015E011 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		BFCFC4FF2529FE300015E011 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		BFCFC5002529FE300015E011 /* SideMenuTransitionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuTransitionController.swift; sourceTree = "<group>"; };
+		BFCFC5012529FE300015E011 /* SideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenu.h; sourceTree = "<group>"; };
+		BFCFC5022529FE300015E011 /* Deprecations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deprecations.swift; sourceTree = "<group>"; };
+		BFCFC5032529FE300015E011 /* SideMenuPresentationStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuPresentationStyle.swift; sourceTree = "<group>"; };
+		BFCFC5042529FE300015E011 /* Print.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Print.swift; sourceTree = "<group>"; };
+		BFCFC5052529FE310015E011 /* SideMenuNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuNavigationController.swift; sourceTree = "<group>"; };
+		BFCFC5062529FE310015E011 /* Initializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Initializable.swift; sourceTree = "<group>"; };
+		BFCFC5072529FE310015E011 /* SideMenuAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuAnimationController.swift; sourceTree = "<group>"; };
+		BFCFC5082529FE310015E011 /* Protected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protected.swift; sourceTree = "<group>"; };
+		BFCFC5092529FE320015E011 /* SideMenuPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuPresentationController.swift; sourceTree = "<group>"; };
+		BFCFC50A2529FE320015E011 /* SideMenuInteractionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuInteractionController.swift; sourceTree = "<group>"; };
+		BFCFC50B2529FE320015E011 /* SideMenuManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuManager.swift; sourceTree = "<group>"; };
+		BFCFC50C2529FE320015E011 /* SideMenuPushCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuPushCoordinator.swift; sourceTree = "<group>"; };
+		BFCFC50D2529FE320015E011 /* UITableViewVibrantCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewVibrantCell.swift; sourceTree = "<group>"; };
+		D16D0C45B2E0C5CC2E007EE2 /* Pods-HelloBasket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloBasket.release.xcconfig"; path = "Target Support Files/Pods-HelloBasket/Pods-HelloBasket.release.xcconfig"; sourceTree = "<group>"; };
+		D446E018610381DAE25704BC /* Pods_HelloBasket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HelloBasket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BF2EE6CD2529C69100D1099F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				751A93697EAFBCA139A68D12 /* Pods_HelloBasket.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		480A297C67E587C1C5299B67 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				526254B1FCAAAB3A484CDB7B /* Pods-HelloBasket.debug.xcconfig */,
+				D16D0C45B2E0C5CC2E007EE2 /* Pods-HelloBasket.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		BF2EE6C72529C69100D1099F = {
+			isa = PBXGroup;
+			children = (
+				BF2EE6D22529C69100D1099F /* HelloBasket */,
+				BF2EE6D12529C69100D1099F /* Products */,
+				480A297C67E587C1C5299B67 /* Pods */,
+				E49066E2B7596E745375ECBA /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		BF2EE6D12529C69100D1099F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BF2EE6D02529C69100D1099F /* HelloBasket.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BF2EE6D22529C69100D1099F /* HelloBasket */ = {
+			isa = PBXGroup;
+			children = (
+				BFCFC4FA2529FA120015E011 /* Resource */,
+				BF2EE7232529E8AD00D1099F /* TABBAR */,
+				BF2EE6EF2529CAB000D1099F /* ViewControllers */,
+				BF2EE6D32529C69100D1099F /* AppDelegate.swift */,
+				BF2EE6D92529C69100D1099F /* Main.storyboard */,
+				BF2EE6DC2529C69500D1099F /* Assets.xcassets */,
+				BF2EE6DE2529C69500D1099F /* LaunchScreen.storyboard */,
+				BF2EE6E12529C69500D1099F /* Info.plist */,
+			);
+			path = HelloBasket;
+			sourceTree = "<group>";
+		};
+		BF2EE6EF2529CAB000D1099F /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				BF2EE6F02529CAD600D1099F /* LoginViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		BF2EE7232529E8AD00D1099F /* TABBAR */ = {
+			isa = PBXGroup;
+			children = (
+				BFCFC4F62529F9580015E011 /* VC */,
+				BFCFC4AE2529F4290015E011 /* Sidemenu */,
+				BF2EE7242529E8CC00D1099F /* HBTabBarViewController.swift */,
+				BFCFC4AA2529F39A0015E011 /* TabbarMenu.storyboard */,
+			);
+			path = TABBAR;
+			sourceTree = "<group>";
+		};
+		BFCFC4AE2529F4290015E011 /* Sidemenu */ = {
+			isa = PBXGroup;
+			children = (
+				BFCFC5022529FE300015E011 /* Deprecations.swift */,
+				BFCFC4FF2529FE300015E011 /* Extensions.swift */,
+				BFCFC5062529FE310015E011 /* Initializable.swift */,
+				BFCFC5042529FE300015E011 /* Print.swift */,
+				BFCFC5082529FE310015E011 /* Protected.swift */,
+				BFCFC5012529FE300015E011 /* SideMenu.h */,
+				BFCFC5072529FE310015E011 /* SideMenuAnimationController.swift */,
+				BFCFC50A2529FE320015E011 /* SideMenuInteractionController.swift */,
+				BFCFC50B2529FE320015E011 /* SideMenuManager.swift */,
+				BFCFC5052529FE310015E011 /* SideMenuNavigationController.swift */,
+				BFCFC5092529FE320015E011 /* SideMenuPresentationController.swift */,
+				BFCFC5032529FE300015E011 /* SideMenuPresentationStyle.swift */,
+				BFCFC50C2529FE320015E011 /* SideMenuPushCoordinator.swift */,
+				BFCFC5002529FE300015E011 /* SideMenuTransitionController.swift */,
+				BFCFC50D2529FE320015E011 /* UITableViewVibrantCell.swift */,
+				BFCFC4BA2529F4290015E011 /* SideMenuElement */,
+			);
+			path = Sidemenu;
+			sourceTree = "<group>";
+		};
+		BFCFC4BA2529F4290015E011 /* SideMenuElement */ = {
+			isa = PBXGroup;
+			children = (
+				BFCFC4BB2529F4290015E011 /* sideMenuTableViewCell.swift */,
+				BFCFC4BC2529F4290015E011 /* SidemenuBottomTableViewCell.xib */,
+				BFCFC4BD2529F4290015E011 /* SidemenuBottomTableViewCell.swift */,
+				BFCFC4BE2529F4290015E011 /* SideNavigationViewController.swift */,
+			);
+			path = SideMenuElement;
+			sourceTree = "<group>";
+		};
+		BFCFC4F62529F9580015E011 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				BFCFC4F72529F9690015E011 /* HomeViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		BFCFC4FA2529FA120015E011 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				BFCFC4FB2529FA3E0015E011 /* Utils.swift */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		E49066E2B7596E745375ECBA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D446E018610381DAE25704BC /* Pods_HelloBasket.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BF2EE6CF2529C69100D1099F /* HelloBasket */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF2EE6E42529C69500D1099F /* Build configuration list for PBXNativeTarget "HelloBasket" */;
+			buildPhases = (
+				3E878B61C7C6E278BC90B1A3 /* [CP] Check Pods Manifest.lock */,
+				BF2EE6CC2529C69100D1099F /* Sources */,
+				BF2EE6CD2529C69100D1099F /* Frameworks */,
+				BF2EE6CE2529C69100D1099F /* Resources */,
+				801E87E80C69560F11DD7619 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HelloBasket;
+			productName = HelloBasket;
+			productReference = BF2EE6D02529C69100D1099F /* HelloBasket.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BF2EE6C82529C69100D1099F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+					BF2EE6CF2529C69100D1099F = {
+						CreatedOnToolsVersion = 12.0;
+					};
+				};
+			};
+			buildConfigurationList = BF2EE6CB2529C69100D1099F /* Build configuration list for PBXProject "HelloBasket" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BF2EE6C72529C69100D1099F;
+			productRefGroup = BF2EE6D12529C69100D1099F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BF2EE6CF2529C69100D1099F /* HelloBasket */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BF2EE6CE2529C69100D1099F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFCFC4CE2529F42A0015E011 /* SidemenuBottomTableViewCell.xib in Resources */,
+				BF2EE6E02529C69500D1099F /* LaunchScreen.storyboard in Resources */,
+				BF2EE6DD2529C69500D1099F /* Assets.xcassets in Resources */,
+				BF2EE6DB2529C69100D1099F /* Main.storyboard in Resources */,
+				BFCFC4AB2529F39A0015E011 /* TabbarMenu.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3E878B61C7C6E278BC90B1A3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HelloBasket-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		801E87E80C69560F11DD7619 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HelloBasket/Pods-HelloBasket-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HelloBasket/Pods-HelloBasket-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HelloBasket/Pods-HelloBasket-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BF2EE6CC2529C69100D1099F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF2EE6F12529CAD600D1099F /* LoginViewController.swift in Sources */,
+				BFCFC5142529FE320015E011 /* Initializable.swift in Sources */,
+				BFCFC5182529FE320015E011 /* SideMenuInteractionController.swift in Sources */,
+				BFCFC51A2529FE320015E011 /* SideMenuPushCoordinator.swift in Sources */,
+				BFCFC50E2529FE320015E011 /* Extensions.swift in Sources */,
+				BFCFC50F2529FE320015E011 /* SideMenuTransitionController.swift in Sources */,
+				BFCFC5192529FE320015E011 /* SideMenuManager.swift in Sources */,
+				BFCFC5122529FE320015E011 /* Print.swift in Sources */,
+				BFCFC51B2529FE320015E011 /* UITableViewVibrantCell.swift in Sources */,
+				BFCFC4D02529F42A0015E011 /* SideNavigationViewController.swift in Sources */,
+				BFCFC5132529FE320015E011 /* SideMenuNavigationController.swift in Sources */,
+				BF2EE7252529E8CC00D1099F /* HBTabBarViewController.swift in Sources */,
+				BFCFC5112529FE320015E011 /* SideMenuPresentationStyle.swift in Sources */,
+				BFCFC4CD2529F42A0015E011 /* sideMenuTableViewCell.swift in Sources */,
+				BFCFC5162529FE320015E011 /* Protected.swift in Sources */,
+				BFCFC5172529FE320015E011 /* SideMenuPresentationController.swift in Sources */,
+				BF2EE6D42529C69100D1099F /* AppDelegate.swift in Sources */,
+				BFCFC4F82529F9690015E011 /* HomeViewController.swift in Sources */,
+				BFCFC4CF2529F42A0015E011 /* SidemenuBottomTableViewCell.swift in Sources */,
+				BFCFC5102529FE320015E011 /* Deprecations.swift in Sources */,
+				BFCFC5152529FE320015E011 /* SideMenuAnimationController.swift in Sources */,
+				BFCFC4FC2529FA3E0015E011 /* Utils.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BF2EE6D92529C69100D1099F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF2EE6DA2529C69100D1099F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BF2EE6DE2529C69500D1099F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF2EE6DF2529C69500D1099F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BF2EE6E22529C69500D1099F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BF2EE6E32529C69500D1099F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BF2EE6E52529C69500D1099F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 526254B1FCAAAB3A484CDB7B /* Pods-HelloBasket.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = HelloBasket/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.demo.app.HelloBasket;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BF2EE6E62529C69500D1099F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D16D0C45B2E0C5CC2E007EE2 /* Pods-HelloBasket.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = HelloBasket/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.demo.app.HelloBasket;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BF2EE6CB2529C69100D1099F /* Build configuration list for PBXProject "HelloBasket" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF2EE6E22529C69500D1099F /* Debug */,
+				BF2EE6E32529C69500D1099F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF2EE6E42529C69500D1099F /* Build configuration list for PBXNativeTarget "HelloBasket" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF2EE6E52529C69500D1099F /* Debug */,
+				BF2EE6E62529C69500D1099F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BF2EE6C82529C69100D1099F /* Project object */;
+}
