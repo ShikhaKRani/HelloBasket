@@ -22,8 +22,7 @@ class LoginViewController: UIViewController {
     }
  
     @objc func redirectTohome() {
-        let appdelegate = UIApplication.shared.delegate as! AppDelegate
-        appdelegate.loadAndSetupabBar()        
+        Utils.redirectToHome()
     }
 
 }

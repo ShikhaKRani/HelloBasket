@@ -22,6 +22,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pJf-Nh-h8l">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.090769273910000003" green="0.048565755250000002" blue="0.25404505080000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -36,7 +37,7 @@
             </objects>
             <point key="canvasLocation" x="1804" y="2995"/>
         </scene>
-        <!--Connect+-->
+        <!--Search-->
         <scene sceneID="Oq8-1D-7L8">
             <objects>
                 <viewController storyboardIdentifier="ConnectPlusTabViewController" id="HSH-gq-bCh" customClass="ConnectPlusTabViewController" customModule="HelloBasket" customModuleProvider="target" sceneMemberID="viewController">
@@ -102,7 +103,9 @@
                             <constraint firstItem="nSK-fm-lJY" firstAttribute="top" secondItem="CTr-Uq-WFc" secondAttribute="top" id="mTm-p9-PxM"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Connect+" image="tab_connectIcon" id="S0f-Kd-VAa"/>
+                    <tabBarItem key="tabBarItem" title="Search" id="S0f-Kd-VAa">
+                        <imageReference key="image" image="magnifyingglass" catalog="system" renderingMode="template"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Dp-se-MS0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -359,7 +362,7 @@
             </objects>
             <point key="canvasLocation" x="1320" y="3968"/>
         </scene>
-        <!--Time Table-->
+        <!--Wallet-->
         <scene sceneID="W8Y-VG-zuM">
             <objects>
                 <viewController storyboardIdentifier="TimeTableTabViewController" id="xAd-y0-cnx" customClass="TimeTableTabViewController" customModule="HelloBasket" customModuleProvider="target" sceneMemberID="viewController">
@@ -439,23 +442,20 @@
                             <constraint firstItem="cNr-iW-ehL" firstAttribute="leading" secondItem="wBA-YZ-5aX" secondAttribute="leading" id="pnL-fL-BTo"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Time Table" image="tab_timeTableIcon" id="46F-uh-9VP"/>
+                    <tabBarItem key="tabBarItem" title="Wallet" image="wallet.pass" catalog="system" id="46F-uh-9VP"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TLl-Og-Ez3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3420" y="3208"/>
         </scene>
-        <!--Dashboard-->
+        <!--Home-->
         <scene sceneID="brM-sS-ncU">
             <objects>
-                <viewController storyboardIdentifier="StudentHome3ViewController" id="ZUx-Lq-6Al" customClass="StudentHome3ViewController" customModule="HelloBasket" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="ZUx-Lq-6Al" customClass="HomeViewController" customModule="HelloBasket" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Eh3-yr-tre">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppBg" translatesAutoresizingMaskIntoConstraints="NO" id="qsD-GJ-wbo">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9q-ND-zpH">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                 <subviews>
@@ -521,30 +521,29 @@
                         <viewLayoutGuide key="safeArea" id="CJK-4H-mvX"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="qsD-GJ-wbo" firstAttribute="leading" secondItem="CJK-4H-mvX" secondAttribute="leading" id="394-id-VXG"/>
                             <constraint firstItem="Lb8-Fb-Ol3" firstAttribute="top" secondItem="d9q-ND-zpH" secondAttribute="bottom" constant="-2" id="76b-DX-PtH"/>
                             <constraint firstItem="d9q-ND-zpH" firstAttribute="leading" secondItem="CJK-4H-mvX" secondAttribute="leading" id="8dx-4I-I0j"/>
-                            <constraint firstItem="qsD-GJ-wbo" firstAttribute="top" secondItem="Eh3-yr-tre" secondAttribute="top" id="BtR-UB-kzQ"/>
-                            <constraint firstItem="qsD-GJ-wbo" firstAttribute="trailing" secondItem="CJK-4H-mvX" secondAttribute="trailing" id="IOR-cU-gYp"/>
                             <constraint firstAttribute="trailing" secondItem="d9q-ND-zpH" secondAttribute="trailing" id="Q6N-hS-eMc"/>
                             <constraint firstItem="d9q-ND-zpH" firstAttribute="leading" secondItem="Eh3-yr-tre" secondAttribute="leading" id="Szi-lk-HBH"/>
                             <constraint firstItem="d9q-ND-zpH" firstAttribute="trailing" secondItem="CJK-4H-mvX" secondAttribute="trailing" id="cIN-QX-JW2"/>
                             <constraint firstItem="d9q-ND-zpH" firstAttribute="top" secondItem="Eh3-yr-tre" secondAttribute="top" id="ezy-Ty-oTf"/>
                             <constraint firstItem="d9q-ND-zpH" firstAttribute="trailing" secondItem="Lb8-Fb-Ol3" secondAttribute="trailing" id="fy5-ly-IWt"/>
-                            <constraint firstAttribute="bottom" secondItem="qsD-GJ-wbo" secondAttribute="bottom" id="nb8-Aw-4ed"/>
                             <constraint firstItem="CJK-4H-mvX" firstAttribute="bottom" secondItem="Lb8-Fb-Ol3" secondAttribute="bottom" id="uMa-ER-rXY"/>
                             <constraint firstItem="d9q-ND-zpH" firstAttribute="leading" secondItem="Lb8-Fb-Ol3" secondAttribute="leading" id="zye-Ng-wz5"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Dashboard" image="homekit" catalog="system" id="0oz-hN-HyO">
+                    <tabBarItem key="tabBarItem" title="Home" image="homekit" catalog="system" id="0oz-hN-HyO">
                         <imageReference key="selectedImage" image="homekit" catalog="system" renderingMode="template"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="navigationView" destination="d9q-ND-zpH" id="JzG-Ov-RS7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rh4-Fa-t5a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="527.536231884058" y="3962.9464285714284"/>
         </scene>
-        <!--FAQs-->
+        <!--Category-->
         <scene sceneID="6G9-Q9-cRj">
             <objects>
                 <viewController storyboardIdentifier="FAQViewController" id="vMB-5D-pkA" customClass="FAQViewController" customModule="HelloBasket" customModuleProvider="target" sceneMemberID="viewController">
@@ -611,7 +610,9 @@
                             <constraint firstItem="BgF-Sd-xOr" firstAttribute="leading" secondItem="6bg-kQ-BZz" secondAttribute="leading" id="grf-V9-Pnk"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="FAQs" image="faqIcon" id="PXu-jI-bK2"/>
+                    <tabBarItem key="tabBarItem" title="Category" id="PXu-jI-bK2">
+                        <imageReference key="image" image="square.grid.2x2.fill" catalog="system" renderingMode="template"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bCl-A6-EgD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -619,12 +620,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6tu-Zv-Qat"/>
+        <segue reference="U0P-zr-M21"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="AppBg" width="414" height="736"/>
         <image name="cart.fill" catalog="system" width="128" height="102"/>
-        <image name="faqIcon" width="24" height="24"/>
         <image name="homekit" catalog="system" width="128" height="106"/>
         <image name="imageView:JRN-Zt-e55:image" width="24" height="24">
             <mutableData key="keyedArchiveRepresentation">
@@ -1294,9 +1293,10 @@ kz2VWuda7FrvWvFa81r1Wvpa/Fr+iFCIVYhkiGiIc4h7iIiInYiiiKaIqIiqiKyItYi9iL+IwYjDiMWa
 MZo2mj6aQZpGmk4AAAAAAAACAQAAAAAAAACPAAAAAAAAAAAAAAAAAACaUQ
 </mutableData>
         </image>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="sd_menuIcon" width="96" height="96"/>
-        <image name="tab_connectIcon" width="25" height="21"/>
-        <image name="tab_timeTableIcon" width="20.5" height="20.5"/>
+        <image name="square.grid.2x2.fill" catalog="system" width="128" height="114"/>
+        <image name="wallet.pass" catalog="system" width="115" height="128"/>
         <systemColor name="groupTableViewBackgroundColor">
             <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

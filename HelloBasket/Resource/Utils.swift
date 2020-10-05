@@ -11,6 +11,11 @@ import SideMenu
 class Utils: NSObject {
 
     
+    class func redirectToHome() {
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        appdelegate.loadAndSetupabBar()
+    }
+    
     class func setupSideMenu(navigationController: UINavigationController,storyBoardName:String) -> Void {
         
         let storyBoard : UIStoryboard = UIStoryboard(name: storyBoardName, bundle:nil)

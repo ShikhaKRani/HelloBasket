@@ -20,15 +20,14 @@ class HBTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     //self.tabBarController?.selectedIndex = tabSelectedIndex
     self.tabBar.isTranslucent = true
     self.tabBar.tintColor = .blue
-        //Colors.TabbarColor
-    self.tabBar.selectedImageTintColor = .cyan
-        //Colors.rightColor
-    self.tabBar.unselectedItemTintColor = .systemYellow
-//        ..Colors.unselectedTabColor
+    self.tabBar.selectedImageTintColor = .systemYellow
+    self.tabBar.unselectedItemTintColor = .white
     self.tabBar.itemPositioning =  UITabBar.ItemPositioning.fill
     self.delegate = self
-   
-   
+    
+    let appearance = UITabBarAppearance()
+    appearance.backgroundColor = AppColor.themeColor
+        tabBar.standardAppearance = appearance
   }
   
     override func viewWillDisappear(_ animated: Bool) {
@@ -39,7 +38,7 @@ class HBTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     }
   override func viewDidLayoutSubviews() {
       super.viewDidLayoutSubviews()
-    //  self.setTabbarSeperator()
+//      self.setTabbarSeperator()
       // safe place to set the frame of button manually
     
   

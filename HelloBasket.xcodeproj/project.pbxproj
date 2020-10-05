@@ -35,6 +35,7 @@
 		BFCFC5192529FE320015E011 /* SideMenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFC50B2529FE320015E011 /* SideMenuManager.swift */; };
 		BFCFC51A2529FE320015E011 /* SideMenuPushCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFC50C2529FE320015E011 /* SideMenuPushCoordinator.swift */; };
 		BFCFC51B2529FE320015E011 /* UITableViewVibrantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFC50D2529FE320015E011 /* UITableViewVibrantCell.swift */; };
+		BFCFC51E252AEF030015E011 /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFC51D252AEF030015E011 /* AppConstant.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		BFCFC50B2529FE320015E011 /* SideMenuManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuManager.swift; sourceTree = "<group>"; };
 		BFCFC50C2529FE320015E011 /* SideMenuPushCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuPushCoordinator.swift; sourceTree = "<group>"; };
 		BFCFC50D2529FE320015E011 /* UITableViewVibrantCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewVibrantCell.swift; sourceTree = "<group>"; };
+		BFCFC51D252AEF030015E011 /* AppConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
 		D16D0C45B2E0C5CC2E007EE2 /* Pods-HelloBasket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloBasket.release.xcconfig"; path = "Target Support Files/Pods-HelloBasket/Pods-HelloBasket.release.xcconfig"; sourceTree = "<group>"; };
 		D446E018610381DAE25704BC /* Pods_HelloBasket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HelloBasket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -192,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				BFCFC4FB2529FA3E0015E011 /* Utils.swift */,
+				BFCFC51D252AEF030015E011 /* AppConstant.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				BF2EE7252529E8CC00D1099F /* HBTabBarViewController.swift in Sources */,
 				BFCFC5112529FE320015E011 /* SideMenuPresentationStyle.swift in Sources */,
 				BFCFC4CD2529F42A0015E011 /* sideMenuTableViewCell.swift in Sources */,
+				BFCFC51E252AEF030015E011 /* AppConstant.swift in Sources */,
 				BFCFC5162529FE320015E011 /* Protected.swift in Sources */,
 				BFCFC5172529FE320015E011 /* SideMenuPresentationController.swift in Sources */,
 				BF2EE6D42529C69100D1099F /* AppDelegate.swift in Sources */,

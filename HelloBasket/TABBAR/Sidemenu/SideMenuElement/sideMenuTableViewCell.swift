@@ -10,8 +10,6 @@ import UIKit
 
 class sideMenuTableViewCell: UITableViewCell {
     @IBOutlet weak var menuTitleLbl: UILabel!
-    
-    
     @IBOutlet weak var menuImgIcon: UIImageView!
     @IBOutlet weak var listUnderlineView: UIView!
     override func awakeFromNib() {
