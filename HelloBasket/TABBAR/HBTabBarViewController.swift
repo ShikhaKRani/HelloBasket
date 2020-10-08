@@ -12,6 +12,8 @@ class HBTabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
   var tabSelectedIndex = 0
     
+    //fileprivate lazy var defaultTabBarHeight = { tabBar.frame.size.height }()
+    
   override func viewDidLoad() {
       super.viewDidLoad()
       // Do any additional setup after loading the view, typically from a nib.
@@ -43,6 +45,20 @@ class HBTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
   
   }
+    
+    
+    
+//    override func viewWillLayoutSubviews() {
+//            super.viewWillLayoutSubviews()
+//
+//            let newTabBarHeight = defaultTabBarHeight + 16.0
+//
+//            var newFrame = tabBar.frame
+//            newFrame.size.height = newTabBarHeight
+//            newFrame.origin.y = view.frame.size.height - newTabBarHeight
+//
+//            tabBar.frame = newFrame
+//        }
 
   override func didReceiveMemoryWarning() {
       super.didReceiveMemoryWarning()

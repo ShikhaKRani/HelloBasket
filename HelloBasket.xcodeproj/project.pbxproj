@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		751A93697EAFBCA139A68D12 /* Pods_HelloBasket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D446E018610381DAE25704BC /* Pods_HelloBasket.framework */; };
+		BF2DA8A3252B433800F6B65B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2DA8A2252B433800F6B65B /* RegisterViewController.swift */; };
+		BF2DA8A6252DA1EE00F6B65B /* CategoryTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2DA8A5252DA1EE00F6B65B /* CategoryTabViewController.swift */; };
+		BF2DA8A9252DA20400F6B65B /* WalletTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2DA8A8252DA20400F6B65B /* WalletTabViewController.swift */; };
+		BF2DA8AC252DA21400F6B65B /* OfferTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2DA8AB252DA21400F6B65B /* OfferTabViewController.swift */; };
+		BF2DA8C1252EF84700F6B65B /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2DA8C0252EF84700F6B65B /* MyAccountViewController.swift */; };
 		BF2EE6D42529C69100D1099F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2EE6D32529C69100D1099F /* AppDelegate.swift */; };
 		BF2EE6DB2529C69100D1099F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF2EE6D92529C69100D1099F /* Main.storyboard */; };
 		BF2EE6DD2529C69500D1099F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF2EE6DC2529C69500D1099F /* Assets.xcassets */; };
@@ -40,6 +45,11 @@
 
 /* Begin PBXFileReference section */
 		526254B1FCAAAB3A484CDB7B /* Pods-HelloBasket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloBasket.debug.xcconfig"; path = "Target Support Files/Pods-HelloBasket/Pods-HelloBasket.debug.xcconfig"; sourceTree = "<group>"; };
+		BF2DA8A2252B433800F6B65B /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		BF2DA8A5252DA1EE00F6B65B /* CategoryTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTabViewController.swift; sourceTree = "<group>"; };
+		BF2DA8A8252DA20400F6B65B /* WalletTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTabViewController.swift; sourceTree = "<group>"; };
+		BF2DA8AB252DA21400F6B65B /* OfferTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferTabViewController.swift; sourceTree = "<group>"; };
+		BF2DA8C0252EF84700F6B65B /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
 		BF2EE6D02529C69100D1099F /* HelloBasket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloBasket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF2EE6D32529C69100D1099F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF2EE6DA2529C69100D1099F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -133,6 +143,8 @@
 			isa = PBXGroup;
 			children = (
 				BF2EE6F02529CAD600D1099F /* LoginViewController.swift */,
+				BF2DA8A2252B433800F6B65B /* RegisterViewController.swift */,
+				BF2DA8C0252EF84700F6B65B /* MyAccountViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -185,6 +197,9 @@
 		BFCFC4F62529F9580015E011 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				BF2DA8A5252DA1EE00F6B65B /* CategoryTabViewController.swift */,
+				BF2DA8A8252DA20400F6B65B /* WalletTabViewController.swift */,
+				BF2DA8AB252DA21400F6B65B /* OfferTabViewController.swift */,
 				BFCFC4F72529F9690015E011 /* HomeViewController.swift */,
 			);
 			path = VC;
@@ -326,18 +341,23 @@
 				BF2EE6F12529CAD600D1099F /* LoginViewController.swift in Sources */,
 				BFCFC5142529FE320015E011 /* Initializable.swift in Sources */,
 				BFCFC5182529FE320015E011 /* SideMenuInteractionController.swift in Sources */,
+				BF2DA8A3252B433800F6B65B /* RegisterViewController.swift in Sources */,
 				BFCFC51A2529FE320015E011 /* SideMenuPushCoordinator.swift in Sources */,
 				BFCFC50E2529FE320015E011 /* Extensions.swift in Sources */,
+				BF2DA8A6252DA1EE00F6B65B /* CategoryTabViewController.swift in Sources */,
 				BFCFC50F2529FE320015E011 /* SideMenuTransitionController.swift in Sources */,
 				BFCFC5192529FE320015E011 /* SideMenuManager.swift in Sources */,
 				BFCFC5122529FE320015E011 /* Print.swift in Sources */,
+				BF2DA8C1252EF84700F6B65B /* MyAccountViewController.swift in Sources */,
 				BFCFC51B2529FE320015E011 /* UITableViewVibrantCell.swift in Sources */,
 				BFCFC4D02529F42A0015E011 /* SideNavigationViewController.swift in Sources */,
 				BFCFC5132529FE320015E011 /* SideMenuNavigationController.swift in Sources */,
 				BF2EE7252529E8CC00D1099F /* HBTabBarViewController.swift in Sources */,
 				BFCFC5112529FE320015E011 /* SideMenuPresentationStyle.swift in Sources */,
 				BFCFC4CD2529F42A0015E011 /* sideMenuTableViewCell.swift in Sources */,
+				BF2DA8AC252DA21400F6B65B /* OfferTabViewController.swift in Sources */,
 				BFCFC51E252AEF030015E011 /* AppConstant.swift in Sources */,
+				BF2DA8A9252DA20400F6B65B /* WalletTabViewController.swift in Sources */,
 				BFCFC5162529FE320015E011 /* Protected.swift in Sources */,
 				BFCFC5172529FE320015E011 /* SideMenuPresentationController.swift in Sources */,
 				BF2EE6D42529C69100D1099F /* AppDelegate.swift in Sources */,
@@ -494,6 +514,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TQSNJXDVPJ;
 				INFOPLIST_FILE = HelloBasket/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -513,6 +534,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TQSNJXDVPJ;
 				INFOPLIST_FILE = HelloBasket/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

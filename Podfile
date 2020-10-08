@@ -17,8 +17,6 @@ target 'HelloBasket' do
   pod "SearchTextField"
   pod 'FSCalendar'
   pod 'Segmentio'
-
-
 # pod 'CalendarDateRangePickerViewController'
   # Pods for HelloBasket
 

@@ -12,6 +12,14 @@ class sideMenuTableViewCell: UITableViewCell {
     @IBOutlet weak var menuTitleLbl: UILabel!
     @IBOutlet weak var menuImgIcon: UIImageView!
     @IBOutlet weak var listUnderlineView: UIView!
+    @IBOutlet weak var lineView: UIView!
+    
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var facebookButton: UIButton!
+    @IBOutlet weak var instagramButton: UIButton!
+    @IBOutlet weak var twitterButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
