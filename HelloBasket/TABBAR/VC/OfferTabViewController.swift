@@ -9,8 +9,11 @@ import UIKit
 
 class OfferTabViewController: UIViewController {
 
+    @IBOutlet weak var navigationView: UIView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationView.backgroundColor = AppColor.themeColor
 
         // Do any additional setup after loading the view.
     }

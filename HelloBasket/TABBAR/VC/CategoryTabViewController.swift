@@ -7,73 +7,82 @@
 
 
 import UIKit
-
-class HeaderCell : UITableViewCell {
-    @IBOutlet weak var img: UIImageView!
-    @IBOutlet weak var titleLbl: UILabel!
-}
-
-class CategoryCell : UITableViewCell {
-    @IBOutlet weak var titleLbl: UILabel!
-    
-}
-
-
+import SDWebImage
 
 class CategoryTabViewController: UIViewController {
     
     @IBOutlet weak var tblView: UITableView!
-    
-    var dataArr : Array<Dictionary<String,AnyObject>> = [
-        ["title":"Fruits" as AnyObject,"image": "profile" as AnyObject]
-        ,["title":"Beverages" as AnyObject,"image": "profile" as AnyObject]
-        ,["title":"Beauty" as AnyObject,"image": "profile" as AnyObject]
-        ,["title":"Personal" as AnyObject,"image": "profile" as AnyObject]
-        ,["title":"Cleaning" as AnyObject,"image": "profile" as AnyObject]
-         ,["title":"Eggs" as AnyObject,"image": "profile" as AnyObject]]
+    @IBOutlet weak var navigationView: UIView!
 
+    var categoryData =  [CategoryModel]()
     
-}
-
-
-extension CategoryTabViewController {
     
-    //MARK:- Side Menu Set up
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let sideMenuNavigationController = segue.destination as?
-            SideMenuNavigationController else { return }
-        sideMenuNavigationController.settings = Utils.makeSettings()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationView.backgroundColor = AppColor.themeColor
+
+        tblView.tableFooterView = UIView()
+        self.fetchCategoryData()
     }
     
-    //MARK:- Side Menu Set up
+    func fetchCategoryData() {
+        
+        // let param: [String: Any] = ["name": "Shikha"]
+        Loader.showHud()
+        ServiceClient.getProductCategory(parameters: [:]) { [weak self] result in
+            Loader.dismissHud()
+            switch result {
+            case let .success(response):
+                if let catData = result.response?.data {
+                    self?.categoryData = catData
+                    print(response)
+                    DispatchQueue.main.async {
+                        self?.tblView.reloadData()
+                    }
+                }
+            case .failure: break
+            }
+        }
+    }
+    
+    
+    @objc func toggleCollapse(sender: UIButton) {
+        
+        let section = sender.tag
+        let collapsed = self.categoryData[section].isTapped
+        // Toggle collapse
+        self.categoryData[section].isTapped = !(collapsed ?? false)
+        tblView.reloadData()
+    }
+    
 }
+
+//MARK:- Delegate and Datasource
 
 extension CategoryTabViewController: UITableViewDelegate,UITableViewDataSource{
     
-    
-    
     func numberOfSections(in tableView: UITableView) -> Int {
-        6
+        self.categoryData.count
     }
-
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        return 1
-        
+        let rowCount = self.categoryData[section].subcategory?.count
+        if self.categoryData[section].isTapped ?? false {
+            return rowCount ?? 0
+        }
+        return 0
     }
-    
-    
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let cell = self.tblView.dequeueReusableCell(withIdentifier: "HeaderCell") as? HeaderCell
+        cell?.toggleBtn.tag = section
+        cell?.toggleBtn.addTarget(self, action: #selector(toggleCollapse(sender:)), for: .touchUpInside)
+        cell?.titleLbl.text = self.categoryData[section].name
+        let urlString = self.categoryData[section].image ?? ""
+        cell?.img.sd_setImage(with: URL(string: urlString), placeholderImage: UIImage(named: "placeholder.png"))
         
-        let cellDict = dataArr[section] as Dictionary<String,AnyObject>
-       cell?.img.image = UIImage.init(named: cellDict["image"] as? String ?? "")
-       cell?.titleLbl.text = cellDict["title"] as? String ?? ""
-       //cell?.selectionStyle  = .none
-        
+        // istapped 
         
         return cell
     }
@@ -82,75 +91,42 @@ extension CategoryTabViewController: UITableViewDelegate,UITableViewDataSource{
         return 60
     }
     
-    
-    
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = self.tblView.dequeueReusableCell(withIdentifier: "CategoryCell") as? CategoryCell
-        
-        
-        
-//        if indexPath.section == 1{
-//            let cell = self.tblView.dequeueReusableCell(withIdentifier: "imgCell") as? sideMenuTableViewCell
-        
-            
-            
-            return cell!
-            
-        }
-        
-        
+        let title = self.categoryData[indexPath.section].subcategory?[indexPath.row].name
+        cell?.titleLbl.text = title
+        return cell!
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
 }
 
+
+//MARK:- Side Menu Set up
+extension CategoryTabViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let sideMenuNavigationController = segue.destination as?
+                SideMenuNavigationController else { return }
+        sideMenuNavigationController.settings = Utils.makeSettings()
+    }
+}
+//MARK:- Side Menu Set up
+
+
+//MARK:- Cell
+
+class HeaderCell : UITableViewCell {
+    @IBOutlet weak var img: UIImageView!
+    @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var toggleBtn: UIButton!
     
-    
+}
 
+class CategoryCell : UITableViewCell {
+    @IBOutlet weak var titleLbl: UILabel!
+}
 
-
-
-
-
-//tableview create
-// number of section according to array
-//view for header in section view uspe aisa UI
-
-
-/*
- 
- numberofsection array count
- 
- 6 header
- 
- //number of row in section 1
- override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
- 
- let imgitem = array[section]
- let titleitem = array[section]
-
- let cell = tblview.dequeueReusableCell(withIdentifier: "HeaderCell") as? HeaderCell
-cell.titlelb.text = titleitem
- cell.img.image = imgitem
-
- 
-     return cell
- }
-
- override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-     return 75
- }
- 
- header
- row
- header
- row
- 
- number of row in section
- return 1
- 
- cellforrow {
- //CategoryCell
- title "shikha"
- }
- 
- **/
