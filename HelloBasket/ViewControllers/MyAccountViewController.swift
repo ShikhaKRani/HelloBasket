@@ -30,18 +30,26 @@ class MyAccountTableViewCell:UITableViewCell{
 
 class MyAccountViewController: UIViewController {
     @IBOutlet weak var myAccountTblView: UITableView!
-
+    @IBOutlet weak var backButton: UIButton!
+    
     override func viewDidLoad() {
         
         
         
         self.myAccountTblView.tableFooterView = UIView()
         super.viewDidLoad()
+        
+        backButton.addTarget(self, action: #selector(redirectTohome), for: .touchUpInside)
 
         // Do any additional setup after loading the view.
     }
     
-
+    @objc func redirectTohome() {
+        let storyBoard = UIStoryboard.init(name: "TabbarMenu", bundle: nil)
+        if let homeVC = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
+            self.navigationController?.pushViewController(homeVC, animated: true)
+        }
+    }
     
 
 }

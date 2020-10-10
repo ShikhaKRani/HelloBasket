@@ -130,10 +130,10 @@ class SideNavigationViewController: UIViewController,UITableViewDelegate,UITable
         switch menuItem {
         case "All Category":
             
-//            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-//            if let getProfile = storyBoard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController {
-//                self.navigationController?.pushViewController(getProfile, animated: true)
-//            }
+          let storyBoard = UIStoryboard.init(name: "TabbarMenu", bundle: nil)
+            if let orderVC = storyBoard.instantiateViewController(withIdentifier: "CategoryTabViewController") as? CategoryTabViewController {
+                self.navigationController?.pushViewController(orderVC, animated: true)
+            }
             
             break
         case "My Account":

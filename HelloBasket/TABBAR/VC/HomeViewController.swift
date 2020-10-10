@@ -19,6 +19,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationView.backgroundColor = AppColor.themeColor
+        self.view.backgroundColor = .white
         
         self.fetchHomeData()
     }
