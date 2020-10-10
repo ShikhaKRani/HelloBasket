@@ -11,17 +11,17 @@ class ServiceClient {
     
     
     
-    
-    
+    class func getHomeListing(parameters: [String: Any]?, handler: (APICompletion<HomeModel>)? = nil) {
+        getRequest(url: APIEndPoints.shared.GET_HOMEDATA
+            , parameters: parameters, handler: handler)
+    }
     
     class func getProductCategory(parameters: [String: Any]?, handler: (APICompletion<[CategoryModel]>)? = nil) {
         getRequest(url: APIEndPoints.shared.GET_CATEGORY
                    , parameters: parameters, handler: handler)
         
     }
-    
-    
-    
+        
     
     
     

@@ -43,7 +43,7 @@ class APIEndPoints: NSObject, Codable { // checkpoint
 //MARK:- End points
     
     var GET_CATEGORY = "\(mainUrl)category"
-
+    var GET_HOMEDATA = "\(mainUrl)home"
     
     
     override init() {}

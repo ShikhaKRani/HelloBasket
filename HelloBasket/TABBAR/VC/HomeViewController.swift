@@ -19,7 +19,37 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationView.backgroundColor = AppColor.themeColor
+        
+        self.fetchHomeData()
     }
+    
+    
+    func fetchHomeData() {
+        
+        var param: [String: Any] = [ : ]
+        
+        Loader.showHud()
+        ServiceClient.getHomeListing(parameters: param) {[weak self] result in
+            Loader.dismissHud()
+            switch result {
+            case let .success(response):
+                if let notification = response.data {
+                    
+                    print(notification)
+//                    self?.dataArr = notification
+//                    self?.collectionView.reloadData()
+//                    print(self?.dataArr?.collections as Any)
+                    
+                }
+                
+            case .failure: break
+            }
+        }
+    }
+    
+    
+    
+    
    
     
 }

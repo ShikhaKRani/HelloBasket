@@ -26,6 +26,7 @@
 		BF2EE6E02529C69500D1099F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF2EE6DE2529C69500D1099F /* LaunchScreen.storyboard */; };
 		BF2EE6F12529CAD600D1099F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2EE6F02529CAD600D1099F /* LoginViewController.swift */; };
 		BF2EE7252529E8CC00D1099F /* HBTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2EE7242529E8CC00D1099F /* HBTabBarViewController.swift */; };
+		BFAE9AE525308212003091FB /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAE9AE425308212003091FB /* Home.swift */; };
 		BFCFC4AB2529F39A0015E011 /* TabbarMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFCFC4AA2529F39A0015E011 /* TabbarMenu.storyboard */; };
 		BFCFC4CD2529F42A0015E011 /* sideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFC4BB2529F4290015E011 /* sideMenuTableViewCell.swift */; };
 		BFCFC4CE2529F42A0015E011 /* SidemenuBottomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFCFC4BC2529F4290015E011 /* SidemenuBottomTableViewCell.xib */; };
@@ -72,6 +73,7 @@
 		BF2EE6E12529C69500D1099F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF2EE6F02529CAD600D1099F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BF2EE7242529E8CC00D1099F /* HBTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBTabBarViewController.swift; sourceTree = "<group>"; };
+		BFAE9AE425308212003091FB /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		BFCFC4AA2529F39A0015E011 /* TabbarMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabbarMenu.storyboard; sourceTree = "<group>"; };
 		BFCFC4BB2529F4290015E011 /* sideMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sideMenuTableViewCell.swift; sourceTree = "<group>"; };
 		BFCFC4BC2529F4290015E011 /* SidemenuBottomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidemenuBottomTableViewCell.xib; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				BF2DA8E325303C9F00F6B65B /* Models.swift */,
+				BFAE9AE425308212003091FB /* Home.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				BFCFC5112529FE320015E011 /* SideMenuPresentationStyle.swift in Sources */,
 				BFCFC4CD2529F42A0015E011 /* sideMenuTableViewCell.swift in Sources */,
 				BF2DA8AC252DA21400F6B65B /* OfferTabViewController.swift in Sources */,
+				BFAE9AE525308212003091FB /* Home.swift in Sources */,
 				BFCFC51E252AEF030015E011 /* AppConstant.swift in Sources */,
 				BF2DA8A9252DA20400F6B65B /* WalletTabViewController.swift in Sources */,
 				BFCFC5162529FE320015E011 /* Protected.swift in Sources */,
