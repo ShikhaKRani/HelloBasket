@@ -28,6 +28,9 @@ class HomeViewController: UIViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("NotificationHomeIdentifier"), object: nil)
+
+        
         navigationView.backgroundColor = AppColor.themeColor
         self.view.backgroundColor = .white
         self.fetchHomeData()
@@ -79,7 +82,11 @@ class HomeViewController: UIViewController{
         return self.sectionBanners
     }
     
-    
+    @objc func methodOfReceivedNotification(notification: Notification) {
+
+        print(notification.userInfo)
+
+    }
 }
 //MARK:-
 //MARK:- HomeViewController

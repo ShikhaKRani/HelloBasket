@@ -59,6 +59,8 @@ extension ImageBannerCell : UICollectionViewDelegate,UICollectionViewDataSource,
         let imgDict = self.bannerArray[indexPath.row]
         let cat_id = imgDict["cat_id"] as? Int
         print("===>>> ",cat_id ?? 0)
+        NotificationCenter.default.post(name: Notification.Name("NotificationHomeIdentifier"), object: nil, userInfo: ["selectedDict":"\(imgDict)"])
+
     }
 }
 
@@ -152,6 +154,11 @@ extension CategoryCollectionCell : UICollectionViewDelegate,UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let catDict = self.categories[indexPath.row]
+        NotificationCenter.default.post(name: Notification.Name("NotificationHomeIdentifier"), object: nil, userInfo: ["selectedDict":"\(catDict)"])
+
+        
 //        cellPressAction(eventID: self.nearPlaceModel[indexPath.row].id ?? 0)
     }
 }
@@ -229,7 +236,8 @@ extension RecomCollectionCell : UICollectionViewDelegate,UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        cellPressAction(eventID: self.nearPlaceModel[indexPath.row].id ?? 0)
+        let prodDict = self.freshProducts[indexPath.row]
+        NotificationCenter.default.post(name: Notification.Name("NotificationHomeIdentifier"), object: nil, userInfo: ["prodDict":"\(prodDict)"])
     }
 }
 
