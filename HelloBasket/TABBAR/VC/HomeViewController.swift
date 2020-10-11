@@ -84,7 +84,7 @@ class HomeViewController: UIViewController{
     
     @objc func methodOfReceivedNotification(notification: Notification) {
 
-        print(notification.userInfo)
+        print(notification.userInfo ?? [:])
 
         let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
         if let catgScreen = storyBoard.instantiateViewController(withIdentifier: "CategoryViewController") as? CategoryViewController {
