@@ -58,7 +58,7 @@ class HomeViewController: UIViewController{
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -70,9 +70,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return  1 //category
         }
         else if section == 2 {
-            //sections
-            //            return dataArr?.others?.count ?? 0
-            return 0
+            return 1 //recomendation
+        }
+        else if section == 3 {
+            return 1 //sub category
         }
         
         return 0
@@ -95,27 +96,38 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             if count1 % 3 != 0 {
                 rowCount = rowCount + 1
             }
-            return CGSize(width: Constants.windowWidth, height: CGFloat(rowCount * 140) + 40.0)
+            return CGSize(width: Constants.windowWidth, height: CGFloat(rowCount * 140) + 50.0)
             
         }
-        //sections //dynamic //column and rows
-//        else if indexPath.section == 2 {
-//            
-//            let data = dataArr?.others?[indexPath.row]
-//            let count1: Int = data?.event?.count ?? 0
-//            let count2: Int = data?.banners?.count ?? 0
-//            
-//            var rowCount = count1/3
-//            
-//            if count1 % 3 != 0 {
-//                rowCount = rowCount + 1
-//            }
-//            let rowCount1 = count2 > 0 ? 1: 0
-//            return CGSize(width: self.view.frame.width, height: CGFloat(rowCount * 140) + CGFloat(rowCount1 * 181) + 40.0)
-//        }
+        else if indexPath.section == 2 {
+            //check size
+            return CGSize(width: Constants.windowWidth, height: 300)
+        }
+        else if indexPath.section == 3 {
+            
+            var rowCount = 0
+            let sections = self.homeDataDict?["sections"] as? [[String : Any]]
+            if sections?.count ?? 0 > 0 {
+                for var index in 0..<sections!.count {
+                    let dict = sections?[index]
+                    if dict?["type"] as! String == "subcategory" {
+                        let subCatg = dict?["subcategory"] as? [[String : Any]]
+                        let count1: Int = subCatg?.count ?? 0
+                        rowCount = count1/2
+                        if count1 % 2 != 0 {
+                            rowCount = rowCount + 1
+                        }
+                        
+                        return CGSize(width: Constants.windowWidth, height: CGFloat(rowCount * 140) + 50.0)
+                    }
+                }
+            }
+        }
+        //---
         
         
         
+
         return CGSize(width: self.view.frame.width, height: 150)
     }
     
@@ -151,22 +163,50 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         else if indexPath.section == 1 {
             let cell = collectionView
                 .dequeueReusableCell(withReuseIdentifier: "\(CategoryCollectionCell.self)", for: indexPath) as? CategoryCollectionCell
+            cell?.headerLbl.text = "Shop by Category"
             let categories = self.homeDataDict?["categories"] as? [[String : Any]]
-            cell?.configureCell(categories: categories ?? [[:]])
+            cell?.configureCell(screen: "cat", categories: categories ?? [[:]])
+            collectionCell = cell
+        }
+        //RecomCollectionCell
+        else if indexPath.section == 2 {
+            let cell = collectionView
+                .dequeueReusableCell(withReuseIdentifier: "\(RecomCollectionCell.self)", for: indexPath) as? RecomCollectionCell
+            let sections = self.homeDataDict?["sections"] as? [[String : Any]]
+            
+            if sections?.count ?? 0 > 0 {
+                for var index in 0..<sections!.count {
+                    let dict = sections?[index]
+                    if dict?["type"] as! String == "product" {
+                        cell?.headerLbl.text = dict?["name"] as? String
+                        let productlist = dict?["products"] as? [[String : Any]]
+                        cell?.configureCell(freshProducts: productlist ?? [[:]])
+                    }
+                }
+            }
+            collectionCell = cell
+        }
+        
+        else if indexPath.section == 3 {
+            let cell = collectionView
+                .dequeueReusableCell(withReuseIdentifier: "\(CategoryCollectionCell.self)", for: indexPath) as? CategoryCollectionCell
+            cell?.headerLbl.text = "Fresh Product Added"
+            
+            let sections = self.homeDataDict?["sections"] as? [[String : Any]]
+            if sections?.count ?? 0 > 0 {
+                for var index in 0..<sections!.count {
+                    let dict = sections?[index]
+                    if dict?["type"] as! String == "subcategory" {
+                        let subCatg = dict?["subcategory"] as? [[String : Any]]
+                        cell?.configureCell(screen: "subcat", categories: subCatg ?? [[:]])
+                    }
+                }
+            }
             collectionCell = cell
         }
         
         
         
-        //        else if indexPath.section == 2 {
-        //            let cell = collectionView
-        //                .dequeueReusableCell(withReuseIdentifier: "\(EventOtherCell.self)", for: indexPath) as? EventOtherCell
-        //            cell?.configureCell(homeOthers: dataArr?.others?[indexPath.row])
-        //            cell?.viewButton.tag = indexPath.row
-        //            cell?.viewButton.addTarget(self, action: #selector(viewEvent(sender:)), for: .touchUpInside)
-        //            collectionCell = cell
-        //            cell?.delegate = self
-        //        }
         
         return collectionCell ?? UICollectionViewCell()
     }
@@ -181,3 +221,4 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
 //MARK:-
 
+//RecomCollectionCell
