@@ -86,6 +86,12 @@ class HomeViewController: UIViewController{
 
         print(notification.userInfo)
 
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        if let catgScreen = storyBoard.instantiateViewController(withIdentifier: "CategoryViewController") as? CategoryViewController {
+            catgScreen.prevDict = notification.userInfo as? [String : Any]
+            self.navigationController?.pushViewController(catgScreen, animated: true)
+        }
+        
     }
 }
 //MARK:-
