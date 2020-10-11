@@ -22,28 +22,29 @@ class CategoryTabViewController: UIViewController {
         navigationView.backgroundColor = AppColor.themeColor
 
         tblView.tableFooterView = UIView()
-        self.fetchCategoryData()
+//        self.fetchCategoryData()
     }
     
-    func fetchCategoryData() {
-        
-        // let param: [String: Any] = ["name": "Shikha"]
-        Loader.showHud()
-        ServiceClient.getProductCategory(parameters: [:]) { [weak self] result in
-            Loader.dismissHud()
-            switch result {
-            case let .success(response):
-                if let catData = result.response?.data {
-                    self?.categoryData = catData
-                    print(response)
-                    DispatchQueue.main.async {
-                        self?.tblView.reloadData()
-                    }
-                }
-            case .failure: break
-            }
-        }
-    }
+//    func fetchCategoryData() {
+//
+//        // let param: [String: Any] = ["name": "Shikha"]
+//        Loader.showHud()
+//        ServiceClient.getProductCategory(parameters: [:]) { [weak self] result in
+//            Loader.dismissHud()
+//            switch result {
+//            case let .success(response):
+//                if let catData = result.response?.data {
+//
+////                    self?.categoryData = catData
+//                    print(response)
+//                    DispatchQueue.main.async {
+//                        self?.tblView.reloadData()
+//                    }
+//                }
+//            case .failure: break
+//            }
+//        }
+//    }
     
     
     @objc func toggleCollapse(sender: UIButton) {

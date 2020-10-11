@@ -1,197 +1,110 @@
 //
 //  ServiceClient.swift
-//  HelloBasket
+//  KmsVets
 //
-//  Created by SUBHASH KUMAR on 09/10/20.
+//  Created by SUBHASH KUMAR on 19/09/20.
+//  Copyright © 2020 Shikha. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class ServiceClient {
     
-    
-    
-    class func getHomeListing(parameters: [String: Any]?, handler: (APICompletion<HomeModel>)? = nil) {
-        getRequest(url: APIEndPoints.shared.GET_HOMEDATA
-            , parameters: parameters, handler: handler)
-    }
-    
-    class func getProductCategory(parameters: [String: Any]?, handler: (APICompletion<[CategoryModel]>)? = nil) {
-        getRequest(url: APIEndPoints.shared.GET_CATEGORY
-                   , parameters: parameters, handler: handler)
+    class func sendRequest( apiUrl : String,postdatadictionary: [AnyHashable: Any], method :  String ,isArray : Bool, completion: @escaping (Any) -> () ) {
         
-    }
         
-    
-    
-    
-    
-    
-    
-    
-    //    class func LoginUser(parameters: [String: Any]?, handler: (APICompletion<CODE>)? = nil) {
-    //        postRequest(url: Server.shared.LoginUrl, parameters: parameters, handler: handler)
-    //    }
-    //
-    //    class func verifyOTP(parameters: [String: Any]?, handler: (APICompletion<VerifyModel>)? = nil) {
-    //        postRequest(url: Server.shared.VerifyUrl, parameters: parameters, handler: handler)
-    //    }
-    //
-    //    class func updateProfile(parameters: [String: Any]?, handler: (APICompletion<AddressModel>)? = nil) {
-    //        postRequest(url: Server.shared.UpdateProfile, parameters: parameters, handler: handler)
-    //
-    //
-    //    }
-    //
-    //    class func getHomeListing(parameters: [String: Any]?, handler: (APICompletion<HomeModel>)? = nil) {
-    //        getRequest(url: Server.shared.HomeUrl
-    //            , parameters: parameters, handler: handler)
-    //    }
-    //
-    //    class func getProfile(parameters: [String: Any]?, handler: (APICompletion<ProfileModel>)? = nil) {
-    //        getRequest(url: Server.shared.ProfileUrl
-    //            , parameters: parameters, handler: handler)
-    //    }
-    //    class func getCollectionListing(parameters: [String: Any]?, handler: (APICompletion<CollectionListModel>)? = nil) {
-    //        getRequest(url: Server.shared.collectionUrl, parameters: parameters, handler: handler)
-    //    }
-    //
-    //    class func getCollectionEventListing(url: String, parameters: [String: Any]?, handler: (APICompletion<EventListModel>)? = nil) {
-    //        getRequest(url: url, parameters: parameters, handler: handler)
-    //    }
-    //
-    //    class func getOrderDetails(url: String, parameters: [String: Any]?, handler: (APICompletion<OrderCheckoutModel>)? = nil) {
-    //           getRequest(url: url, parameters: parameters, handler: handler)
-    //       }
-    //
-    //
-    //    class func getCollectionClubDetailListing(url: String, parameters: [String: Any]?, handler: (APICompletion<CollectionClubListModel>)? = nil) {
-    //        getRequest(url: url, parameters: parameters, handler: handler)
-    //    }
-    //
-    //    class func getEventDetailListing(url: String, parameters: [String: Any]?, handler: (APICompletion<EventDetailsModal>)? = nil) {
-    //        getRequest(url: url, parameters: parameters, handler: handler)
-    //    }
-    //
-    //    class func getRestrauntDetailListing(url: String, parameters: [String: Any]?, handler: (APICompletion<Restaurant>)? = nil) {
-    //        getRequest(url: url, parameters: parameters, handler: handler)
-    //    }
-    //
-    //
-    //
-    //    class func getPartyDetailListing(url: String, parameters: [String: Any]?, handler: (APICompletion<PartyDetailsModal>)? = nil) {
-    //           getRequest(url: url, parameters: parameters, handler: handler)
-    //       }
-    //    class func getCollectionDiningDetailListing(url: String, parameters: [String: Any]?, handler: (APICompletion<CollectionDiningListModel>)? = nil) {
-    //        getRequest(url: url, parameters: parameters, handler: handler)
-    //    }
-    //
-    //    class func getCollectionPartiesDetailListing(url: String, parameters: [String: Any]?, handler: (APICompletion<CollectionPartiesListModel>)? = nil) {
-    //        getRequest(url: url, parameters: parameters, handler: handler)
-    //    }
-    //
-    //
-    //
-    //    class func getOrderList(parameters: [String: Any]?, handler: (APICompletion<OrderlistModel>)? = nil) {
-    //        getRequest(url: Server.shared.getOrderUrl
-    //            , parameters: parameters, handler: handler)
-    //    }
-    //
-    //
-    //
-    //
-    //
-    //    class func getWalletBalace(parameters: [String: Any]?, handler: (APICompletion<WalletBalance>)? = nil) {
-    //        getRequest(url: Server.shared.getWalletBalanceUrl
-    //            , parameters: parameters, handler: handler)
-    //    }
-    //
-    //    class func getWalletHistory(parameters: [String: Any]?, handler: (APICompletion<WalletHistoryModel>)? = nil) {
-    //        getRequest(url: Server.shared.getWalletHistoryUrl
-    //            , parameters: parameters, handler: handler)
-    //    }
-    //
-    //    class func getAddMoney(parameters: [String: Any]?, handler: (APICompletion<AddMoneyModel>)? = nil) {
-    //        getRequest(url: Server.shared.addMoneyUrl
-    //            , parameters: parameters, handler: handler)
-    //    }
-    //
-    //    class func getNotification(parameters: [String: Any]?, handler: (APICompletion<[notificationModel]>)? = nil) {
-    //        getRequest(url: Server.shared.NotificationUrl, parameters: parameters, handler: handler)
-    //    }
-    //
-    
-    
-    
-    
-}
-
-//MARK:- POST GET Calls
-extension ServiceClient {
-    
-    class func postRequest<T: Decodable>(url: String?, parameters: [String: Any]? = nil, responseKey: String? = nil, handler: (APICompletion<T>)? = nil) {
-        // print(url as Any)
-        request(url: url, method: .post ,parameters: parameters, responseKey: responseKey, handler: handler)
-    }
-    
-    class func getRequest<T: Decodable>(url: String?, parameters: [String: Any]? = nil, responseKey: String? = nil, handler: (APICompletion<T>)? = nil) {
-        // print(url as Any)
-        var output: String = ""
-        if let param = parameters {
-            for (key,value) in param {
-                output +=  "\(key)=\(value)&"
+        let strURL = apiUrl
+        let url = URL(string: strURL)
+        var urlRequest = URLRequest(url: url!)
+        
+        urlRequest.httpMethod = method
+        
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let accessUserToken =  UserDefaults.standard.string(forKey: "AccessToken")
+        urlRequest.setValue("Bearer \(accessUserToken ?? "")", forHTTPHeaderField: "Authorization")
+        
+        
+        
+        let body = NSMutableData();
+        let boundary = "---------------------------14737809831466499882746641449"
+        let contentType = "multipart/form-data; boundary=\(boundary)"
+        urlRequest.addValue(contentType, forHTTPHeaderField: "Content-Type")
+        
+        for (key, value) in postdatadictionary {
+            
+            if(value is Data)
+            {
+                let  TimeStamp = "\(Date().timeIntervalSince1970 * 1000)"
+                
+                body.append("--\(boundary)\r\n".data(using: .utf8)!)
+                body.append("Content-Disposition: form-data; name=\"\(key)\"; filename=\"\(TimeStamp)\"\r\n".data(using:.utf8)!)
+                body.append("field_mobileinfo_image\r\n".data(using: .utf8)!)
+                
+                body.append("--\(boundary)\r\n".data(using: .utf8)!)
+                body.append("Content-Disposition: form-data; name=\"files[field_mobileinfo_image]\"; filename=\"img.jpg\"\r\n".data(using: .utf8)!)
+                body.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
+                body.append(value as! Data)
+                
+            }
+            else
+            {
+                if let anEncoding = "--\(boundary)\r\n".data(using: .utf8) {
+                    body.append(anEncoding)
+                }
+                if let anEncoding = "Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n".data(using: .utf8) {
+                    body.append(anEncoding)
+                }
+                if let aKey = postdatadictionary[key], let anEncoding = "\(aKey)".data(using: .utf8) {
+                    body.append(anEncoding)
+                }
+                if let anEncoding = "\r\n".data(using: .utf8) {
+                    body.append(anEncoding)
+                }
             }
         }
-        output = String(output.dropLast())
         
-        var urlString = url
-        if output.count>0 {
-            urlString = urlString! + "?\(output)"
+        if let anEncoding = "--\(boundary)--\r\n".data(using: .utf8) {
+            body.append(anEncoding)
         }
-        request(url: urlString, method: .get, parameters: parameters, responseKey: responseKey, handler: handler)
-    }
-    
-    class func multipartRequest<T: Decodable>(url: String?,image: UIImage, parameters: [String: Any]? = nil, responseKey: String? = nil, handler: (APICompletion<T>)? = nil) {
-        // print(url as Any)
-        multiPartRequestCreation(url: url,image: image, contentType: .multipart, method: .post, parameters: parameters, responseKey: responseKey, handler: handler)
-    }
-    
-    class func request<T: Decodable>(url: String?, contentType: RequestContentType = .json, method: RequestMethod, parameters: [String: Any]? = nil, responseKey: String? = nil, handler: (APICompletion<T>)? = nil) {
-        guard let url = url else {
-            handler?(DataResult.failure(APIError.invalidRequest))
-            return
-        }
-        let responseKeyvalue = "data"
-        var params = parameters
-        var urlString = url
-        if parameters != nil, method == .get {
-            params?["_format"] = "json"
-        } else {
-            urlString = urlString.contains("?") ? (urlString + "&_format=json") : (urlString + "?_format=json")
+        // setting the body of the post to the reqeust
+        if method == "POST" {
+            urlRequest.httpBody = body as Data
         }
         
-        let resource = APIResource(URLString: urlString, method: method, parameters: params, contentType: contentType, responseKey: responseKeyvalue)
-        return Network(resource: resource).sendRequest(completion: handler)
-    }
-    
-    
-    class func multiPartRequestCreation<T: Decodable>(url: String?,image: UIImage? , contentType: RequestContentType = .json, method: RequestMethod, parameters: [String: Any]? = nil, responseKey: String? = nil, handler: (APICompletion<T>)? = nil) {
-        guard let url = url else {
-            handler?(DataResult.failure(APIError.invalidRequest))
-            return
-        }
-        let responseKeyvalue = "data"
-        var params = parameters
-        var urlString = url
-        if parameters != nil, method == .get {
-            params?["_format"] = "json"
-        } else {
-            urlString = urlString.contains("?") ? (urlString + "&_format=json") : (urlString + "?_format=json")
-        }
+        URLSession.shared.dataTask(with:urlRequest) { (data, response, error) in
+            if error != nil {
+                
+                print(error!)
+                completion("")
+            } else {
+                do {
+                    if isArray {
+                        var reponseArray: NSArray?
+                        
+                        reponseArray = try JSONSerialization.jsonObject(with: data!, options: []) as? NSArray
+                        if let newResArray = reponseArray
+                        {
+                            completion(newResArray)
+                        }
+                    }
+                    else{
+                        var dictonary:NSDictionary?
+                        dictonary = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary
+                        if let myDictionary = dictonary
+                        {
+                            completion(myDictionary)
+                        }
+                    }
+                    
+                } catch let error as NSError {
+                    completion(error)
+                }
+            }
+                        
+        }.resume()
         
-        let resource = APIResource(URLString: urlString, method: method, parameters: params, contentType: contentType, responseKey: responseKeyvalue)
-        return Network(resource: resource).sendRequest(completion: handler)
     }
-    
     
 }
