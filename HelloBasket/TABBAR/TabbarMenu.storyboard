@@ -918,7 +918,7 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
                                 <constraints>
                                     <constraint firstItem="OyR-GM-beh" firstAttribute="centerY" secondItem="7Od-Wu-y5G" secondAttribute="centerY" id="028-gw-IEm"/>
                                     <constraint firstAttribute="trailing" secondItem="a22-5V-oLP" secondAttribute="trailing" constant="10" id="3gl-l5-P9z"/>
@@ -1141,11 +1141,11 @@
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageBannerCell" id="M6x-im-7ZB" customClass="ImageBannerCell" customModule="HelloBasket" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="187" width="414" height="185"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1f7-CW-qxh">
+                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="1f7-CW-qxh">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="185"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <subviews>
-                                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gY6-TE-6Ql" customClass="BJAutoScrollingCollectionView" customModule="HelloBasket" customModuleProvider="target">
+                                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gY6-TE-6Ql" customClass="BJAutoScrollingCollectionView" customModule="HelloBasket" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="185"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qE8-gJ-05q">
@@ -1158,11 +1158,11 @@
                                                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageCollectionViewCell" id="0HV-Wm-tg9" customClass="ImageCollectionViewCell" customModule="HelloBasket" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="2.5" width="413" height="180"/>
                                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="npb-E7-8CR">
+                                                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="npb-E7-8CR">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="413" height="180"/>
                                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                                     <subviews>
-                                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lNW-Vi-iW7">
+                                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lNW-Vi-iW7">
                                                                                             <rect key="frame" x="1" y="1" width="411" height="178"/>
                                                                                         </imageView>
                                                                                     </subviews>
@@ -1610,7 +1610,7 @@
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="CJK-4H-mvX"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="RM8-bC-pWX" firstAttribute="top" secondItem="d9q-ND-zpH" secondAttribute="bottom" id="3Nd-CU-oQW"/>
                             <constraint firstItem="d9q-ND-zpH" firstAttribute="leading" secondItem="CJK-4H-mvX" secondAttribute="leading" id="8dx-4I-I0j"/>
@@ -1630,7 +1630,7 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="collectionView" destination="RM8-bC-pWX" id="CPf-Z9-omN"/>
-                        <outlet property="navigationView" destination="RM8-bC-pWX" id="GQc-QO-F9s"/>
+                        <outlet property="navigationView" destination="d9q-ND-zpH" id="qL1-oP-wjE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rh4-Fa-t5a" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1748,6 +1748,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

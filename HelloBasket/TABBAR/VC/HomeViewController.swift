@@ -24,7 +24,8 @@ class HomeViewController: UIViewController{
     @IBOutlet weak var collectionView: UICollectionView!
 
     var homeDataDict : [String: Any]?
-    
+    var sectionBanners = [[String : Any]]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationView.backgroundColor = AppColor.themeColor
@@ -42,6 +43,21 @@ class HomeViewController: UIViewController{
 
             if let res = response as? [String : Any] {
                 self.homeDataDict = res
+                self.sectionBanners.removeAll()
+                
+                let sections = self.homeDataDict?["sections"] as? [[String : Any]]
+                if sections?.count ?? 0 > 0 {
+                    
+                    for var index in 0..<sections!.count {
+                        let dict = sections?[index]
+                        if dict?["type"] as! String == "banner" {
+                            let bannerdata = dict?["bannerdata"] as? [String : Any]
+                            self.sectionBanners.append(bannerdata ?? [:])
+                        }
+                    }
+                }
+                
+                
                 print(self.homeDataDict ?? [:])
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
@@ -49,6 +65,20 @@ class HomeViewController: UIViewController{
             }
         }
     }
+    
+    
+    func returnBannerCount() -> Int {
+
+        if self.sectionBanners.count > 0 {
+            return self.self.sectionBanners.count
+        }
+        return 0
+    }
+
+    func returnBannerData() -> [[String : Any]] {
+        return self.sectionBanners
+    }
+    
     
 }
 //MARK:-
@@ -58,7 +88,8 @@ class HomeViewController: UIViewController{
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 4
+        //for banner
+        return 4 + self.returnBannerCount()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -74,6 +105,21 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
         else if section == 3 {
             return 1 //sub category
+        }
+        else if section == 4 {
+            if self.returnBannerCount() > 0 {
+                return 1 //banners
+            }else{
+                return 0 //banners
+            }
+        }
+        else if section == 5 {
+            if self.returnBannerCount() > 1 {
+                return 1 //banners
+
+            }else{
+                return 0
+            }
         }
         
         return 0
@@ -123,12 +169,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 }
             }
         }
-        //---
         
-        
-        
-
-        return CGSize(width: self.view.frame.width, height: 150)
+        return CGSize(width: self.view.frame.width, height: 180)
     }
     
     
@@ -204,9 +246,30 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             }
             collectionCell = cell
         }
-        
-        
-        
+        if indexPath.section == 4 {
+            let cell = collectionView
+                .dequeueReusableCell(withReuseIdentifier: "\(ImageBannerCell.self)", for: indexPath) as? ImageBannerCell
+            
+            if self.sectionBanners.count > 0 {
+                var banners = [[String:Any]]()
+                banners.append(self.sectionBanners[0])
+                cell?.configureCell(imgData: banners )
+            }
+           
+            collectionCell = cell
+        }
+        if indexPath.section == 5 {
+            let cell = collectionView
+                .dequeueReusableCell(withReuseIdentifier: "\(ImageBannerCell.self)", for: indexPath) as? ImageBannerCell
+            
+            if self.sectionBanners.count > 1 {
+                var banners = [[String:Any]]()
+                banners.append(self.sectionBanners[1])
+                cell?.configureCell(imgData: banners )
+            }
+           
+            collectionCell = cell
+        }
         
         return collectionCell ?? UICollectionViewCell()
     }
