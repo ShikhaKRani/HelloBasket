@@ -127,7 +127,7 @@
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Amount" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fhv-Ud-qB2">
                                                     <rect key="frame" x="130" y="100.5" width="154" height="28.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mf2-8E-Nfq">
                                                     <rect key="frame" x="130" y="131" width="154" height="1"/>
@@ -636,6 +636,61 @@
                                                     <outlet property="facebookButton" destination="UVD-cq-sz9" id="0CW-Ub-bN4"/>
                                                     <outlet property="instagramButton" destination="U6g-dd-6Ev" id="glW-Q4-LID"/>
                                                     <outlet property="twitterButton" destination="y25-H7-bFf" id="6Ob-zR-2uA"/>
+                                                </connections>
+                                            </tableViewCell>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="logoutCell" rowHeight="84" id="osG-qZ-b2V" customClass="sideMenuTableViewCell" customModule="HelloBasket" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="266" width="414" height="84"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="osG-qZ-b2V" id="jph-MI-Apz">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="84"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cnv-j2-QFe">
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="84"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HbC-A9-ciV">
+                                                                    <rect key="frame" x="157" y="22" width="100" height="40"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="100" id="88T-5u-hQ4"/>
+                                                                        <constraint firstAttribute="height" constant="40" id="xtN-pj-yZb"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <state key="normal" title="Login">
+                                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </state>
+                                                                </button>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eo8-zW-rtG">
+                                                                    <rect key="frame" x="207" y="2" width="0.0" height="80"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="80" id="W9g-uc-bET"/>
+                                                                        <constraint firstAttribute="width" id="gyx-tS-LSE"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstItem="HbC-A9-ciV" firstAttribute="centerY" secondItem="Cnv-j2-QFe" secondAttribute="centerY" id="1k1-Rs-SnO"/>
+                                                                <constraint firstItem="HbC-A9-ciV" firstAttribute="centerX" secondItem="Cnv-j2-QFe" secondAttribute="centerX" id="3Um-do-T0I"/>
+                                                                <constraint firstItem="eo8-zW-rtG" firstAttribute="centerY" secondItem="Cnv-j2-QFe" secondAttribute="centerY" id="May-3i-fk4"/>
+                                                                <constraint firstItem="eo8-zW-rtG" firstAttribute="centerX" secondItem="Cnv-j2-QFe" secondAttribute="centerX" id="bhn-T3-g0l"/>
+                                                            </constraints>
+                                                        </view>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="Cnv-j2-QFe" firstAttribute="top" secondItem="jph-MI-Apz" secondAttribute="top" id="Ky9-OB-mcx"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Cnv-j2-QFe" secondAttribute="trailing" id="dvN-Ba-aKI"/>
+                                                        <constraint firstItem="Cnv-j2-QFe" firstAttribute="leading" secondItem="jph-MI-Apz" secondAttribute="leading" id="eLQ-zb-fBq"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Cnv-j2-QFe" secondAttribute="bottom" id="y4w-cj-gb2"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <outlet property="loginButton" destination="HbC-A9-ciV" id="PVB-Bl-duo"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>

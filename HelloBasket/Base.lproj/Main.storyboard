@@ -50,7 +50,7 @@
                                                         <constraint firstAttribute="height" constant="100" id="u5m-aT-9vq"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ybo-t7-1Tx">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ybo-t7-1Tx" customClass="PhoneFormattedTextField" customModule="SwiftPhoneNumberFormatter">
                                                     <rect key="frame" x="10" y="145" width="394" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="vs2-o3-apo"/>
@@ -100,7 +100,7 @@
                                                         <constraint firstAttribute="height" constant="40" id="qjB-WP-MWu"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <state key="normal" title="NEXT">
+                                                    <state key="normal" title="Login">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                 </button>

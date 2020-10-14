@@ -13,6 +13,7 @@ PODS:
   - Segmentio (4.1)
   - SideMenu (6.4.9)
   - SVProgressHUD (2.2.5)
+  - SwiftPhoneNumberFormatter (1.5)
 
 DEPENDENCIES:
   - Alamofire (~> 4.8)
@@ -27,6 +28,7 @@ DEPENDENCIES:
   - Segmentio
   - SideMenu
   - SVProgressHUD
+  - SwiftPhoneNumberFormatter
 
 SPEC REPOS:
   trunk:
@@ -42,6 +44,7 @@ SPEC REPOS:
     - Segmentio
     - SideMenu
     - SVProgressHUD
+    - SwiftPhoneNumberFormatter
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
@@ -56,7 +59,8 @@ SPEC CHECKSUMS:
   Segmentio: ab29def64e1bff6e6e9b97671788a99bed3f1d9f
   SideMenu: 8ef57a3cfc024a2d3fc1c036c7fe98537baec9e0
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftPhoneNumberFormatter: 0cc91f4daa06dd606a9defb21048a75c36a771a2
 
-PODFILE CHECKSUM: ede6016cf25c36581365e65852ff72ed539ee7a9
+PODFILE CHECKSUM: 0ef18c115f4ece6a699e66871f8d15371f44bc29
 
 COCOAPODS: 1.10.0.beta.2

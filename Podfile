@@ -18,6 +18,7 @@ target 'HelloBasket' do
   pod 'FSCalendar'
   pod 'Segmentio'
   pod 'DynamicCodable', '1.0'
+  pod "SwiftPhoneNumberFormatter"
 
 # pod 'CalendarDateRangePickerViewController'
   # Pods for HelloBasket

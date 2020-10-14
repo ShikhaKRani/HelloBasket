@@ -68,10 +68,6 @@ class WalletTabViewController: UIViewController {
     
 }
 
-
-
-
-
 extension WalletTabViewController {
     
     //MARK:- Side Menu Set up
@@ -179,61 +175,5 @@ extension WalletTabViewController : UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
        amountField = textField.text ?? ""
-    }
-    
-    
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        let maxCharacters = 4
-        
-        guard !string.isEmpty else {
-            // Backspace detected, allow text change, no need to process the text any further
-            return true
-        }
-        
-        // Input Validation
-        // Prevent invalid character input, if keyboard is numberpad
-        if textField.keyboardType == .numberPad {
-            
-            // Check for invalid input characters
-            if !(CharacterSet(charactersIn: "0123456789").isSuperset(of: CharacterSet(charactersIn: string))) {
-                // Present alert so the user knows what went wrong
-                //showAlert(title: "Message", "This field accepts only numeric entries.", goBack: false)
-                
-                // Invalid characters detected, disallow text change
-                return false
-            }
-            //errorLbl.isHidden = true
-            
-        }
-        
-        // Length Processing
-        // Need to convert the NSRange to a Swift-appropriate type
-        if let text = textField.text, let range = Range(range, in: text) {
-            
-            let proposedText = text.replacingCharacters(in: range, with: string)
-            
-            // Check proposed text length does not exceed max character count
-            guard proposedText.count <= maxCharacters else {
-                
-                // Present alert if pasting text
-                // easy: pasted data has a length greater than 1; who copy/pastes one character?
-                if string.count > 1 {
-                    
-                    //showAlert(title: "Message", "Paste failed: Maximum character count exceeded.", goBack: false)
-                }
-                
-                // Character count exceeded, disallow text change
-                return false
-            }
-            
-            // Only enable the OK/submit button if they have entered all numbers for the last four
-            // of their SSN (prevents early submissions/trips to authentication server, etc)
-            //            answerButton.isEnabled = (proposedText.count == 4)
-        }
-        
-        // Allow text change
-        return true
     }
 }

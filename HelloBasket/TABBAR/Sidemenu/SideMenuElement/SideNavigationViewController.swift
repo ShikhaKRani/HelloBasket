@@ -61,6 +61,22 @@ class SideNavigationViewController: UIViewController,UITableViewDelegate,UITable
     }
     
     
+    @objc func logout() {
+        UserDetails.shared.setAccessToken(token: "")
+        Utils.redirectToLogin()
+    }
+    
+    @objc func loginAction() {
+        UserDetails.shared.setAccessToken(token: "")
+        Utils.redirectToLogin()
+    }
+    
+    @objc func signUpAction() {
+        UserDetails.shared.setAccessToken(token: "")
+        Utils.redirectToLogin()
+    }
+    
+    //MARK:- delegate
     func numberOfSections(in tableView: UITableView) -> Int {
         3
     }
@@ -78,18 +94,37 @@ class SideNavigationViewController: UIViewController,UITableViewDelegate,UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = self.sideMenuTablevw.dequeueReusableCell(withIdentifier: "loginCell") as? sideMenuTableViewCell
+        let cell = self.sideMenuTablevw.dequeueReusableCell(withIdentifier: "socialMediaCell") as? sideMenuTableViewCell
+
         
-        cell?.loginButton.layer.borderColor = UIColor.white.cgColor
-        cell?.loginButton.layer.borderWidth = 2
-        cell?.signUpButton.layer.borderColor = UIColor.white.cgColor
-        cell?.signUpButton.layer.borderWidth = 2
+        if indexPath.section == 0 {
+            let token = UserDetails.shared.getAccessToken()
+            
+            if token.count > 0 {
+                let cell = self.sideMenuTablevw.dequeueReusableCell(withIdentifier: "logoutCell") as? sideMenuTableViewCell
+                cell?.loginButton.layer.borderColor = UIColor.white.cgColor
+                cell?.loginButton.layer.borderWidth = 2
+                cell?.loginButton.setTitle("Logout", for: .normal)
+                cell?.loginButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
+                return cell!
+            }else{
+                let cell = self.sideMenuTablevw.dequeueReusableCell(withIdentifier: "loginCell") as? sideMenuTableViewCell
+                cell?.loginButton.layer.borderColor = UIColor.white.cgColor
+                cell?.loginButton.layer.borderWidth = 2
+                cell?.signUpButton.layer.borderColor = UIColor.white.cgColor
+                cell?.signUpButton.layer.borderWidth = 2
+                cell?.loginButton.addTarget(self, action: #selector(loginAction), for: .touchUpInside)
+                cell?.signUpButton.addTarget(self, action: #selector(signUpAction), for: .touchUpInside)
+                return cell!
+            }
+        }
+        
         
         if indexPath.section == 1{
             let cell = self.sideMenuTablevw.dequeueReusableCell(withIdentifier: "imgCell") as? sideMenuTableViewCell
             
             let cellDict = dataArr[indexPath.row] as Dictionary<String,AnyObject>
-             cell?.menuImgIcon.image = UIImage.init(named: cellDict["image"] as? String ?? "")
+            cell?.menuImgIcon.image = UIImage.init(named: cellDict["image"] as? String ?? "")
             cell?.menuTitleLbl.text = cellDict["title"] as? String ?? ""
             cell?.selectionStyle  = .none
             if cell?.menuTitleLbl.text == "Discounted Product"{
@@ -103,17 +138,11 @@ class SideNavigationViewController: UIViewController,UITableViewDelegate,UITable
             
         }
         
-        if indexPath.section == 2{
+        if indexPath.section == 2 {
             let cell = self.sideMenuTablevw.dequeueReusableCell(withIdentifier: "socialMediaCell") as? sideMenuTableViewCell
             return cell!
             
         }
-//        var cell: sideMenuTableViewCell! = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as? sideMenuTableViewCell
-//        if cell == nil {
-//            tableView.register(UINib(nibName: "sideMenuTableViewCell", bundle: nil), forCellReuseIdentifier: "sideMenuTableViewCell")
-//            cell = tableView.dequeueReusableCell(withIdentifier: "sideMenuTableViewCell") as? sideMenuTableViewCell
-//        }
-        
         
         return cell!
     }

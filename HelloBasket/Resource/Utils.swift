@@ -15,6 +15,10 @@ class Utils: NSObject {
         let appdelegate = UIApplication.shared.delegate as! AppDelegate
         appdelegate.loadAndSetupabBar()
     }
+    class func redirectToLogin() {
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        appdelegate.loadLoginScreen()
+    }
     
     class func setupSideMenu(navigationController: UINavigationController,storyBoardName:String) -> Void {
         
