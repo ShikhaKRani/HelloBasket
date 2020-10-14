@@ -22,19 +22,19 @@ class SideNavigationViewController: UIViewController,UITableViewDelegate,UITable
     @IBOutlet weak var unselectedProfileBtn: UIButton!
     
     var dataArr : Array<Dictionary<String,AnyObject>> = [
-        ["title":"All Category" as AnyObject,"image": "profile" as AnyObject]
-        ,["title":"My Account" as AnyObject,"image": "myOrder" as AnyObject]
-        ,["title":"Order History" as AnyObject,"image": "serviceOrder" as AnyObject]
-        ,["title":"Hot Deals" as AnyObject,"image": "bookingForPuppy" as AnyObject]
-        ,["title":"New Arrival" as AnyObject,"image": "puppyhistory" as AnyObject]
-        ,["title":"Share App" as AnyObject,"image": "bookingForSurgery" as AnyObject]
-        ,["title":"Discounted Product" as AnyObject,"image": "surgeryHistory" as AnyObject]
-        ,["title":"About Us" as AnyObject,"image": "askingQuestion" as AnyObject]
-        ,["title":"Terms and Conditions" as AnyObject,"image": "questionHistory" as AnyObject]
-        ,["title":"Policy" as AnyObject,"image": "phone" as AnyObject]
-        ,["title":"Complaint" as AnyObject,"image": "aboutus" as AnyObject]
-        ,["title":"Contact Us" as AnyObject,"image": "complaint" as AnyObject]
-        ,["title":"Notification" as AnyObject,"image": "logout" as AnyObject]]
+        ["title":"All Category" as AnyObject,"image": "category" as AnyObject]
+        ,["title":"My Account" as AnyObject,"image": "profile" as AnyObject]
+        ,["title":"Order History" as AnyObject,"image": "orderHistory" as AnyObject]
+        ,["title":"Hot Deals" as AnyObject,"image": "hotDeals" as AnyObject]
+        ,["title":"New Arrival" as AnyObject,"image": "newArrival" as AnyObject]
+        ,["title":"Share App" as AnyObject,"image": "share" as AnyObject]
+        ,["title":"Discounted Product" as AnyObject,"image": "discount" as AnyObject]
+        ,["title":"About Us" as AnyObject,"image": "aboutus" as AnyObject]
+        ,["title":"Terms and Conditions" as AnyObject,"image": "terms" as AnyObject]
+        ,["title":"Policy" as AnyObject,"image": "privacypolicy" as AnyObject]
+        ,["title":"Complaint" as AnyObject,"image": "complaint" as AnyObject]
+        ,["title":"Contact Us" as AnyObject,"image": "contactUs" as AnyObject]
+        ,["title":"Notification" as AnyObject,"image": "notification" as AnyObject]]
     
     let dropDown = DropDown()
     
