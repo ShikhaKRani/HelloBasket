@@ -1,5 +1,5 @@
 //
-//  CategoryViewController.swift
+//  ProductCategoryViewController.swift
 //  HelloBasket
 //
 //  Created by SUBHASH KUMAR on 11/10/20.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CategoryViewController: UIViewController {
+class ProductCategoryViewController: UIViewController {
 
     var prevDict : [String: Any]?
     

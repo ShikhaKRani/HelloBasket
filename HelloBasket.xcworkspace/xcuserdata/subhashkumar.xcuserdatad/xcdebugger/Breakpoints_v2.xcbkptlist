@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D769C83A-6B6B-4C8E-AF46-DACA7C761C43"
+            uuid = "384EB1A6-7F42-4A61-8D71-839A7F2B955D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HelloBasket/TABBAR/Sidemenu/SideMenuElement/SideNavigationViewController.swift"
+            filePath = "HelloBasket/TABBAR/VC/CategoryTabViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "toggleCollapse(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

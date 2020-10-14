@@ -14,37 +14,40 @@ class CategoryTabViewController: UIViewController {
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var navigationView: UIView!
 
-    var categoryData =  [CategoryModel]()
-    
+    var categoryData = [CategoryModels]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationView.backgroundColor = AppColor.themeColor
 
         tblView.tableFooterView = UIView()
-//        self.fetchCategoryData()
+        self.fetchCategoryData()
     }
     
-//    func fetchCategoryData() {
-//
-//        // let param: [String: Any] = ["name": "Shikha"]
-//        Loader.showHud()
-//        ServiceClient.getProductCategory(parameters: [:]) { [weak self] result in
-//            Loader.dismissHud()
-//            switch result {
-//            case let .success(response):
-//                if let catData = result.response?.data {
-//
-////                    self?.categoryData = catData
-//                    print(response)
-//                    DispatchQueue.main.async {
-//                        self?.tblView.reloadData()
-//                    }
-//                }
-//            case .failure: break
-//            }
-//        }
-//    }
+    func fetchCategoryData() {
+
+        let param: [String: Any] = [:]
+        Loader.showHud()
+        ServiceClient.sendRequest(apiUrl: APIEndPoints.shared.GET_CATEGORY, postdatadictionary: param, method: "GET", isArray: false) { (response) in
+            Loader.dismissHud()
+            if let res = response as? [String : Any] {
+                if let catData = res["data"] as? [[String : Any]] {
+                    print(catData)
+                    
+                    for item in catData {
+                        let model = CategoryModels(dict: item)
+                        self.categoryData.append(model)
+                    }
+                    
+                    print(self.categoryData)
+                    DispatchQueue.main.async {
+                        self.tblView.reloadData()
+                    }
+                }
+            }
+        }
+    }
     
     
     @objc func toggleCollapse(sender: UIButton) {
@@ -67,9 +70,9 @@ extension CategoryTabViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let rowCount = self.categoryData[section].subcategory?.count
+        let rowCount = self.categoryData[section].subCatModelArray.count
         if self.categoryData[section].isTapped ?? false {
-            return rowCount ?? 0
+            return rowCount
         }
         return 0
     }
@@ -82,9 +85,7 @@ extension CategoryTabViewController: UITableViewDelegate,UITableViewDataSource{
         cell?.titleLbl.text = self.categoryData[section].name
         let urlString = self.categoryData[section].image ?? ""
         cell?.img.sd_setImage(with: URL(string: urlString), placeholderImage: UIImage(named: "placeholder.png"))
-        
-        // istapped 
-        
+                
         return cell
     }
     
@@ -95,7 +96,7 @@ extension CategoryTabViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = self.tblView.dequeueReusableCell(withIdentifier: "CategoryCell") as? CategoryCell
-        let title = self.categoryData[indexPath.section].subcategory?[indexPath.row].name
+        let title = self.categoryData[indexPath.section].subCatModelArray[indexPath.row].name
         cell?.titleLbl.text = title
         return cell!
     }
@@ -103,6 +104,16 @@ extension CategoryTabViewController: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        if let catgScreen = storyBoard.instantiateViewController(withIdentifier: "ProductCategoryViewController") as? ProductCategoryViewController {
+            
+            self.navigationController?.pushViewController(catgScreen, animated: true)
+        }
     }
 }
 

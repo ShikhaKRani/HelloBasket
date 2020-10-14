@@ -808,10 +808,10 @@
             </objects>
             <point key="canvasLocation" x="891.304347826087" y="83.705357142857139"/>
         </scene>
-        <!--Category View Controller-->
+        <!--Product Category View Controller-->
         <scene sceneID="bVV-UJ-I3K">
             <objects>
-                <viewController storyboardIdentifier="CategoryViewController" id="wiQ-vd-UuP" customClass="CategoryViewController" customModule="HelloBasket" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProductCategoryViewController" id="wiQ-vd-UuP" customClass="ProductCategoryViewController" customModule="HelloBasket" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xy1-bX-oce">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
