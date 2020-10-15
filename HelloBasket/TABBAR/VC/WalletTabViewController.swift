@@ -64,9 +64,33 @@ class WalletTabViewController: UIViewController {
         walletTblView.reloadRows(at: [indexPath], with: .none)
     }
     
+    @objc func addMoneyBtnAction() {
+
+        let param: [String: Any] = ["amount":amountField ?? "1000"]
+        Loader.showHud()
+        ServiceClient.sendRequestPOSTBearer(apiUrl: APIEndPoints.shared.GET_WALLETRECHARGE, postdatadictionary: param, isArray: false) { (response) in
+            Loader.dismissHud()
+            if let res = response as? [String : Any] {
+                    print(res)
+                let responseDict = res["data"] as! Dictionary<String,Any>
+                print(responseDict)
+                
+               let payStr = (responseDict["amount"] ?? "0")
+               let orderIDStr = (responseDict["order_id"] ?? "0")
+                    
+        
+                    DispatchQueue.main.async {
+                
+                    }
+                }
+            }
+        }
+    }
     
     
-}
+    
+    
+
 
 extension WalletTabViewController {
     
@@ -124,6 +148,9 @@ extension WalletTabViewController : UITableViewDelegate, UITableViewDataSource{
         cell?.oneThousandBtn.addTarget(self, action: #selector(add1000Money), for: .touchUpInside)
         cell?.twoThousandBtn.addTarget(self, action: #selector(add2000Money), for: .touchUpInside)
         cell?.threeThousandBtn.addTarget(self, action: #selector(add3000Money), for: .touchUpInside)
+        
+        cell?.addMoneyBtn.addTarget(self, action: #selector(addMoneyBtnAction), for: .touchUpInside)
+
 //
         
         

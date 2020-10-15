@@ -6,6 +6,7 @@ PODS:
   - EzPopup (1.1)
   - FSCalendar (2.8.1)
   - IQKeyboardManagerSwift (6.5.6)
+  - razorpay-pod (1.1.7)
   - SDWebImage (5.9.0):
     - SDWebImage/Core (= 5.9.0)
   - SDWebImage/Core (5.9.0)
@@ -23,6 +24,7 @@ DEPENDENCIES:
   - EzPopup
   - FSCalendar
   - IQKeyboardManagerSwift
+  - razorpay-pod (~> 1.1.5)
   - SDWebImage
   - SearchTextField
   - Segmentio
@@ -39,6 +41,7 @@ SPEC REPOS:
     - EzPopup
     - FSCalendar
     - IQKeyboardManagerSwift
+    - razorpay-pod
     - SDWebImage
     - SearchTextField
     - Segmentio
@@ -54,6 +57,7 @@ SPEC CHECKSUMS:
   EzPopup: b959cfb0d70d782a28e770a96c454df0401467c7
   FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  razorpay-pod: 6ee0c8c7afad8eead9524d5eb516bc35ac1604ef
   SDWebImage: 62ae4a18473520c67b79e9724c31a63599cc9423
   SearchTextField: 40dc3cc57def5a211f263cac263622c163bbc25a
   Segmentio: ab29def64e1bff6e6e9b97671788a99bed3f1d9f
@@ -61,6 +65,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftPhoneNumberFormatter: 0cc91f4daa06dd606a9defb21048a75c36a771a2
 
-PODFILE CHECKSUM: 0ef18c115f4ece6a699e66871f8d15371f44bc29
+PODFILE CHECKSUM: b31f0888d86e0319ae15718a9c53012ace7281ba
 
 COCOAPODS: 1.10.0.beta.2

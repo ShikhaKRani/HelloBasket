@@ -19,6 +19,7 @@ target 'HelloBasket' do
   pod 'Segmentio'
   pod 'DynamicCodable', '1.0'
   pod "SwiftPhoneNumberFormatter"
+  pod 'razorpay-pod', '~> 1.1.5'
 
 # pod 'CalendarDateRangePickerViewController'
   # Pods for HelloBasket

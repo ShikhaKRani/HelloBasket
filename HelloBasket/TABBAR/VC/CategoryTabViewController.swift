@@ -29,7 +29,7 @@ class CategoryTabViewController: UIViewController {
 
         let param: [String: Any] = [:]
         Loader.showHud()
-        ServiceClient.sendRequest(apiUrl: APIEndPoints.shared.GET_CATEGORY, postdatadictionary: param, method: "GET", isArray: false) { (response) in
+        ServiceClient.sendRequestGET(apiUrl: APIEndPoints.shared.GET_CATEGORY, postdatadictionary: param, isArray: false) { (response) in
             Loader.dismissHud()
             if let res = response as? [String : Any] {
                 if let catData = res["data"] as? [[String : Any]] {

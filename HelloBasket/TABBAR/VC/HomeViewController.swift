@@ -41,7 +41,7 @@ class HomeViewController: UIViewController{
     func fetchHomeData() {
         Loader.showHud()
         let params = [:] as Dictionary<String, String>
-        ServiceClient.sendRequest(apiUrl: APIEndPoints.shared.GET_HOMEDATA, postdatadictionary: params, method: "GET", isArray: false) { (response) in
+        ServiceClient.sendRequestGET(apiUrl: APIEndPoints.shared.GET_HOMEDATA, postdatadictionary: params, isArray: false) { (response) in
             Loader.dismissHud()
 
             if let res = response as? [String : Any] {
