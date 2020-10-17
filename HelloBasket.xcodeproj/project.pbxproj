@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		751A93697EAFBCA139A68D12 /* Pods_HelloBasket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D446E018610381DAE25704BC /* Pods_HelloBasket.framework */; };
 		BF2D77A72536E7BD0013F7D8 /* CategoryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D77A62536E7BD0013F7D8 /* CategoryModels.swift */; };
+		BF2D77CA2538248A0013F7D8 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D77C92538248A0013F7D8 /* PaymentViewController.swift */; };
 		BF2DA8A3252B433800F6B65B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2DA8A2252B433800F6B65B /* RegisterViewController.swift */; };
 		BF2DA8A6252DA1EE00F6B65B /* CategoryTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2DA8A5252DA1EE00F6B65B /* CategoryTabViewController.swift */; };
 		BF2DA8A9252DA20400F6B65B /* WalletTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2DA8A8252DA20400F6B65B /* WalletTabViewController.swift */; };
@@ -57,6 +58,7 @@
 /* Begin PBXFileReference section */
 		526254B1FCAAAB3A484CDB7B /* Pods-HelloBasket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloBasket.debug.xcconfig"; path = "Target Support Files/Pods-HelloBasket/Pods-HelloBasket.debug.xcconfig"; sourceTree = "<group>"; };
 		BF2D77A62536E7BD0013F7D8 /* CategoryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModels.swift; sourceTree = "<group>"; };
+		BF2D77C92538248A0013F7D8 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		BF2DA8A2252B433800F6B65B /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		BF2DA8A5252DA1EE00F6B65B /* CategoryTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTabViewController.swift; sourceTree = "<group>"; };
 		BF2DA8A8252DA20400F6B65B /* WalletTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTabViewController.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				BF2DA8AB252DA21400F6B65B /* OfferTabViewController.swift */,
 				BFCFC4F72529F9690015E011 /* HomeViewController.swift */,
 				BF33C6A72533443400F24EEA /* HomeViewController-Ext.swift */,
+				BF2D77C92538248A0013F7D8 /* PaymentViewController.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				BFCFC51E252AEF030015E011 /* AppConstant.swift in Sources */,
 				BF2DA8A9252DA20400F6B65B /* WalletTabViewController.swift in Sources */,
 				BFCFC5162529FE320015E011 /* Protected.swift in Sources */,
+				BF2D77CA2538248A0013F7D8 /* PaymentViewController.swift in Sources */,
 				BFCFC5172529FE320015E011 /* SideMenuPresentationController.swift in Sources */,
 				BF2EE6D42529C69100D1099F /* AppDelegate.swift in Sources */,
 				BFCFC4F82529F9690015E011 /* HomeViewController.swift in Sources */,

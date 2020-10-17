@@ -59,7 +59,7 @@ extension ImageBannerCell : UICollectionViewDelegate,UICollectionViewDataSource,
         let imgDict = self.bannerArray[indexPath.row]
         let cat_id = imgDict["cat_id"] as? Int
         print("===>>> ",cat_id ?? 0)
-        NotificationCenter.default.post(name: Notification.Name("NotificationHomeIdentifier"), object: nil, userInfo: ["selectedDict":"\(imgDict)"])
+        NotificationCenter.default.post(name: Notification.Name("NotificationHomeIdentifier"), object: nil, userInfo: ["cat_Id":"\(cat_id)"])
 
     }
 }
@@ -83,13 +83,20 @@ class CategoryCollectionCell: UICollectionViewCell {
     @IBOutlet weak var headerLbl: UILabel!
 
     var categories =  [[String : Any]]()
+    var subCategories =  [[String : Any]]()
+
     var screen = ""
 
     func configureCell(screen : String , categories : [[String : Any]]) {
         viewButton.layer.cornerRadius = 10
         viewButton.layer.masksToBounds = true
-        self.categories = categories
         self.screen = screen
+
+        if screen == "cat" {
+            self.categories = categories
+        }else{
+            self.subCategories = categories
+        }
         collectionView.reloadData()
     }
     
@@ -103,7 +110,13 @@ extension CategoryCollectionCell : UICollectionViewDelegate,UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.categories.count
+        if screen == "cat" {
+            return self.categories.count
+        }
+        else{
+            return self.subCategories.count
+
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -112,7 +125,6 @@ extension CategoryCollectionCell : UICollectionViewDelegate,UICollectionViewData
         if screen == "cat" {
             return CGSize(width: Constants.windowWidth/3.3, height: 130)
         }
-        
         return CGSize(width: Constants.windowWidth/2.1, height: 130)
     }
     
@@ -129,15 +141,16 @@ extension CategoryCollectionCell : UICollectionViewDelegate,UICollectionViewData
         cell?.contentView.layer.borderWidth = 0.5
         cell?.contentView.layer.borderColor = UIColor.lightGray.cgColor
         
-        let catDict = self.categories[indexPath.row]
       
         if screen == "cat" {
+            let catDict = self.categories[indexPath.row]
             let urlString  =  catDict["image"] as? String
             cell?.imgView.sd_setImage(with: URL(string: urlString ?? ""), placeholderImage: UIImage(named: "medicine.jpeg") ,options: .refreshCached, completed: nil)
 
             cell?.lblName.text = catDict["name"] as? String//name
 
         }else{
+            let catDict = self.subCategories[indexPath.row]
             let urlString  =  catDict["categoryimage"] as? String
             cell?.imgView.sd_setImage(with: URL(string: urlString ?? ""), placeholderImage: UIImage(named: "medicine.jpeg") ,options: .refreshCached, completed: nil)
 
@@ -156,12 +169,104 @@ extension CategoryCollectionCell : UICollectionViewDelegate,UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let catDict = self.categories[indexPath.row]
-        NotificationCenter.default.post(name: Notification.Name("NotificationHomeIdentifier"), object: nil, userInfo: ["selectedDict":"\(catDict)"])
+        let cat_id = catDict["id"] as? Int ?? 0
+
+        NotificationCenter.default.post(name: Notification.Name("NotificationHomeIdentifier"), object: nil, userInfo: ["cat_Id":"\(cat_id)"])
 
         
 //        cellPressAction(eventID: self.nearPlaceModel[indexPath.row].id ?? 0)
     }
 }
+
+
+//MARK:- Categories
+
+class SubCategoryCollectionCell: UICollectionViewCell {
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var viewButton: UIButton!
+    @IBOutlet weak var headerLbl: UILabel!
+    
+    var subCategories =  [[String : Any]]()
+    
+    var screen = ""
+    
+    func configureCellForSubCategory(screen : String , categories : [[String : Any]]) {
+        viewButton.layer.cornerRadius = 10
+        viewButton.layer.masksToBounds = true
+        self.screen = screen
+        
+        self.subCategories = categories
+        
+        
+        print("--->>",categories.count)
+        print("--->>",self.subCategories.count)
+
+        collectionView.reloadData()
+    }
+    
+}
+
+//CategoryCollectionCell
+extension SubCategoryCollectionCell : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return self.subCategories.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: Constants.windowWidth/2.1, height: 130)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        var collectionCell: UICollectionViewCell?
+        
+        let cell = collectionView
+            .dequeueReusableCell(withReuseIdentifier: "CategoryInnerCell", for: indexPath) as? CategoryInnerCell
+        cell?.lblDesc.isHidden = true
+        cell?.rateImg.isHidden = true
+        cell?.lblName.font = UIFont.systemFont(ofSize: 15)
+        
+        cell?.rateView.isHidden = true
+        cell?.contentView.layer.borderWidth = 0.5
+        cell?.contentView.layer.borderColor = UIColor.lightGray.cgColor
+        
+        
+        
+        let catDict = self.subCategories[indexPath.row]
+        let urlString  =  catDict["categoryimage"] as? String
+        cell?.imgView.sd_setImage(with: URL(string: urlString ?? ""), placeholderImage: UIImage(named: "medicine.jpeg") ,options: .refreshCached, completed: nil)
+        
+        let name = catDict["categoryname"] as? String
+        
+        cell?.lblName.text = "From \(name ?? "")"
+        
+        
+        
+        collectionCell = cell
+        return collectionCell ?? UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let catDict = self.subCategories[indexPath.row]
+        let cat_id = catDict["id"] as? Int ?? 0
+        
+        NotificationCenter.default.post(name: Notification.Name("NotificationHomeIdentifier"), object: nil, userInfo: ["cat_Id":"\(cat_id)"])
+        
+        
+        //        cellPressAction(eventID: self.nearPlaceModel[indexPath.row].id ?? 0)
+    }
+}
+
 
 
 class CategoryInnerCell: UICollectionViewCell {
@@ -237,7 +342,8 @@ extension RecomCollectionCell : UICollectionViewDelegate,UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let prodDict = self.freshProducts[indexPath.row]
-        NotificationCenter.default.post(name: Notification.Name("NotificationHomeIdentifier"), object: nil, userInfo: ["prodDict":"\(prodDict)"])
+        
+        NotificationCenter.default.post(name: Notification.Name("NotificationHomeIdentifier"), object: nil, userInfo: ["cat_Id":"\(prodDict["id"] ?? 0)"])
     }
 }
 

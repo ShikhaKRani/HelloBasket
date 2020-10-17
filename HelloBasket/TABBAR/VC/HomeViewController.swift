@@ -89,6 +89,7 @@ class HomeViewController: UIViewController{
         let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
         if let catgScreen = storyBoard.instantiateViewController(withIdentifier: "ProductCategoryViewController") as? ProductCategoryViewController {
             catgScreen.prevDict = notification.userInfo as? [String : Any]
+            catgScreen.screen = "home"
             self.navigationController?.pushViewController(catgScreen, animated: true)
         }
         
@@ -181,6 +182,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     }
                 }
             }
+            return CGSize(width: Constants.windowWidth, height: CGFloat(0.0))
         }
         
         return CGSize(width: self.view.frame.width, height: 180)
@@ -244,7 +246,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         else if indexPath.section == 3 {
             let cell = collectionView
-                .dequeueReusableCell(withReuseIdentifier: "\(CategoryCollectionCell.self)", for: indexPath) as? CategoryCollectionCell
+                .dequeueReusableCell(withReuseIdentifier: "\(SubCategoryCollectionCell.self)", for: indexPath) as? SubCategoryCollectionCell
             cell?.headerLbl.text = "Fresh Product Added"
             
             let sections = self.homeDataDict?["sections"] as? [[String : Any]]
@@ -253,7 +255,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     let dict = sections?[index]
                     if dict?["type"] as! String == "subcategory" {
                         let subCatg = dict?["subcategory"] as? [[String : Any]]
-                        cell?.configureCell(screen: "subcat", categories: subCatg ?? [[:]])
+                        if subCatg?.count ?? 0 > 0 {
+                            cell?.configureCellForSubCategory(screen: "subcat", categories: subCatg ?? [[:]])
+
+                        }
                     }
                 }
             }
@@ -294,7 +299,3 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
 }
-
-//MARK:-
-
-//RecomCollectionCell

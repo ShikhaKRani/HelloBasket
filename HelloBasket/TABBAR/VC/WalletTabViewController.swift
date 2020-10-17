@@ -28,8 +28,8 @@ class WalletCell : UITableViewCell {
 
 class WalletTabViewController: UIViewController {
     
-    var amountField : String?
-    
+    var amountField = ""
+    var pay = PaymentViewController()
     
     @IBOutlet weak var navigationView: UIView!
     @IBOutlet weak var walletTblView: UITableView!
@@ -41,6 +41,16 @@ class WalletTabViewController: UIViewController {
         walletTblView.tableFooterView = UIView()
         
     }
+    
+    @objc func addMoney(){
+        
+        
+        addMoneyBtnAction(payAmount: amountField)
+        
+        
+    }
+        
+    
     
     
     
@@ -64,23 +74,26 @@ class WalletTabViewController: UIViewController {
         walletTblView.reloadRows(at: [indexPath], with: .none)
     }
     
-    @objc func addMoneyBtnAction() {
+     func addMoneyBtnAction(payAmount : String) {
 
-        let param: [String: Any] = ["amount":amountField ?? "1000"]
+      
+        let param: [String: Any] = ["amount":payAmount]
         Loader.showHud()
         ServiceClient.sendRequestPOSTBearer(apiUrl: APIEndPoints.shared.GET_WALLETRECHARGE, postdatadictionary: param, isArray: false) { (response) in
             Loader.dismissHud()
             if let res = response as? [String : Any] {
                     print(res)
-                let responseDict = res["data"] as! Dictionary<String,Any>
+                let responseDict = res["data"] as? Dictionary<String,Any>
                 print(responseDict)
                 
-               let payStr = (responseDict["amount"] ?? "0")
-               let orderIDStr = (responseDict["order_id"] ?? "0")
+                let payStr = (responseDict?["amount"] ?? "0")
+                let orderIDStr = (responseDict?["order_id"] ?? "0")
                     
-        
-                    DispatchQueue.main.async {
                 
+                    DispatchQueue.main.async {
+                        self.walletTblView.reloadData()
+                        self.pay.addMoneyToPay(amount: "\(payStr)", payOrderid: "\(orderIDStr)", screen: "wallet")
+                        
                     }
                 }
             }
@@ -121,7 +134,8 @@ extension WalletTabViewController : UITableViewDelegate, UITableViewDataSource{
         
         if indexPath.section == 0{
             let cell = self.walletTblView.dequeueReusableCell(withIdentifier: "walletBalance") as? WalletCell
-            cell?.amountTextfield.text = amountField ?? "0"
+            cell?.amountTextfield.delegate = self
+            cell?.amountTextfield.text = amountField
             
             return cell!
             
@@ -149,7 +163,7 @@ extension WalletTabViewController : UITableViewDelegate, UITableViewDataSource{
         cell?.twoThousandBtn.addTarget(self, action: #selector(add2000Money), for: .touchUpInside)
         cell?.threeThousandBtn.addTarget(self, action: #selector(add3000Money), for: .touchUpInside)
         
-        cell?.addMoneyBtn.addTarget(self, action: #selector(addMoneyBtnAction), for: .touchUpInside)
+        cell?.addMoneyBtn.addTarget(self, action: #selector(addMoney), for: .touchUpInside)
 
 //
         
@@ -196,9 +210,6 @@ extension WalletTabViewController : UITableViewDelegate, UITableViewDataSource{
 extension WalletTabViewController : UITextFieldDelegate {
     
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        
-    }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
        amountField = textField.text ?? ""

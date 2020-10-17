@@ -10,23 +10,42 @@ import UIKit
 class ProductCategoryViewController: UIViewController {
 
     var prevDict : [String: Any]?
-    
+    var catId : String?
+    var screen : String?
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if screen == "home" {
+            if let cat_id = prevDict?["cat_Id"] {
+                catId = "\(cat_id )"
+                print(cat_id)
+                self.fetchCategoryData()
+            }
+        }
+        else{
+            
+        }
+                
+    }
 
-        print("======??????---->>>> \(prevDict)")
-        // Do any additional setup after loading the view.
+    
+    
+    func fetchCategoryData() {
+        //http://hallobasket.appoffice.xyz/api/products?category_id=2
+        
+        var param: [String: Any] = [:]
+        param = ["category_id" : "\(catId ?? "0")"]
+        
+        Loader.showHud()
+        ServiceClient.sendRequestPOSTBearer(apiUrl: APIEndPoints.shared.PRODUCT_LIST, postdatadictionary: param, isArray: false) { (response) in
+            Loader.dismissHud()
+            if let res = response as? [String : Any] {
+                print(res)
+            }
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+    
 }

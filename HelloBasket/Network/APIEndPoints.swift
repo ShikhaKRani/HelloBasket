@@ -45,7 +45,9 @@ class APIEndPoints: NSObject, Codable { // checkpoint
     var GET_CATEGORY = "\(mainUrl)category"
     var GET_HOMEDATA = "\(mainUrl)home"
     var GET_WALLETRECHARGE = "\(mainUrl)recharge"
+    var GET_VERIFYRECHARGE = "\(mainUrl)verify-recharge"
     var LOGIN = "\(mainUrl)login"
+    var PRODUCT_LIST = "\(mainUrl)products"
     
     override init() {}
     
