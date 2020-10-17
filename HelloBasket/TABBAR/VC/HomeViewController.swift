@@ -30,6 +30,9 @@ class HomeViewController: UIViewController{
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("NotificationHomeIdentifier"), object: nil)
 
+        NotificationCenter.default.addObserver(self, selector: #selector(self.productDetailNotification(notification:)), name: Notification.Name("NotificationDetailIdentifier"), object: nil)
+
+        
         
         navigationView.backgroundColor = AppColor.themeColor
         self.view.backgroundColor = .white
@@ -69,6 +72,13 @@ class HomeViewController: UIViewController{
         }
     }
     
+    func returnSectionData() -> [[String : Any]] {
+        if let sections = self.homeDataDict?["sections"] as? [[String : Any]] {
+            return sections
+
+        }
+        return [[:]]
+    }
     
     func returnBannerCount() -> Int {
 
@@ -94,6 +104,20 @@ class HomeViewController: UIViewController{
         }
         
     }
+    //for detail screen
+    @objc func productDetailNotification(notification: Notification) {
+
+        print(notification.userInfo ?? [:])
+//for detail screen direct
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        if let catgScreen = storyBoard.instantiateViewController(withIdentifier: "ProductCategoryViewController") as? ProductCategoryViewController {
+            catgScreen.prevDict = notification.userInfo as? [String : Any]
+            catgScreen.screen = "home"
+            self.navigationController?.pushViewController(catgScreen, animated: true)
+        }
+        
+    }
+    
 }
 //MARK:-
 //MARK:- HomeViewController
@@ -103,7 +127,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         //for banner
-        return 4 + self.returnBannerCount()
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -111,32 +135,14 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if section == 0 {
             return 1
         }
-        else if section == 1 {
+        if section == 1 {
             return  1 //category
         }
-        else if section == 2 {
-            return 1 //recomendation
-        }
-        else if section == 3 {
-            return 1 //sub category
-        }
-        else if section == 4 {
-            if self.returnBannerCount() > 0 {
-                return 1 //banners
-            }else{
-                return 0 //banners
-            }
-        }
-        else if section == 5 {
-            if self.returnBannerCount() > 1 {
-                return 1 //banners
-
-            }else{
-                return 0
-            }
+        if section == 2 {
+            return self.returnSectionData().count
         }
         
-        return 0
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -156,40 +162,60 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             if count1 % 3 != 0 {
                 rowCount = rowCount + 1
             }
-            return CGSize(width: Constants.windowWidth, height: CGFloat(rowCount * 140) + 50.0)
             
+            if rowCount > 0 {
+                return CGSize(width: Constants.windowWidth, height: CGFloat(rowCount * 140) + 50.0)
+
+            }
+            return CGSize(width: Constants.windowWidth, height: CGFloat(rowCount * 140) + 0)
+                        
         }
         else if indexPath.section == 2 {
             //check size
-            return CGSize(width: Constants.windowWidth, height: 300)
-        }
-        else if indexPath.section == 3 {
+            let sectionData = self.returnSectionData()
+            let dict = sectionData[indexPath.row]
             
-            var rowCount = 0
-            let sections = self.homeDataDict?["sections"] as? [[String : Any]]
-            if sections?.count ?? 0 > 0 {
-                for var index in 0..<sections!.count {
-                    let dict = sections?[index]
-                    if dict?["type"] as! String == "subcategory" {
-                        let subCatg = dict?["subcategory"] as? [[String : Any]]
-                        let count1: Int = subCatg?.count ?? 0
-                        rowCount = count1/2
-                        if count1 % 2 != 0 {
-                            rowCount = rowCount + 1
-                        }
-                        
-                        return CGSize(width: Constants.windowWidth, height: CGFloat(rowCount * 140) + 50.0)
-                    }
+            if dict["type"] as? String == "product" {
+                
+                let productlist = dict["products"] as? [[String : Any]]
+                if productlist?.count ?? 0 > 0 {
+                    return CGSize(width: Constants.windowWidth, height: 330)
                 }
+                return CGSize(width: Constants.windowWidth, height: 0)
+                
             }
-            return CGSize(width: Constants.windowWidth, height: CGFloat(0.0))
+            
+            if dict["type"] as? String == "subcategory" {
+                
+                let catg = self.homeDataDict?["subcategory"] as? [[String : Any]]
+                let count1: Int = catg?.count ?? 0
+                
+                var rowCount = count1/2
+                if count1 % 2 != 0 {
+                    rowCount = rowCount + 1
+                }
+                
+                if rowCount > 0 {
+                    return CGSize(width: Constants.windowWidth, height: CGFloat(rowCount * 140) + 50.0)
+
+                }
+                return CGSize(width: Constants.windowWidth, height: CGFloat(rowCount * 140) + 0)
+
+            }
+            
+            if dict["type"] as? String == "banner" {
+                
+                if let bannerdata = dict["bannerdata"] as? [String : Any] {
+                    return CGSize(width: Constants.windowWidth, height: 180)
+                }
+                
+                return CGSize(width: Constants.windowWidth, height: 0)
+            }
+            
         }
         
-        return CGSize(width: self.view.frame.width, height: 180)
+        return CGSize(width: Constants.windowWidth, height: 0)
     }
-    
-    
-    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if section == 0 {
@@ -214,10 +240,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let cell = collectionView
                 .dequeueReusableCell(withReuseIdentifier: "\(ImageBannerCell.self)", for: indexPath) as? ImageBannerCell
             let banners = self.homeDataDict?["banners"] as? [[String : Any]]
-            cell?.configureCell(imgData: banners ?? [[:]])
+            cell?.configureCell(imgData: banners ?? [[:]], screen : "top")
             collectionCell = cell
         }
-        else if indexPath.section == 1 {
+        if indexPath.section == 1 {
             let cell = collectionView
                 .dequeueReusableCell(withReuseIdentifier: "\(CategoryCollectionCell.self)", for: indexPath) as? CategoryCollectionCell
             cell?.headerLbl.text = "Shop by Category"
@@ -225,68 +251,52 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell?.configureCell(screen: "cat", categories: categories ?? [[:]])
             collectionCell = cell
         }
-        //RecomCollectionCell
-        else if indexPath.section == 2 {
-            let cell = collectionView
-                .dequeueReusableCell(withReuseIdentifier: "\(RecomCollectionCell.self)", for: indexPath) as? RecomCollectionCell
-            let sections = self.homeDataDict?["sections"] as? [[String : Any]]
-            
-            if sections?.count ?? 0 > 0 {
-                for var index in 0..<sections!.count {
-                    let dict = sections?[index]
-                    if dict?["type"] as! String == "product" {
-                        cell?.headerLbl.text = dict?["name"] as? String
-                        let productlist = dict?["products"] as? [[String : Any]]
-                        cell?.configureCell(freshProducts: productlist ?? [[:]])
-                    }
-                }
-            }
-            collectionCell = cell
-        }
         
-        else if indexPath.section == 3 {
-            let cell = collectionView
-                .dequeueReusableCell(withReuseIdentifier: "\(SubCategoryCollectionCell.self)", for: indexPath) as? SubCategoryCollectionCell
-            cell?.headerLbl.text = "Fresh Product Added"
+        
+        let sectionData = self.returnSectionData()
+        
+        if indexPath.section == 2 {
             
-            let sections = self.homeDataDict?["sections"] as? [[String : Any]]
-            if sections?.count ?? 0 > 0 {
-                for var index in 0..<sections!.count {
-                    let dict = sections?[index]
-                    if dict?["type"] as! String == "subcategory" {
-                        let subCatg = dict?["subcategory"] as? [[String : Any]]
-                        if subCatg?.count ?? 0 > 0 {
-                            cell?.configureCellForSubCategory(screen: "subcat", categories: subCatg ?? [[:]])
-
-                        }
-                    }
+            let cell = collectionView
+                .dequeueReusableCell(withReuseIdentifier: "\(ImageBannerCell.self)", for: indexPath) as? ImageBannerCell
+            collectionCell = cell
+            
+            if sectionData.count > 0 {
+                let dict = sectionData[indexPath.row]
+                
+                if dict["type"] as? String == "product" {
+                    let cell = collectionView
+                        .dequeueReusableCell(withReuseIdentifier: "\(RecomCollectionCell.self)", for: indexPath) as? RecomCollectionCell
+                    cell?.headerLbl.text = dict["name"] as? String
+                    let productlist = dict["products"] as? [[String : Any]]
+                    cell?.configureCell(freshProducts: productlist ?? [[:]])
+                    collectionCell = cell
                 }
+                
+                if dict["type"] as? String == "subcategory" {
+                    
+                    let cell = collectionView
+                        .dequeueReusableCell(withReuseIdentifier: "\(SubCategoryCollectionCell.self)", for: indexPath) as? SubCategoryCollectionCell
+                    cell?.headerLbl.text = dict["name"] as? String
+                    let subCatg = dict["subcategory"] as? [[String : Any]]
+                    cell?.configureCellForSubCategory(screen: "subcat", categories: subCatg ?? [[:]])
+                    collectionCell = cell
+                }
+                
+                if dict["type"] as? String == "banner" {
+                    
+                    let cell = collectionView
+                        .dequeueReusableCell(withReuseIdentifier: "\(ImageBannerCell.self)", for: indexPath) as? ImageBannerCell
+                    if let bannerdata = dict["bannerdata"] as? [String : Any] {
+                        var banners = [[String:Any]]()
+                        banners.append(bannerdata)
+                        cell?.configureCell(imgData: banners, screen: "" )
+                    }
+                    collectionCell = cell
+                }
+                
             }
-            collectionCell = cell
-        }
-        if indexPath.section == 4 {
-            let cell = collectionView
-                .dequeueReusableCell(withReuseIdentifier: "\(ImageBannerCell.self)", for: indexPath) as? ImageBannerCell
             
-            if self.sectionBanners.count > 0 {
-                var banners = [[String:Any]]()
-                banners.append(self.sectionBanners[0])
-                cell?.configureCell(imgData: banners )
-            }
-           
-            collectionCell = cell
-        }
-        if indexPath.section == 5 {
-            let cell = collectionView
-                .dequeueReusableCell(withReuseIdentifier: "\(ImageBannerCell.self)", for: indexPath) as? ImageBannerCell
-            
-            if self.sectionBanners.count > 1 {
-                var banners = [[String:Any]]()
-                banners.append(self.sectionBanners[1])
-                cell?.configureCell(imgData: banners )
-            }
-           
-            collectionCell = cell
         }
         
         return collectionCell ?? UICollectionViewCell()

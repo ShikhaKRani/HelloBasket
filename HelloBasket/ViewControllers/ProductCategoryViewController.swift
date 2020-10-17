@@ -16,6 +16,7 @@ class ProductCategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.isHidden = false
         if screen == "home" {
             if let cat_id = prevDict?["cat_Id"] {
                 catId = "\(cat_id )"

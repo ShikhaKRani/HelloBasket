@@ -15,8 +15,10 @@ class ImageBannerCell: UICollectionViewCell {
     @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
     
     var bannerArray = [[String: Any]]()
-    func configureCell(imgData:[[String: Any]]) {
+    var screen : String?
+    func configureCell(imgData:[[String: Any]], screen : String?) {
         bannerArray = imgData
+        self.screen = screen
         initCollectionView()
         scrollReload()
     }
@@ -57,8 +59,14 @@ extension ImageBannerCell : UICollectionViewDelegate,UICollectionViewDataSource,
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let imgDict = self.bannerArray[indexPath.row]
-        let cat_id = imgDict["cat_id"] as? Int
-        print("===>>> ",cat_id ?? 0)
+        var cat_id = 0
+        if screen == "top" {
+            cat_id = imgDict["cat_id"] as? Int ?? 0
+        }else{
+            cat_id = imgDict["category_id"] as? Int ?? 0
+        }
+        
+        print("===>>> ",cat_id )
         NotificationCenter.default.post(name: Notification.Name("NotificationHomeIdentifier"), object: nil, userInfo: ["cat_Id":"\(cat_id)"])
 
     }
@@ -195,13 +203,7 @@ class SubCategoryCollectionCell: UICollectionViewCell {
         viewButton.layer.cornerRadius = 10
         viewButton.layer.masksToBounds = true
         self.screen = screen
-        
         self.subCategories = categories
-        
-        
-        print("--->>",categories.count)
-        print("--->>",self.subCategories.count)
-
         collectionView.reloadData()
     }
     
@@ -342,8 +344,8 @@ extension RecomCollectionCell : UICollectionViewDelegate,UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let prodDict = self.freshProducts[indexPath.row]
-        
-        NotificationCenter.default.post(name: Notification.Name("NotificationHomeIdentifier"), object: nil, userInfo: ["cat_Id":"\(prodDict["id"] ?? 0)"])
+        let cat_id = prodDict["id"] as? Int ?? 0
+        NotificationCenter.default.post(name: Notification.Name("NotificationDetailIdentifier"), object: nil, userInfo: ["cat_Id":"\(cat_id)"])
     }
 }
 
