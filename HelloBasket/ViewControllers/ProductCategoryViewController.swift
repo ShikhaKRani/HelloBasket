@@ -40,8 +40,8 @@ class ProductCategoryViewController: UIViewController {
         registerCell()
         self.tblView.tableFooterView = UIView()
         self.navView.backgroundColor = AppColor.themeColor
-        
-        
+        backBtn.addTarget(self, action: #selector(backbtnAction), for: .touchUpInside)
+        self.navTitle.text = "Product Category"
         
         self.totalItemslbl.text = ""
         if screen == "home" {
@@ -58,6 +58,7 @@ class ProductCategoryViewController: UIViewController {
                 
     }
 
+    @objc func backbtnAction() { self.navigationController?.popViewController(animated: true)    }
     
     func registerCell() {
         tblView.register(UINib(nibName: "ProductCell", bundle: nil), forCellReuseIdentifier: "ProductCell")
