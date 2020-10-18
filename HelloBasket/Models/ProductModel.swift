@@ -27,6 +27,8 @@ class ProductModel {
     
     var sizeprice = [SizePrice]()
     
+    var itemSelected : Int?
+    
     init(dict : [String : Any]) {
         
         self.product_id = dict["id"] as? Int ?? 0
@@ -100,7 +102,7 @@ class SizePrice {
 class ProdcutListCategory {
     
     let filters : FiltersProduct?
-    let pack_size : Product_Pack_Size?
+    var pack_size = [Product_Pack_Size]()
     var categoryData = [CategoryData]()
 
     
@@ -108,9 +110,14 @@ class ProdcutListCategory {
         
         let filter = dict["filters"] as? [String : Any]
         filters = FiltersProduct(dict: filter ?? [:])
-        
-        let pack = dict["pack_size"] as? [String : Any]
-        pack_size = Product_Pack_Size(dict: pack ?? [:])
+                
+        if let pack = dict["pack_size"] as? [[String : Any]] {
+            pack_size.removeAll()
+            for item  in pack {
+                let model = Product_Pack_Size(dict: item)
+                pack_size.append(model)
+            }
+        }
         
         if let data = dict["data"] as? [[String : Any]] {
             categoryData.removeAll()
@@ -129,6 +136,7 @@ class CategoryData {
     let cat_id: Int?
     let isactive : Int?
     let name : String?
+    var isSelected : Bool?
     
     init(dict : [String : Any]) {
         self.cat_id = dict["id"] as? Int ?? 0
