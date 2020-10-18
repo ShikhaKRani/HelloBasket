@@ -158,6 +158,50 @@ class ProductCategoryViewController: UIViewController {
 
     }
     
+    //MARK:-
+    
+    @objc func plusBtnAction(sender : UIButton) {
+        
+        let model =  self.wholeProductList[sender.tag]
+        print(model.sizeprice.count)
+
+        if model.sizeprice.count > 1 {
+            
+            // code
+            
+            
+        }
+
+    }
+    
+    @objc func minusBtnAction(sender : UIButton) {
+        
+        let model =  self.wholeProductList[sender.tag]
+        print(model.sizeprice.count)
+
+        if model.sizeprice.count > 1 {
+            
+            // code
+            
+            
+        }
+
+    }
+    
+    @objc func addFirstBtnAction(sender : UIButton) {
+        
+        let model =  self.wholeProductList[sender.tag]
+        print(model.sizeprice.count)
+
+        if model.sizeprice.count > 1 {
+            
+            // code
+            
+            
+        }
+
+    }
+    
 }
 
 extension ProductCategoryViewController : UITableViewDelegate, UITableViewDataSource {
@@ -174,6 +218,14 @@ extension ProductCategoryViewController : UITableViewDelegate, UITableViewDataSo
         cell?.dropDownBtn.tag = indexPath.row
         cell?.dropDownBtn.addTarget(self, action: #selector(dropdownBtnAction(sender:)), for: .touchUpInside)
         
+        cell?.plusBtn.tag = indexPath.row
+        cell?.AddFirstBtn.tag = indexPath.row
+        cell?.minusBtn.tag = indexPath.row
+
+        cell?.plusBtn.addTarget(self, action: #selector(plusBtnAction(sender:)), for: .touchUpInside)
+        cell?.AddFirstBtn.addTarget(self, action: #selector(addFirstBtnAction(sender:)), for: .touchUpInside)
+        cell?.minusBtn.addTarget(self, action: #selector(minusBtnAction(sender:)), for: .touchUpInside)
+        
         if model.sizeprice.count > 0 {
             let mod = model.sizeprice[0]
             cell?.priceSale.text = "\(mod.price ?? 0)"
@@ -189,7 +241,7 @@ extension ProductCategoryViewController : UITableViewDelegate, UITableViewDataSo
         
         // add func
         
-        if model.itemSelected ?? 0 == 0 {
+        if model.itemSelected ?? 0 > 0 {
             cell?.addFirstTrailingConstraint.constant = 120
             cell?.AddFirstBtn.isHidden = true
             
