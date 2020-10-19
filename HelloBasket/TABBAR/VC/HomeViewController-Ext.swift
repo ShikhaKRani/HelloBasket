@@ -361,3 +361,14 @@ class RecomInnerCell: UICollectionViewCell {
 
 }
 
+
+class SearchCollectionCell: UICollectionViewCell {
+    
+    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lblDesc: UILabel!
+    @IBOutlet weak var searchBtn: UIButton!
+    @IBOutlet weak var bgView: UIView!
+
+
+}
+

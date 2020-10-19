@@ -54,7 +54,7 @@ class HomeViewController: UIViewController{
                 let sections = self.homeDataDict?["sections"] as? [[String : Any]]
                 if sections?.count ?? 0 > 0 {
                     
-                    for var index in 0..<sections!.count {
+                    for index in 0..<sections!.count {
                         let dict = sections?[index]
                         if dict?["type"] as! String == "banner" {
                             let bannerdata = dict?["bannerdata"] as? [String : Any]
@@ -118,6 +118,11 @@ class HomeViewController: UIViewController{
         
     }
     
+    
+    @objc func searchBtnAction(sender: UIButton) {
+        
+    }
+    
 }
 //MARK:-
 //MARK:- HomeViewController
@@ -126,19 +131,12 @@ class HomeViewController: UIViewController{
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        //for banner
-        return 3
+        return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if section == 0 {
-            return 1
-        }
-        if section == 1 {
-            return  1 //category
-        }
-        if section == 2 {
+        if section == 3 {
             return self.returnSectionData().count
         }
         
@@ -151,9 +149,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         
         if indexPath.section == 0 {
+            return CGSize(width: self.view.frame.width, height: 150)
+        }
+        if indexPath.section == 1 {
             return CGSize(width: self.view.frame.width, height: 200)
         }
-        else if indexPath.section == 1 {
+        else if indexPath.section == 2 {
             
             let catg = self.homeDataDict?["categories"] as? [[String : Any]]
             let count1: Int = catg?.count ?? 0
@@ -170,7 +171,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return CGSize(width: Constants.windowWidth, height: CGFloat(rowCount * 140) + 0)
                         
         }
-        else if indexPath.section == 2 {
+        else if indexPath.section == 3 {
             //check size
             let sectionData = self.returnSectionData()
             let dict = sectionData[indexPath.row]
@@ -205,7 +206,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             
             if dict["type"] as? String == "banner" {
                 
-                if let bannerdata = dict["bannerdata"] as? [String : Any] {
+                if (dict["bannerdata"] as? [String : Any]) != nil {
                     return CGSize(width: Constants.windowWidth, height: 180)
                 }
                 
@@ -236,14 +237,28 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         var collectionCell: UICollectionViewCell?
         
-        if indexPath.section == 0 {
+        if indexPath.section == 1 {
             let cell = collectionView
                 .dequeueReusableCell(withReuseIdentifier: "\(ImageBannerCell.self)", for: indexPath) as? ImageBannerCell
             let banners = self.homeDataDict?["banners"] as? [[String : Any]]
             cell?.configureCell(imgData: banners ?? [[:]], screen : "top")
             collectionCell = cell
         }
-        if indexPath.section == 1 {
+        
+        if indexPath.section == 0 {
+            let cell = collectionView
+                .dequeueReusableCell(withReuseIdentifier: "\(SearchCollectionCell.self)", for: indexPath) as? SearchCollectionCell
+            let slot = self.homeDataDict?["next_slot"] as? String
+
+
+            cell?.searchBtn.addTarget(self, action: #selector(searchBtnAction(sender:)), for: .touchUpInside)
+            cell?.lblName.text = "Your next available slot"
+            cell?.lblDesc.text = "Express : \(slot ?? "")"
+            cell?.bgView.backgroundColor = AppColor.themeColor
+            collectionCell = cell
+        }
+        
+        if indexPath.section == 2 {
             let cell = collectionView
                 .dequeueReusableCell(withReuseIdentifier: "\(CategoryCollectionCell.self)", for: indexPath) as? CategoryCollectionCell
             cell?.headerLbl.text = "Shop by Category"
@@ -255,7 +270,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         let sectionData = self.returnSectionData()
         
-        if indexPath.section == 2 {
+        if indexPath.section == 3 {
             
             let cell = collectionView
                 .dequeueReusableCell(withReuseIdentifier: "\(ImageBannerCell.self)", for: indexPath) as? ImageBannerCell
@@ -267,7 +282,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 if dict["type"] as? String == "product" {
                     let cell = collectionView
                         .dequeueReusableCell(withReuseIdentifier: "\(RecomCollectionCell.self)", for: indexPath) as? RecomCollectionCell
-                    cell?.headerLbl.text = dict["name"] as? String
+                    let title = dict["name"] as? String
+                    cell?.headerLbl.text = title?.capitalized
                     let productlist = dict["products"] as? [[String : Any]]
                     cell?.configureCell(freshProducts: productlist ?? [[:]])
                     collectionCell = cell
@@ -277,7 +293,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     
                     let cell = collectionView
                         .dequeueReusableCell(withReuseIdentifier: "\(SubCategoryCollectionCell.self)", for: indexPath) as? SubCategoryCollectionCell
-                    cell?.headerLbl.text = dict["name"] as? String
+
+                    let title = dict["name"] as? String
+                    cell?.headerLbl.text = title?.capitalized
+                    
                     let subCatg = dict["subcategory"] as? [[String : Any]]
                     cell?.configureCellForSubCategory(screen: "subcat", categories: subCatg ?? [[:]])
                     collectionCell = cell

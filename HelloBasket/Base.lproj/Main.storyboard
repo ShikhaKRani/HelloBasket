@@ -214,7 +214,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.1334050443" green="0.071377862259999994" blue="0.37337404819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.44287778253424659" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="Cgo-zK-TM3" firstAttribute="top" secondItem="b2b-fp-K93" secondAttribute="top" constant="45" id="E9J-nx-QLI"/>
                                     <constraint firstItem="Cgo-zK-TM3" firstAttribute="leading" secondItem="b2b-fp-K93" secondAttribute="leading" constant="26" id="aoF-HU-jvq"/>
