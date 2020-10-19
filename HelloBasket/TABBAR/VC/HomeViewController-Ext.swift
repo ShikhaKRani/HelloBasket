@@ -14,11 +14,24 @@ class ImageBannerCell: UICollectionViewCell {
     @IBOutlet weak var collectionView: BJAutoScrollingCollectionView!
     @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
     
+    @IBOutlet weak var line1: UILabel!
+    @IBOutlet weak var line2: UILabel!
+
     var bannerArray = [[String: Any]]()
     var screen : String?
     func configureCell(imgData:[[String: Any]], screen : String?) {
         bannerArray = imgData
         self.screen = screen
+        
+        if screen == "top" {
+            line1.isHidden = true
+            line2.isHidden = true
+        }
+        else{
+            line1.isHidden = false
+            line2.isHidden = false
+        }
+        
         initCollectionView()
         scrollReload()
     }
@@ -118,22 +131,13 @@ extension CategoryCollectionCell : UICollectionViewDelegate,UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if screen == "cat" {
             return self.categories.count
-        }
-        else{
-            return self.subCategories.count
-
-        }
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if screen == "cat" {
-            return CGSize(width: Constants.windowWidth/3.3, height: 130)
-        }
-        return CGSize(width: Constants.windowWidth/2.1, height: 130)
+            return CGSize(width: Constants.windowWidth/3.4, height: 130)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -184,6 +188,12 @@ extension CategoryCollectionCell : UICollectionViewDelegate,UICollectionViewData
         
 //        cellPressAction(eventID: self.nearPlaceModel[indexPath.row].id ?? 0)
     }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    }
+    
 }
 
 
@@ -225,7 +235,7 @@ extension SubCategoryCollectionCell : UICollectionViewDelegate,UICollectionViewD
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: Constants.windowWidth/2.1, height: 130)
+        return CGSize(width: Constants.windowWidth/2.3, height: 135)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -266,6 +276,10 @@ extension SubCategoryCollectionCell : UICollectionViewDelegate,UICollectionViewD
         
         
         //        cellPressAction(eventID: self.nearPlaceModel[indexPath.row].id ?? 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
 }
 
@@ -320,7 +334,7 @@ extension RecomCollectionCell : UICollectionViewDelegate,UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: Constants.windowWidth/2.1, height: 300)
+        return CGSize(width: Constants.windowWidth/2.3, height: 300)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -332,8 +346,9 @@ extension RecomCollectionCell : UICollectionViewDelegate,UICollectionViewDataSou
         cell?.rateImg.isHidden = true
         cell?.lblName.font = UIFont.systemFont(ofSize: 15)
         cell?.rateView.isHidden = true
-        cell?.contentView.layer.borderWidth = 0.5
+        cell?.contentView.layer.borderWidth = 1
         cell?.contentView.layer.borderColor = UIColor.lightGray.cgColor
+        
         let prodDict = self.freshProducts[indexPath.row]
         let urlString  =  prodDict["image"] as? String
         cell?.imgView.sd_setImage(with: URL(string: urlString ?? ""), placeholderImage: UIImage(named: "medicine.jpeg") ,options: .refreshCached, completed: nil)
@@ -347,6 +362,11 @@ extension RecomCollectionCell : UICollectionViewDelegate,UICollectionViewDataSou
         let cat_id = prodDict["id"] as? Int ?? 0
         NotificationCenter.default.post(name: Notification.Name("NotificationDetailIdentifier"), object: nil, userInfo: ["cat_Id":"\(cat_id)"])
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    }
+    
 }
 
 

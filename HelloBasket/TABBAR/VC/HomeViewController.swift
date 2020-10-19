@@ -165,8 +165,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             }
             
             if rowCount > 0 {
-                return CGSize(width: Constants.windowWidth, height: CGFloat(rowCount * 140) + 50.0)
-
+                return CGSize(width: Constants.windowWidth, height: CGFloat(rowCount * 145) + 50.0)
             }
             return CGSize(width: Constants.windowWidth, height: CGFloat(rowCount * 140) + 0)
                         
@@ -180,7 +179,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 
                 let productlist = dict["products"] as? [[String : Any]]
                 if productlist?.count ?? 0 > 0 {
-                    return CGSize(width: Constants.windowWidth, height: 330)
+                    return CGSize(width: Constants.windowWidth, height: 340)
                 }
                 return CGSize(width: Constants.windowWidth, height: 0)
                 
@@ -188,7 +187,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             
             if dict["type"] as? String == "subcategory" {
                 
-                let catg = self.homeDataDict?["subcategory"] as? [[String : Any]]
+                let catg = dict["subcategory"] as? [[String : Any]]
                 let count1: Int = catg?.count ?? 0
                 
                 var rowCount = count1/2
@@ -197,10 +196,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 }
                 
                 if rowCount > 0 {
-                    return CGSize(width: Constants.windowWidth, height: CGFloat(rowCount * 140) + 50.0)
-
+                    return CGSize(width: Constants.windowWidth, height: CGFloat(rowCount * 155) + 50.0)
                 }
-                return CGSize(width: Constants.windowWidth, height: CGFloat(rowCount * 140) + 0)
+                return CGSize(width: Constants.windowWidth, height: CGFloat(rowCount * 155) + 0)
 
             }
             
