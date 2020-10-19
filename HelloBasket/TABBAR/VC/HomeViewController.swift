@@ -179,7 +179,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 
                 let productlist = dict["products"] as? [[String : Any]]
                 if productlist?.count ?? 0 > 0 {
-                    return CGSize(width: Constants.windowWidth, height: 340)
+                    return CGSize(width: Constants.windowWidth, height: 360)
                 }
                 return CGSize(width: Constants.windowWidth, height: 0)
                 

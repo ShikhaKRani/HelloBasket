@@ -159,7 +159,8 @@ extension CategoryCollectionCell : UICollectionViewDelegate,UICollectionViewData
             let urlString  =  catDict["image"] as? String
             cell?.imgView.sd_setImage(with: URL(string: urlString ?? ""), placeholderImage: UIImage(named: "medicine.jpeg") ,options: .refreshCached, completed: nil)
 
-            cell?.lblName.text = catDict["name"] as? String//name
+            let name = catDict["name"] as? String
+            cell?.lblName.text = name?.capitalized
 
         }else{
             let catDict = self.subCategories[indexPath.row]
@@ -342,17 +343,51 @@ extension RecomCollectionCell : UICollectionViewDelegate,UICollectionViewDataSou
         
         let cell = collectionView
             .dequeueReusableCell(withReuseIdentifier: "RecomInnerCell", for: indexPath) as? RecomInnerCell
-        cell?.lblDesc.isHidden = true
-        cell?.rateImg.isHidden = true
         cell?.lblName.font = UIFont.systemFont(ofSize: 15)
-        cell?.rateView.isHidden = true
-        cell?.contentView.layer.borderWidth = 1
-        cell?.contentView.layer.borderColor = UIColor.lightGray.cgColor
+        cell?.bgView.layer.borderWidth = 1
+        cell?.bgView.layer.borderColor = UIColor.lightGray.cgColor
+        
         
         let prodDict = self.freshProducts[indexPath.row]
         let urlString  =  prodDict["image"] as? String
         cell?.imgView.sd_setImage(with: URL(string: urlString ?? ""), placeholderImage: UIImage(named: "medicine.jpeg") ,options: .refreshCached, completed: nil)
-        cell?.lblName.text = prodDict["name"] as? String//name
+        let ratings = prodDict["ratings"] as? Double
+        let name = prodDict["name"] as? String
+        let cutPrice = prodDict["sizeprice"] as? [[String : Any]]
+
+        
+        cell?.mrpLbl.text = ""
+        cell?.pieceAvailableLbl.text = ""
+        cell?.discountLbl.text = ""
+        cell?.offerLbl.isHidden = true
+        
+        if cutPrice?.count ?? 0 > 0 {
+            cell?.offerLbl.isHidden = false
+            let cutPriceDict = cutPrice?[0]
+            let cutPrice = cutPriceDict?["cut_price"] as? Int
+            let price = cutPriceDict?["price"] as? Int
+            let size = cutPriceDict?["size"] as? String
+            let discount = cutPriceDict?["discount"] as? Int
+
+            cell?.mrpLbl.text = "MRP : Rs\(cutPrice ?? 0)"
+            cell?.pieceAvailableLbl.text = "\(size ?? "") Rs\(price ?? 0)"
+            cell?.offerLbl.text = "\(discount ?? 0)%"
+
+        }
+        
+        cell?.lblName.text = name?.capitalized
+        cell?.discountLbl.text = "Rating : \(ratings ?? 0.0)"
+
+        
+        cell?.offerLbl.layer.cornerRadius = 25
+        cell?.offerLbl.layer.masksToBounds = true
+
+        
+        
+        
+        
+        
+        
         collectionCell = cell
         return collectionCell ?? UICollectionViewCell()
     }
@@ -374,10 +409,12 @@ class RecomInnerCell: UICollectionViewCell {
     
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var lblName: UILabel!
-    @IBOutlet weak var lblDesc: UILabel!
-    @IBOutlet weak var rateView: UIView!
-    @IBOutlet weak var rateLbl: UILabel!
-    @IBOutlet weak var rateImg: UIImageView!
+    @IBOutlet weak var mrpLbl: UILabel!
+    @IBOutlet weak var pieceAvailableLbl: UILabel!
+    @IBOutlet weak var discountLbl: UILabel!
+    @IBOutlet weak var offerLbl: UILabel!
+    @IBOutlet weak var addbtn: UIButton!
+    @IBOutlet weak var bgView: UIView!
 
 }
 
