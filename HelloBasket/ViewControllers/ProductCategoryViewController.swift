@@ -12,7 +12,7 @@ class SubCategoryCollectionViewCell: UICollectionViewCell {
 }
 
 class ProductCategoryViewController: UIViewController {
-
+    
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var navTitle: UILabel!
@@ -23,16 +23,16 @@ class ProductCategoryViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-
+    
     
     
     var prevDict : [String: Any]?
     var catId : String?
     var screen : String?
-
+    
     var prodcutCategory : ProdcutListCategory?
     var wholeProductList = [ProductModel]()
-
+    
     var selectedRowCollection : Int?
     
     override func viewDidLoad() {
@@ -55,9 +55,9 @@ class ProductCategoryViewController: UIViewController {
         else{
             
         }
-                
+        
     }
-
+    
     @objc func backbtnAction() { self.navigationController?.popViewController(animated: true)    }
     
     func registerCell() {
@@ -84,14 +84,14 @@ class ProductCategoryViewController: UIViewController {
                             DispatchQueue.main.async {
                                 if self.wholeProductList.count > 1 {
                                     self.totalItemslbl.text = "\(self.wholeProductList.count) Items"
-
+                                    
                                 }else{
                                     self.totalItemslbl.text = "\(self.wholeProductList.count) Item"
-
+                                    
                                 }
                                 self.tblView.reloadData()
                                 self.collectionView.reloadData()
-
+                                
                             }
                             
                         }
@@ -126,7 +126,7 @@ class ProductCategoryViewController: UIViewController {
     
     
     func fetchSubCategoryForProductList() {
-
+        
         let cat = self.catId
         Loader.showHud()
         ServiceClient.sendRequestGET(apiUrl:"\(APIEndPoints.shared.SUBCATEGORY_LIST)/\(cat ?? "0")" , postdatadictionary: [:], isArray: false) { (response) in
@@ -148,91 +148,162 @@ class ProductCategoryViewController: UIViewController {
         
         let model =  self.wholeProductList[sender.tag]
         print(model.sizeprice.count)
-
+        
         if model.sizeprice.count > 1 {
             
             // code
             
             
         }
-
+        
     }
     
     //MARK:-
-    
     @objc func plusBtnAction(sender : UIButton) {
         
+        let cell = sender.superview?.superview?.superview?.superview as? ProductCell
+        
         let model =  self.wholeProductList[sender.tag]
-        print(model.sizeprice.count)
-
-        if model.sizeprice.count > 1 {
+        var count = model.itemSelected ?? 0
+        
+        //        if model.max_qty ?? 0 > 0 {
+        count = count + 1
+        model.itemSelected =  count
+        cell?.itemCountLbl.text = "\(model.itemSelected ?? 0)"
+        model.itemSelected = count
+        
+        //            self.addProductToCart(model: model,tag: sender.tag)
+        //        }
+        
+        if count == 0 {
+            cell?.plusBtn.isHidden = true
+            cell?.minusBtn.isHidden = true
+            cell?.itemCountLbl.isHidden = true
+            cell?.AddFirstBtn.isHidden = false
+            cell?.addFirstTopConstraint.constant = 22.5
+        }else{
             
-            // code
-            
-            
+            cell?.plusBtn.isHidden = false
+            cell?.minusBtn.isHidden = false
+            cell?.itemCountLbl.isHidden = false
+            cell?.AddFirstBtn.isHidden = true
+            cell?.addFirstTopConstraint.constant = 100
         }
-
+        
+        
+        
+    }
+    
+    
+    @objc func addFirstBtnAction(sender : UIButton) {
+        
+        let cell = sender.superview?.superview?.superview?.superview as? ProductCell
+        let model =  self.wholeProductList[sender.tag]
+        var count = model.itemSelected ?? 0
+        
+        //        if model.max_qty ?? 0 > 0 {
+        //            if count < model.max_qty ?? 0  {
+        count = count + 1
+        model.itemSelected =  count
+        cell?.itemCountLbl.text = "\(model.itemSelected ?? 0)"
+        model.itemSelected = count
+        
+        
+        //            self.addProductToCart(model: model,tag: sender.tag)
+        //        }
+        
+        if count == 0 {
+            cell?.plusBtn.isHidden = true
+            cell?.minusBtn.isHidden = true
+            cell?.itemCountLbl.isHidden = true
+            cell?.AddFirstBtn.isHidden = false
+            cell?.addFirstTopConstraint.constant = 22.5
+        }else{
+            
+            cell?.plusBtn.isHidden = false
+            cell?.minusBtn.isHidden = false
+            cell?.itemCountLbl.isHidden = false
+            cell?.AddFirstBtn.isHidden = true
+            cell?.addFirstTopConstraint.constant = 100
+        }
+        
     }
     
     @objc func minusBtnAction(sender : UIButton) {
         
-        let model =  self.wholeProductList[sender.tag]
-        print(model.sizeprice.count)
-
-        if model.sizeprice.count > 1 {
-            
-            // code
-            
-            
-        }
-
-    }
-    
-    @objc func addFirstBtnAction(sender : UIButton) {
+        let cell = sender.superview?.superview?.superview?.superview as? ProductCell
         
         let model =  self.wholeProductList[sender.tag]
-        print(model.sizeprice.count)
-
-        if model.sizeprice.count > 1 {
+        var count = model.itemSelected ?? 0
+        
+        if count > 0 {
+            count = count - 1
+            model.itemSelected =  count
             
-            // code
+            cell?.itemCountLbl.text = "\(model.itemSelected ?? 0)"
+            model.itemSelected = count
             
-            
+            //            self.addProductToCart(model: model,tag: sender.tag)
         }
-
+        
+        if count == 0 {
+            cell?.plusBtn.isHidden = true
+            cell?.minusBtn.isHidden = true
+            cell?.itemCountLbl.isHidden = true
+            cell?.AddFirstBtn.isHidden = false
+            cell?.addFirstTopConstraint.constant = 22.5
+        }else{
+            
+            cell?.plusBtn.isHidden = false
+            cell?.minusBtn.isHidden = false
+            cell?.itemCountLbl.isHidden = false
+            cell?.AddFirstBtn.isHidden = true
+            cell?.addFirstTopConstraint.constant = 100
+        }
     }
-    
+        
 }
 
 extension ProductCategoryViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.wholeProductList.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell") as? ProductCell
-     
+        
         let model =  self.wholeProductList[indexPath.row]
-        cell?.title.text = model.name ?? ""
         cell?.dropDownBtn.tag = indexPath.row
         cell?.dropDownBtn.addTarget(self, action: #selector(dropdownBtnAction(sender:)), for: .touchUpInside)
         
+        cell?.AddFirstBtn.layer.cornerRadius = 5
+        cell?.AddFirstBtn.layer.masksToBounds = true
         cell?.plusBtn.tag = indexPath.row
         cell?.AddFirstBtn.tag = indexPath.row
         cell?.minusBtn.tag = indexPath.row
-
+        
         cell?.plusBtn.addTarget(self, action: #selector(plusBtnAction(sender:)), for: .touchUpInside)
         cell?.AddFirstBtn.addTarget(self, action: #selector(addFirstBtnAction(sender:)), for: .touchUpInside)
         cell?.minusBtn.addTarget(self, action: #selector(minusBtnAction(sender:)), for: .touchUpInside)
         
+        cell?.title.text = model.name?.capitalized ?? ""
+        cell?.companyLbl.text = model.company?.capitalized ?? ""
+        cell?.ratingLbl.text = "\(model.ratings ?? "") \(StringConstant.StarSymbol)"
+        cell?.ratingLbl.textColor = AppColor.themeColor
+        
+        
         if model.sizeprice.count > 0 {
             let mod = model.sizeprice[0]
-            cell?.priceSale.text = "\(mod.price ?? 0)"
-            cell?.priceCut.text = "\(mod.cut_price ?? 0)"
-            cell?.quantityField.text = "\(mod.size ?? "")"
+            cell?.priceSale.text = "Price: \(StringConstant.RupeeSymbol)\(mod.price ?? 0)"
+            cell?.priceCut.text = "MRP: \(StringConstant.RupeeSymbol)\(mod.cut_price ?? 0)"
+            cell?.quantityField.text = "\(mod.size?.capitalized ?? "")"
             let urlString  =  mod.image
             cell?.titleImg.sd_setImage(with: URL(string: urlString ?? ""), placeholderImage: UIImage(named: "medicine.jpeg") ,options: .refreshCached, completed: nil)            
+        
+            cell?.offerlbl.text = "\(mod.discount ?? 0)%"
+
+        
         }
         cell?.dropDownBtnImg.isHidden = true
         if model.sizeprice.count > 1 {
@@ -240,30 +311,27 @@ extension ProductCategoryViewController : UITableViewDelegate, UITableViewDataSo
         }
         
         // add func
-        
         if model.itemSelected ?? 0 > 0 {
-            cell?.addFirstTrailingConstraint.constant = 120
+            cell?.addFirstTopConstraint.constant = 100
             cell?.AddFirstBtn.isHidden = true
-            
             cell?.plusBtn.isHidden = false
             cell?.minusBtn.isHidden = false
             cell?.itemCountLbl.isHidden = false
-
         }
         else{
-            cell?.addFirstTrailingConstraint.constant = 10
+            cell?.addFirstTopConstraint.constant = 22.5
             cell?.AddFirstBtn.isHidden = false
-
             cell?.plusBtn.isHidden = true
             cell?.minusBtn.isHidden = true
             cell?.itemCountLbl.isHidden = true
-
         }
+        
+        
         
         return cell!
     }
-
-
+    
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return  186
     }
@@ -289,7 +357,6 @@ extension ProductCategoryViewController : UICollectionViewDataSource, UICollecti
         
         let cat = self.prodcutCategory?.categoryData[indexPath.row]
         cell.titleLbl.text = cat?.name?.capitalized ?? ""
-
         if indexPath.row == self.selectedRowCollection {
             cell.titleLbl.textColor = .red
             cell.titleLbl.font = UIFont.boldSystemFont(ofSize: 16.0)
@@ -297,11 +364,9 @@ extension ProductCategoryViewController : UICollectionViewDataSource, UICollecti
         else{
             cell.titleLbl.textColor = .black
             cell.titleLbl.font = UIFont.systemFont(ofSize: 15)
-
         }
         
         return cell
-        
     }
     
     private func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
