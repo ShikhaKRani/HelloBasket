@@ -42,7 +42,7 @@ class ProductCategoryViewController: UIViewController {
         self.navView.backgroundColor = AppColor.themeColor
         backBtn.addTarget(self, action: #selector(backbtnAction), for: .touchUpInside)
         self.navTitle.text = "Product Category"
-        
+        headerView.backgroundColor = AppColor.themeColorSecond
         self.totalItemslbl.text = ""
         if screen == "home" {
             if let cat_id = prevDict?["cat_Id"] {
