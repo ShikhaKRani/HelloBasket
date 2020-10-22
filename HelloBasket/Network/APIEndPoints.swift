@@ -49,6 +49,9 @@ class APIEndPoints: NSObject, Codable { // checkpoint
     var LOGIN = "\(mainUrl)login"
     var PRODUCT_LIST = "\(mainUrl)products"
     var SUBCATEGORY_LIST = "\(mainUrl)sub-category"
+    var HOTDEALS_LIST = "\(mainUrl)hotdeals-product"
+    var ADD_CART = "\(mainUrl)add-cart"
+
     
     override init() {}
     

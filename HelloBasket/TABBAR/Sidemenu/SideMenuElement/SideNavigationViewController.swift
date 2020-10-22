@@ -184,10 +184,10 @@ class SideNavigationViewController: UIViewController,UITableViewDelegate,UITable
             break
         case "Hot Deals":
             
-//            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-//            if let getbookingpuppy = storyBoard.instantiateViewController(withIdentifier: "BookingNewPuppyViewController") as? BookingNewPuppyViewController {
-//                self.navigationController?.pushViewController(getbookingpuppy, animated: true)
-//            }
+            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+            if let deals = storyBoard.instantiateViewController(withIdentifier: "HotDealsViewController") as? HotDealsViewController {
+                self.navigationController?.pushViewController(deals, animated: true)
+            }
             break
         case "New puppy history":
             let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
