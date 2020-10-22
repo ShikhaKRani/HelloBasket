@@ -186,21 +186,26 @@ class SideNavigationViewController: UIViewController,UITableViewDelegate,UITable
             
             let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
             if let deals = storyBoard.instantiateViewController(withIdentifier: "HotDealsViewController") as? HotDealsViewController {
+                deals.screen = "Hot Deals"
+
                 self.navigationController?.pushViewController(deals, animated: true)
             }
             break
-        case "New puppy history":
+        case "New Arrival":
             let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-//            if let genewpuppyhistory = storyBoard.instantiateViewController(withIdentifier: "NewPuppyHistoryViewController") as? NewPuppyHistoryViewController {
-//                self.navigationController?.pushViewController(genewpuppyhistory, animated: true)
-//            }
+            if let deals = storyBoard.instantiateViewController(withIdentifier: "HotDealsViewController") as? HotDealsViewController {
+                deals.screen = "New Arrival"
+
+                self.navigationController?.pushViewController(deals, animated: true)
+            }
             break
             
-        case "Booking for a surgery":
-//            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-//            if let bookForSurgery = storyBoard.instantiateViewController(withIdentifier: "BookingForSurgeryViewController") as? BookingForSurgeryViewController {
-//                self.navigationController?.pushViewController(bookForSurgery, animated: true)
-//            }
+        case "Discounted Product":
+            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+            if let deals = storyBoard.instantiateViewController(withIdentifier: "HotDealsViewController") as? HotDealsViewController {
+                deals.screen = "Discounted Product"
+                self.navigationController?.pushViewController(deals, animated: true)
+            }
             break
             
         case "Surgery History":

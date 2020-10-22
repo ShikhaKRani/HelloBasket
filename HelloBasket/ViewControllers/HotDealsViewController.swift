@@ -19,6 +19,8 @@ class HotDealsViewController: UIViewController {
     var homeDataDict : [String: Any]?
     var productList = [ProductModel]()
     
+    var screen : String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.registerCell()
@@ -26,7 +28,7 @@ class HotDealsViewController: UIViewController {
         self.tblView.tableFooterView = UIView()
         self.navView.backgroundColor = AppColor.themeColor
         backBtn.addTarget(self, action: #selector(backbtnAction), for: .touchUpInside)
-        self.navTitle.text = "Product Category"
+        self.navTitle.text = screen
         
         self.fetchHotDealsData()
         
@@ -91,12 +93,20 @@ class HotDealsViewController: UIViewController {
         let model =  self.productList[sender.tag]
         var count = model.itemSelected ?? 0
         
-        //        if model.max_qty ?? 0 > 0 {
-        count = count + 1
-        model.itemSelected =  count
-        cell?.itemCountLbl.text = "\(model.itemSelected ?? 0)"
-        model.itemSelected = count
-       
+        if model.sizeprice.count > 0 {
+            if model.sizeprice[0].min_qty ?? 0 > 0 {
+                count = model.sizeprice[0].min_qty ?? 0 + 1
+                model.itemSelected = count
+                cell?.itemCountLbl.text = "\(model.itemSelected ?? 0)"
+
+            }
+            else{
+                count = count + 1
+                model.itemSelected =  count
+                cell?.itemCountLbl.text = "\(model.itemSelected ?? 0)"
+            
+            }
+        }
         
         if count == 0 {
             cell?.plusBtn.isHidden = true
@@ -264,8 +274,11 @@ extension HotDealsViewController : UITableViewDelegate, UITableViewDataSource  {
         
             cell?.offerlbl.text = "\(mod.discount ?? 0)%"
 
-        
+//            itemCountLbl
+            
         }
+        cell?.itemCountLbl.text = "\(model.itemSelected ?? 0)"
+
         cell?.dropDownBtnImg.isHidden = true
         if model.sizeprice.count > 1 {
             cell?.dropDownBtnImg.isHidden = false

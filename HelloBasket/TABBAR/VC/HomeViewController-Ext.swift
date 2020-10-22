@@ -349,8 +349,14 @@ extension RecomCollectionCell : UICollectionViewDelegate,UICollectionViewDataSou
         
         
         let prodDict = self.freshProducts[indexPath.row]
-        let urlString  =  prodDict["image"] as? String
-        cell?.imgView.sd_setImage(with: URL(string: urlString ?? ""), placeholderImage: UIImage(named: "medicine.jpeg") ,options: .refreshCached, completed: nil)
+        let sizeprice = prodDict["sizeprice"] as? [[String: Any]]
+        
+        if sizeprice?.count ?? 0 > 0 {
+            
+            let urlString  =  sizeprice?[0]["image"] as? String
+            cell?.imgView.sd_setImage(with: URL(string: urlString ?? ""), placeholderImage: UIImage(named: "medicine.jpeg") ,options: .refreshCached, completed: nil)
+        }
+        
         let ratings = prodDict["ratings"] as? Double
         let name = prodDict["name"] as? String
         let cutPrice = prodDict["sizeprice"] as? [[String : Any]]
