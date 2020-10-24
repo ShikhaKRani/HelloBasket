@@ -20,7 +20,6 @@ class ProductCategoryViewController: UIViewController {
     @IBOutlet weak var filterBtn: UIButton!
     @IBOutlet weak var totalItemslbl: UILabel!
     @IBOutlet weak var tblView: UITableView!
-    
     @IBOutlet weak var collectionView: UICollectionView!
     
     
