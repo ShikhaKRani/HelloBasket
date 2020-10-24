@@ -28,6 +28,8 @@ class ProductModel {
     var sizeprice = [SizePrice]()
     var sizeItemNumber : Int?
     var itemSelected : Int?
+    var isfavourite : Bool?
+
     
     init(dict : [String : Any]) {
         

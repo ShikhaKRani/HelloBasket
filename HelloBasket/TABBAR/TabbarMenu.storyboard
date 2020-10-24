@@ -969,12 +969,13 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a22-5V-oLP">
                                         <rect key="frame" x="354" y="29" width="50" height="50"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="7Lj-4h-9cD"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="dg2-JK-lGg"/>
                                         </constraints>
                                         <color key="tintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" image="cart.fill" catalog="system">
+                                        <state key="normal" image="favRed_nav">
                                             <color key="titleColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                     </button>
@@ -986,16 +987,28 @@
                                             <constraint firstAttribute="height" constant="25" id="Ffe-yh-W9i"/>
                                         </constraints>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cX9-bL-XSE">
+                                        <rect key="frame" x="304" y="29" width="50" height="50"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="cart.fill" catalog="system">
+                                            <color key="titleColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                                 <constraints>
                                     <constraint firstItem="OyR-GM-beh" firstAttribute="centerY" secondItem="7Od-Wu-y5G" secondAttribute="centerY" id="028-gw-IEm"/>
                                     <constraint firstAttribute="trailing" secondItem="a22-5V-oLP" secondAttribute="trailing" constant="10" id="3gl-l5-P9z"/>
+                                    <constraint firstItem="cX9-bL-XSE" firstAttribute="width" secondItem="a22-5V-oLP" secondAttribute="width" id="42l-NM-JP5"/>
                                     <constraint firstItem="BpZ-Td-0f0" firstAttribute="centerY" secondItem="OyR-GM-beh" secondAttribute="centerY" id="692-SZ-Fi7"/>
+                                    <constraint firstItem="cX9-bL-XSE" firstAttribute="height" secondItem="a22-5V-oLP" secondAttribute="height" id="6r8-MK-EB1"/>
                                     <constraint firstAttribute="height" constant="84" id="DSb-7h-m2r"/>
+                                    <constraint firstItem="cX9-bL-XSE" firstAttribute="centerY" secondItem="a22-5V-oLP" secondAttribute="centerY" id="Ijf-Ar-hGq"/>
                                     <constraint firstItem="BpZ-Td-0f0" firstAttribute="leading" secondItem="7Od-Wu-y5G" secondAttribute="trailing" constant="10" id="OxO-w5-9oR"/>
                                     <constraint firstItem="7Od-Wu-y5G" firstAttribute="top" secondItem="d9q-ND-zpH" secondAttribute="top" constant="29" id="POG-oN-ChW"/>
                                     <constraint firstItem="a22-5V-oLP" firstAttribute="centerY" secondItem="OyR-GM-beh" secondAttribute="centerY" id="PRt-Ey-ctJ"/>
+                                    <constraint firstItem="a22-5V-oLP" firstAttribute="leading" secondItem="cX9-bL-XSE" secondAttribute="trailing" id="Tgz-G9-4pS"/>
                                     <constraint firstItem="OyR-GM-beh" firstAttribute="centerX" secondItem="7Od-Wu-y5G" secondAttribute="centerX" id="X8O-U1-jDD"/>
                                     <constraint firstItem="7Od-Wu-y5G" firstAttribute="leading" secondItem="d9q-ND-zpH" secondAttribute="leading" constant="9" id="riX-yN-d1K"/>
                                 </constraints>
@@ -1752,7 +1765,9 @@
                         <imageReference key="selectedImage" image="homekit" catalog="system" renderingMode="template"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="cartBtn" destination="cX9-bL-XSE" id="87V-NA-ZkM"/>
                         <outlet property="collectionView" destination="RM8-bC-pWX" id="CPf-Z9-omN"/>
+                        <outlet property="favouritebtn" destination="a22-5V-oLP" id="719-YB-daA"/>
                         <outlet property="navigationView" destination="d9q-ND-zpH" id="qL1-oP-wjE"/>
                     </connections>
                 </viewController>
@@ -2046,13 +2061,14 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="krZ-Qa-sdn"/>
+        <segue reference="U0P-zr-M21"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="applelogo" catalog="system" width="128" height="121"/>
         <image name="cart.fill" catalog="system" width="128" height="102"/>
         <image name="chevron.forward" catalog="system" width="96" height="128"/>
         <image name="facebook" width="144" height="144"/>
+        <image name="favRed_nav" width="24" height="24"/>
         <image name="homekit" catalog="system" width="128" height="106"/>
         <image name="info.png" width="28" height="28"/>
         <image name="instagram" width="144" height="144"/>

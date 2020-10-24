@@ -63,6 +63,39 @@ class ProductCategoryViewController: UIViewController {
         tblView.register(UINib(nibName: "ProductCell", bundle: nil), forCellReuseIdentifier: "ProductCell")
     }
     
+    @objc func addFavoriteBtnAction(sender : UIButton) {
+        
+        let model =  self.wholeProductList[sender.tag]
+        print(model.sizeprice.count)
+        
+        self.addFovoriteProduct(model: model, tag: sender.tag)
+        
+    }
+    
+    
+    func addFovoriteProduct(model : ProductModel, tag : Int) {
+        var param: [String: Any] = [:]
+        param = ["product_id" : "\(model.product_id ?? 1)"]
+        Loader.showHud()
+        ServiceClient.sendRequestPOSTBearer(apiUrl: APIEndPoints.shared.ADD_FAVORITE, postdatadictionary: param, isArray: false) { (response) in
+            Loader.dismissHud()
+            if let res = response as? [String : Any] {
+                if res["status"] as? String == "success" {
+                    print(res["message"] ?? "")
+                    DispatchQueue.main.async {
+                        model.isfavourite = true
+                        self.tblView.reloadRows(at: [IndexPath(row: tag, section: 0)], with: .none)
+                    }
+                }else{
+                    DispatchQueue.main.async {
+                        model.isfavourite = false
+                        self.tblView.reloadRows(at: [IndexPath(row: tag, section: 0)], with: .none)
+                    }
+                }
+            }
+        }
+    }
+    
     
     func fetchProductList(categoryId : String) {
         var param: [String: Any] = [:]
@@ -347,11 +380,13 @@ extension ProductCategoryViewController : UITableViewDelegate, UITableViewDataSo
         cell?.plusBtn.tag = indexPath.row
         cell?.AddFirstBtn.tag = indexPath.row
         cell?.minusBtn.tag = indexPath.row
-        
+        cell?.likeBtn.tag = indexPath.row
+
         cell?.plusBtn.addTarget(self, action: #selector(plusBtnAction(sender:)), for: .touchUpInside)
         cell?.AddFirstBtn.addTarget(self, action: #selector(addFirstBtnAction(sender:)), for: .touchUpInside)
         cell?.minusBtn.addTarget(self, action: #selector(minusBtnAction(sender:)), for: .touchUpInside)
-        
+        cell?.likeBtn.addTarget(self, action: #selector(addFavoriteBtnAction(sender:)), for: .touchUpInside)
+
         cell?.title.text = model.name?.capitalized ?? ""
         cell?.companyLbl.text = model.company?.capitalized ?? ""
         cell?.ratingLbl.text = "\(model.ratings ?? "") \(StringConstant.StarSymbol)"
@@ -362,7 +397,12 @@ extension ProductCategoryViewController : UITableViewDelegate, UITableViewDataSo
             cell?.dropDownBtnImg.isHidden = false
         }
         
-        
+        if (model.isfavourite ?? false) {
+            cell?.likeBtn.setBackgroundImage(UIImage(named: "favRed"), for: .normal)
+        }else{
+            cell?.likeBtn.setBackgroundImage(UIImage(named: "favGrey"), for: .normal)
+        }
+       
         if model.sizeprice.count > 0 {
             let mod = model.sizeprice[0]
             cell?.priceSale.text = "Price: \(StringConstant.RupeeSymbol)\(mod.price ?? 0)"

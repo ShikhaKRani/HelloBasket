@@ -85,10 +85,10 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Vs-3F-L4F">
-                                        <rect key="frame" x="35" y="88.5" width="30" height="28"/>
+                                        <rect key="frame" x="35" y="88.5" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="5QV-FM-t1B"/>
-                                            <constraint firstAttribute="height" constant="28" id="PB4-B0-fa3"/>
+                                            <constraint firstAttribute="height" constant="30" id="PB4-B0-fa3"/>
                                         </constraints>
                                         <color key="tintColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" backgroundImage="favGrey"/>

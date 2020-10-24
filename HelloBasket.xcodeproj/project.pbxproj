@@ -12,6 +12,8 @@
 		BF10C237253C6D2500FE068C /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF10C235253C6D2500FE068C /* ProductCell.xib */; };
 		BF2D21E3254441D20034F99A /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D21E2254441D20034F99A /* ContactUsViewController.swift */; };
 		BF2D21E62544691C0034F99A /* CatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D21E52544691C0034F99A /* CatCollectionViewCell.swift */; };
+		BF2D21E9254470670034F99A /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D21E8254470670034F99A /* FavouriteViewController.swift */; };
+		BF2D21EC254476740034F99A /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D21EB254476740034F99A /* CartViewController.swift */; };
 		BF2D77A72536E7BD0013F7D8 /* CategoryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D77A62536E7BD0013F7D8 /* CategoryModels.swift */; };
 		BF2D77CA2538248A0013F7D8 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D77C92538248A0013F7D8 /* PaymentViewController.swift */; };
 		BF2D77CD253B423D0013F7D8 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D77CC253B423C0013F7D8 /* ProductModel.swift */; };
@@ -68,6 +70,8 @@
 		BF10C235253C6D2500FE068C /* ProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
 		BF2D21E2254441D20034F99A /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		BF2D21E52544691C0034F99A /* CatCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatCollectionViewCell.swift; sourceTree = "<group>"; };
+		BF2D21E8254470670034F99A /* FavouriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
+		BF2D21EB254476740034F99A /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		BF2D77A62536E7BD0013F7D8 /* CategoryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModels.swift; sourceTree = "<group>"; };
 		BF2D77C92538248A0013F7D8 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		BF2D77CC253B423C0013F7D8 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
@@ -222,6 +226,7 @@
 				BF8334872541AC2F0012D6A0 /* HotDealsViewController.swift */,
 				BF83349B2541B7980012D6A0 /* HotDealsViewController-Ext.swift */,
 				BF2D21E2254441D20034F99A /* ContactUsViewController.swift */,
+				BF2D21E8254470670034F99A /* FavouriteViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -288,6 +293,7 @@
 				BFCFC4F72529F9690015E011 /* HomeViewController.swift */,
 				BF33C6A72533443400F24EEA /* HomeViewController-Ext.swift */,
 				BF2D77C92538248A0013F7D8 /* PaymentViewController.swift */,
+				BF2D21EB254476740034F99A /* CartViewController.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -432,6 +438,7 @@
 				BFCFC5142529FE320015E011 /* Initializable.swift in Sources */,
 				BFCFC5182529FE320015E011 /* SideMenuInteractionController.swift in Sources */,
 				BF2DA8A3252B433800F6B65B /* RegisterViewController.swift in Sources */,
+				BF2D21E9254470670034F99A /* FavouriteViewController.swift in Sources */,
 				BFCFC51A2529FE320015E011 /* SideMenuPushCoordinator.swift in Sources */,
 				BFCFC50E2529FE320015E011 /* Extensions.swift in Sources */,
 				BF2DA8A6252DA1EE00F6B65B /* CategoryTabViewController.swift in Sources */,
@@ -455,6 +462,7 @@
 				BFCFC5112529FE320015E011 /* SideMenuPresentationStyle.swift in Sources */,
 				BFCFC4CD2529F42A0015E011 /* sideMenuTableViewCell.swift in Sources */,
 				BF2DA8AC252DA21400F6B65B /* OfferTabViewController.swift in Sources */,
+				BF2D21EC254476740034F99A /* CartViewController.swift in Sources */,
 				BFAE9AE525308212003091FB /* Home.swift in Sources */,
 				BFCFC51E252AEF030015E011 /* AppConstant.swift in Sources */,
 				BF2DA8A9252DA20400F6B65B /* WalletTabViewController.swift in Sources */,

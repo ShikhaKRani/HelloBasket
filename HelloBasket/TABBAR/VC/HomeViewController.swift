@@ -23,6 +23,9 @@ class HomeViewController: UIViewController{
     @IBOutlet weak var navigationView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
 
+    @IBOutlet weak var cartBtn: UIButton!
+    @IBOutlet weak var favouritebtn: UIButton!
+
     var homeDataDict : [String: Any]?
     var sectionBanners = [[String : Any]]()
 
@@ -32,11 +35,29 @@ class HomeViewController: UIViewController{
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.productDetailNotification(notification:)), name: Notification.Name("NotificationDetailIdentifier"), object: nil)
 
-        
-        
+        cartBtn.addTarget(self, action: #selector(redirectToCart(sender:)), for: .touchUpInside)
+        favouritebtn.addTarget(self, action: #selector(redirectToFavourite(sender:)), for: .touchUpInside)
+
         navigationView.backgroundColor = AppColor.themeColor
         self.view.backgroundColor = .white
         self.fetchHomeData()
+        
+    }
+    
+    
+    @objc func redirectToCart(sender : UIButton) {
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        if let catgScreen = storyBoard.instantiateViewController(withIdentifier: "CartViewController") as? CartViewController {
+            self.navigationController?.pushViewController(catgScreen, animated: true)
+        }
+    }
+    
+    @objc func redirectToFavourite(sender : UIButton) {
+        
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        if let catgScreen = storyBoard.instantiateViewController(withIdentifier: "FavouriteViewController") as? FavouriteViewController {
+            self.navigationController?.pushViewController(catgScreen, animated: true)
+        }
     }
     
     

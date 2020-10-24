@@ -51,8 +51,10 @@ class APIEndPoints: NSObject, Codable { // checkpoint
     var SUBCATEGORY_LIST = "\(mainUrl)sub-category"
     var HOTDEALS_LIST = "\(mainUrl)hotdeals-product"
     var ADD_CART = "\(mainUrl)add-cart"
+    var ADD_FAVORITE = "\(mainUrl)add-favorite-product"
+    var GET_FAVOURITE_LIST = "\(mainUrl)favorite-product"
+    var DELETE_FAVOURITE_LIST = "\(mainUrl)delete-favorite-product"
 
-    
     override init() {}
     
     required init(from _: Decoder) throws {}
