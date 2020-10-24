@@ -24,6 +24,7 @@ class HotDealsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.registerCell()
+        print(UserDetails.shared.getAccessToken())
         registerCell()
         self.tblView.tableFooterView = UIView()
         self.navView.backgroundColor = AppColor.themeColor
@@ -139,20 +140,25 @@ class HotDealsViewController: UIViewController {
         let cell = sender.superview?.superview?.superview?.superview as? ProductCell
         
         let model =  self.productList[sender.tag]
-        var count = model.itemSelected ?? 0
-        
-        if model.sizeprice.count > 0 {
-            if model.sizeprice[0].min_qty ?? 0 > 0 {
-                count = model.sizeprice[0].min_qty ?? 0 + 1
-                model.itemSelected = count
-                cell?.itemCountLbl.text = "\(model.itemSelected ?? 0)"
+        var count = 0
+        let sizeNum = model.sizeItemNumber ?? 0
 
-            }
-            else{
+        if model.sizeprice.count >= sizeNum {
+
+            count = model.sizeprice[sizeNum].quantity ?? 0
+            if model.sizeprice[sizeNum].min_qty ?? 0 > 0 {
+                
+                let mod = model.sizeprice[sizeNum]
+                if mod.stock ?? 0 <  model.itemSelected ?? 0 {
+                    model.itemSelected = mod.stock
+                }
+                
+                count = model.sizeprice[sizeNum].quantity ?? 0
+                if model.itemSelected ?? 0 > 0 {
+                    count = model.itemSelected ?? 0
+                }
                 count = count + 1
-                model.itemSelected =  count
-                cell?.itemCountLbl.text = "\(model.itemSelected ?? 0)"
-            
+                model.itemSelected = count
             }
         }
         
@@ -182,20 +188,17 @@ class HotDealsViewController: UIViewController {
         
         let cell = sender.superview?.superview?.superview?.superview as? ProductCell
         let model =  self.productList[sender.tag]
-        var count = model.itemSelected ?? 0
-        if model.sizeprice.count > 0 {
-            if model.sizeprice[0].min_qty ?? 0 > 0 {
-                count = model.sizeprice[0].min_qty ?? 0 + 1
+        var count = 0
+        
+        let sizeNum = model.sizeItemNumber ?? 0
+
+        if model.sizeprice.count >= sizeNum {
+
+            count = model.sizeprice[sizeNum].quantity ?? 0
+//min quantity
+            if model.sizeprice[sizeNum].min_qty ?? 0 > 0 {
+                count = model.sizeprice[sizeNum].min_qty ?? 0
                 model.itemSelected = count
-                cell?.itemCountLbl.text = "\(model.itemSelected ?? 0)"
-                model.itemSelected = count
-            }
-            else{
-                count = count + 1
-                model.itemSelected =  count
-                cell?.itemCountLbl.text = "\(model.itemSelected ?? 0)"
-                model.itemSelected = count
-            
             }
         }
                     
@@ -226,14 +229,18 @@ class HotDealsViewController: UIViewController {
         let cell = sender.superview?.superview?.superview?.superview as? ProductCell
         
         let model =  self.productList[sender.tag]
-        var count = model.itemSelected ?? 0
+        let sizeNum = model.sizeItemNumber ?? 0
+        let lblcount = model.sizeprice[sizeNum].quantity
+        var count = lblcount ?? 0
+
+        if model.itemSelected ?? 0 > 0 {
+            count = model.itemSelected ?? 0
+        }
+        
         
         if count > 0 {
             count = count - 1
             model.itemSelected =  count
-            
-            cell?.itemCountLbl.text = "\(model.itemSelected ?? 0)"
-            model.itemSelected = count
             self.addProductToCart(model: model, tag: sender.tag)
         }
         
@@ -260,9 +267,10 @@ class HotDealsViewController: UIViewController {
         //product_id
         //size_id
         //quantity
+        let sizeNum = model.sizeItemNumber ?? 0
         var productSizeId = 0
         if model.sizeprice.count > 0 {
-            productSizeId = model.sizeprice[0].productSize_id ?? 0
+            productSizeId = model.sizeprice[sizeNum].productSize_id ?? 0
         }
         var param: [String: Any] = [:]
         param = ["quantity" : "\(model.itemSelected ?? 0)","product_id" : "\(model.product_id ?? 0)","size_id" : productSizeId]
@@ -275,6 +283,22 @@ class HotDealsViewController: UIViewController {
                     DispatchQueue.main.async {
                         self.tblView.reloadRows(at: [IndexPath(row: tag, section: 0)], with: .none)
                     }
+                }else{
+                    
+                    let model = model
+                    let mod = model.sizeprice[sizeNum]
+                    if mod.in_stocks ?? 0 > 0 {
+                        model.itemSelected = mod.quantity
+                    }else{
+                        model.itemSelected = 0
+                    }
+                    
+                    //alert
+                    print(res["message"] ?? "")
+                    DispatchQueue.main.async {
+                        self.tblView.reloadRows(at: [IndexPath(row: tag, section: 0)], with: .none)
+                    }
+                    
                 }
             }
         }
@@ -298,6 +322,7 @@ extension HotDealsViewController : UITableViewDelegate, UITableViewDataSource  {
         
         cell?.AddFirstBtn.layer.cornerRadius = 5
         cell?.AddFirstBtn.layer.masksToBounds = true
+        
         cell?.plusBtn.tag = indexPath.row
         cell?.AddFirstBtn.tag = indexPath.row
         cell?.minusBtn.tag = indexPath.row
@@ -311,6 +336,11 @@ extension HotDealsViewController : UITableViewDelegate, UITableViewDataSource  {
         cell?.ratingLbl.text = "\(model.ratings ?? "") \(StringConstant.StarSymbol)"
         cell?.ratingLbl.textColor = AppColor.themeColor
         
+        cell?.dropDownBtnImg.isHidden = true
+        if model.sizeprice.count > 1 {
+            cell?.dropDownBtnImg.isHidden = false
+        }
+        
         
         if model.sizeprice.count > 0 {
             let mod = model.sizeprice[0]
@@ -321,35 +351,33 @@ extension HotDealsViewController : UITableViewDelegate, UITableViewDataSource  {
             cell?.titleImg.sd_setImage(with: URL(string: urlString ?? ""), placeholderImage: UIImage(named: "medicine.jpeg") ,options: .refreshCached, completed: nil)
         
             cell?.offerlbl.text = "\(mod.discount ?? 0)%"
+            
+            if model.itemSelected ?? 0 > 0 {
+                cell?.itemCountLbl.text = "\(model.itemSelected ?? 0)"
 
-//            itemCountLbl
+            }else{
+                cell?.itemCountLbl.text = "\(mod.quantity ?? 0)"
+
+            }
+        
+            // add func
+            if mod.quantity ?? 0 > 0 {
+                cell?.addFirstTopConstraint.constant = 100
+                cell?.AddFirstBtn.isHidden = true
+                cell?.plusBtn.isHidden = false
+                cell?.minusBtn.isHidden = false
+                cell?.itemCountLbl.isHidden = false
+            }
+            else{
+                cell?.addFirstTopConstraint.constant = 22.5
+                cell?.AddFirstBtn.isHidden = false
+                cell?.plusBtn.isHidden = true
+                cell?.minusBtn.isHidden = true
+                cell?.itemCountLbl.isHidden = true
+            }
             
         }
-        cell?.itemCountLbl.text = "\(model.itemSelected ?? 0)"
-
-        cell?.dropDownBtnImg.isHidden = true
-        if model.sizeprice.count > 1 {
-            cell?.dropDownBtnImg.isHidden = false
-        }
-        
-        // add func
-        if model.itemSelected ?? 0 > 0 {
-            cell?.addFirstTopConstraint.constant = 100
-            cell?.AddFirstBtn.isHidden = true
-            cell?.plusBtn.isHidden = false
-            cell?.minusBtn.isHidden = false
-            cell?.itemCountLbl.isHidden = false
-        }
-        else{
-            cell?.addFirstTopConstraint.constant = 22.5
-            cell?.AddFirstBtn.isHidden = false
-            cell?.plusBtn.isHidden = true
-            cell?.minusBtn.isHidden = true
-            cell?.itemCountLbl.isHidden = true
-        }
-        
-        
-        
+     
         return cell!
     }
     

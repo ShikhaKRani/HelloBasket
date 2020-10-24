@@ -164,16 +164,27 @@ class ProductCategoryViewController: UIViewController {
         let cell = sender.superview?.superview?.superview?.superview as? ProductCell
         
         let model =  self.wholeProductList[sender.tag]
-        var count = model.itemSelected ?? 0
-        
-        //        if model.max_qty ?? 0 > 0 {
-        count = count + 1
-        model.itemSelected =  count
-        cell?.itemCountLbl.text = "\(model.itemSelected ?? 0)"
-        model.itemSelected = count
-        
-        //            self.addProductToCart(model: model,tag: sender.tag)
-        //        }
+        var count = 0
+        let sizeNum = model.sizeItemNumber ?? 0
+
+        if model.sizeprice.count >= sizeNum {
+
+            count = model.sizeprice[sizeNum].quantity ?? 0
+            if model.sizeprice[sizeNum].min_qty ?? 0 > 0 {
+                
+                let mod = model.sizeprice[sizeNum]
+                if mod.stock ?? 0 <  model.itemSelected ?? 0 {
+                    model.itemSelected = mod.stock
+                }
+                
+                count = model.sizeprice[sizeNum].quantity ?? 0
+                if model.itemSelected ?? 0 > 0 {
+                    count = model.itemSelected ?? 0
+                }
+                count = count + 1
+                model.itemSelected = count
+            }
+        }
         
         if count == 0 {
             cell?.plusBtn.isHidden = true
@@ -190,6 +201,7 @@ class ProductCategoryViewController: UIViewController {
             cell?.addFirstTopConstraint.constant = 100
         }
         
+        self.addProductToCart(model: model, tag: sender.tag)
         
         
     }
@@ -199,18 +211,22 @@ class ProductCategoryViewController: UIViewController {
         
         let cell = sender.superview?.superview?.superview?.superview as? ProductCell
         let model =  self.wholeProductList[sender.tag]
-        var count = model.itemSelected ?? 0
+        var count = 0
         
-        //        if model.max_qty ?? 0 > 0 {
-        //            if count < model.max_qty ?? 0  {
-        count = count + 1
-        model.itemSelected =  count
-        cell?.itemCountLbl.text = "\(model.itemSelected ?? 0)"
-        model.itemSelected = count
-        
-        
-        //            self.addProductToCart(model: model,tag: sender.tag)
-        //        }
+        let sizeNum = model.sizeItemNumber ?? 0
+
+        if model.sizeprice.count >= sizeNum {
+
+            count = model.sizeprice[sizeNum].quantity ?? 0
+//min quantity
+            if model.sizeprice[sizeNum].min_qty ?? 0 > 0 {
+                count = model.sizeprice[sizeNum].min_qty ?? 0
+                model.itemSelected = count
+            }
+        }
+                    
+             
+       
         
         if count == 0 {
             cell?.plusBtn.isHidden = true
@@ -227,6 +243,8 @@ class ProductCategoryViewController: UIViewController {
             cell?.addFirstTopConstraint.constant = 100
         }
         
+        self.addProductToCart(model: model, tag: sender.tag)
+
     }
     
     @objc func minusBtnAction(sender : UIButton) {
@@ -234,16 +252,19 @@ class ProductCategoryViewController: UIViewController {
         let cell = sender.superview?.superview?.superview?.superview as? ProductCell
         
         let model =  self.wholeProductList[sender.tag]
-        var count = model.itemSelected ?? 0
+        let sizeNum = model.sizeItemNumber ?? 0
+        let lblcount = model.sizeprice[sizeNum].quantity
+        var count = lblcount ?? 0
+
+        if model.itemSelected ?? 0 > 0 {
+            count = model.itemSelected ?? 0
+        }
+        
         
         if count > 0 {
             count = count - 1
             model.itemSelected =  count
-            
-            cell?.itemCountLbl.text = "\(model.itemSelected ?? 0)"
-            model.itemSelected = count
-            
-            //            self.addProductToCart(model: model,tag: sender.tag)
+            self.addProductToCart(model: model, tag: sender.tag)
         }
         
         if count == 0 {
@@ -260,8 +281,52 @@ class ProductCategoryViewController: UIViewController {
             cell?.AddFirstBtn.isHidden = true
             cell?.addFirstTopConstraint.constant = 100
         }
-    }
         
+    }
+     
+    func addProductToCart(model :ProductModel, tag : Int) {
+        //        ADD_CART
+        //product_id
+        //size_id
+        //quantity
+        let sizeNum = model.sizeItemNumber ?? 0
+        var productSizeId = 0
+        if model.sizeprice.count > 0 {
+            productSizeId = model.sizeprice[sizeNum].productSize_id ?? 0
+        }
+        var param: [String: Any] = [:]
+        param = ["quantity" : "\(model.itemSelected ?? 0)","product_id" : "\(model.product_id ?? 0)","size_id" : productSizeId]
+        
+        Loader.showHud()
+        ServiceClient.sendRequestPOSTBearer(apiUrl: APIEndPoints.shared.ADD_CART, postdatadictionary: param, isArray: false) { (response) in
+            Loader.dismissHud()
+            if let res = response as? [String : Any] {
+                if res["status"] as? String == "success" {
+                    DispatchQueue.main.async {
+                        self.tblView.reloadRows(at: [IndexPath(row: tag, section: 0)], with: .none)
+                    }
+                }else{
+                    
+                    let model = model
+                    let mod = model.sizeprice[sizeNum]
+                    if mod.in_stocks ?? 0 > 0 {
+                        model.itemSelected = mod.quantity
+                    }else{
+                        model.itemSelected = 0
+                    }
+                    
+                    //alert
+                    print(res["message"] ?? "")
+                    DispatchQueue.main.async {
+                        self.tblView.reloadRows(at: [IndexPath(row: tag, section: 0)], with: .none)
+                    }
+                    
+                }
+            }
+        }
+        
+    }
+    
 }
 
 extension ProductCategoryViewController : UITableViewDelegate, UITableViewDataSource {
@@ -279,6 +344,7 @@ extension ProductCategoryViewController : UITableViewDelegate, UITableViewDataSo
         
         cell?.AddFirstBtn.layer.cornerRadius = 5
         cell?.AddFirstBtn.layer.masksToBounds = true
+        
         cell?.plusBtn.tag = indexPath.row
         cell?.AddFirstBtn.tag = indexPath.row
         cell?.minusBtn.tag = indexPath.row
@@ -292,6 +358,11 @@ extension ProductCategoryViewController : UITableViewDelegate, UITableViewDataSo
         cell?.ratingLbl.text = "\(model.ratings ?? "") \(StringConstant.StarSymbol)"
         cell?.ratingLbl.textColor = AppColor.themeColor
         
+        cell?.dropDownBtnImg.isHidden = true
+        if model.sizeprice.count > 1 {
+            cell?.dropDownBtnImg.isHidden = false
+        }
+        
         
         if model.sizeprice.count > 0 {
             let mod = model.sizeprice[0]
@@ -299,35 +370,36 @@ extension ProductCategoryViewController : UITableViewDelegate, UITableViewDataSo
             cell?.priceCut.text = "MRP: \(StringConstant.RupeeSymbol)\(mod.cut_price ?? 0)"
             cell?.quantityField.text = "\(mod.size?.capitalized ?? "")"
             let urlString  =  mod.image
-            cell?.titleImg.sd_setImage(with: URL(string: urlString ?? ""), placeholderImage: UIImage(named: "medicine.jpeg") ,options: .refreshCached, completed: nil)            
+            cell?.titleImg.sd_setImage(with: URL(string: urlString ?? ""), placeholderImage: UIImage(named: "medicine.jpeg") ,options: .refreshCached, completed: nil)
         
             cell?.offerlbl.text = "\(mod.discount ?? 0)%"
+            
+            if model.itemSelected ?? 0 > 0 {
+                cell?.itemCountLbl.text = "\(model.itemSelected ?? 0)"
 
+            }else{
+                cell?.itemCountLbl.text = "\(mod.quantity ?? 0)"
+
+            }
         
+            // add func
+            if mod.quantity ?? 0 > 0 {
+                cell?.addFirstTopConstraint.constant = 100
+                cell?.AddFirstBtn.isHidden = true
+                cell?.plusBtn.isHidden = false
+                cell?.minusBtn.isHidden = false
+                cell?.itemCountLbl.isHidden = false
+            }
+            else{
+                cell?.addFirstTopConstraint.constant = 22.5
+                cell?.AddFirstBtn.isHidden = false
+                cell?.plusBtn.isHidden = true
+                cell?.minusBtn.isHidden = true
+                cell?.itemCountLbl.isHidden = true
+            }
+            
         }
-        cell?.dropDownBtnImg.isHidden = true
-        if model.sizeprice.count > 1 {
-            cell?.dropDownBtnImg.isHidden = false
-        }
-        
-        // add func
-        if model.itemSelected ?? 0 > 0 {
-            cell?.addFirstTopConstraint.constant = 100
-            cell?.AddFirstBtn.isHidden = true
-            cell?.plusBtn.isHidden = false
-            cell?.minusBtn.isHidden = false
-            cell?.itemCountLbl.isHidden = false
-        }
-        else{
-            cell?.addFirstTopConstraint.constant = 22.5
-            cell?.AddFirstBtn.isHidden = false
-            cell?.plusBtn.isHidden = true
-            cell?.minusBtn.isHidden = true
-            cell?.itemCountLbl.isHidden = true
-        }
-        
-        
-        
+     
         return cell!
     }
     
