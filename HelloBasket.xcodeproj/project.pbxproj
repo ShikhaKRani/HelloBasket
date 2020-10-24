@@ -10,6 +10,7 @@
 		751A93697EAFBCA139A68D12 /* Pods_HelloBasket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D446E018610381DAE25704BC /* Pods_HelloBasket.framework */; };
 		BF10C236253C6D2500FE068C /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF10C234253C6D2500FE068C /* ProductCell.swift */; };
 		BF10C237253C6D2500FE068C /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF10C235253C6D2500FE068C /* ProductCell.xib */; };
+		BF2D21E3254441D20034F99A /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D21E2254441D20034F99A /* ContactUsViewController.swift */; };
 		BF2D77A72536E7BD0013F7D8 /* CategoryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D77A62536E7BD0013F7D8 /* CategoryModels.swift */; };
 		BF2D77CA2538248A0013F7D8 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D77C92538248A0013F7D8 /* PaymentViewController.swift */; };
 		BF2D77CD253B423D0013F7D8 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D77CC253B423C0013F7D8 /* ProductModel.swift */; };
@@ -64,6 +65,7 @@
 		526254B1FCAAAB3A484CDB7B /* Pods-HelloBasket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloBasket.debug.xcconfig"; path = "Target Support Files/Pods-HelloBasket/Pods-HelloBasket.debug.xcconfig"; sourceTree = "<group>"; };
 		BF10C234253C6D2500FE068C /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		BF10C235253C6D2500FE068C /* ProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
+		BF2D21E2254441D20034F99A /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		BF2D77A62536E7BD0013F7D8 /* CategoryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModels.swift; sourceTree = "<group>"; };
 		BF2D77C92538248A0013F7D8 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		BF2D77CC253B423C0013F7D8 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				BF33C6AA2533707000F24EEA /* ProductCategoryViewController.swift */,
 				BF8334872541AC2F0012D6A0 /* HotDealsViewController.swift */,
 				BF83349B2541B7980012D6A0 /* HotDealsViewController-Ext.swift */,
+				BF2D21E2254441D20034F99A /* ContactUsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				BFCFC5122529FE320015E011 /* Print.swift in Sources */,
 				BF8334882541AC2F0012D6A0 /* HotDealsViewController.swift in Sources */,
 				BF2DA8C1252EF84700F6B65B /* MyAccountViewController.swift in Sources */,
+				BF2D21E3254441D20034F99A /* ContactUsViewController.swift in Sources */,
 				BF33C6992532EFB100F24EEA /* ServiceClient.swift in Sources */,
 				BFCFC51B2529FE320015E011 /* UITableViewVibrantCell.swift in Sources */,
 				BFCFC4D02529F42A0015E011 /* SideNavigationViewController.swift in Sources */,

@@ -78,7 +78,7 @@ class SideNavigationViewController: UIViewController,UITableViewDelegate,UITable
     
     //MARK:- delegate
     func numberOfSections(in tableView: UITableView) -> Int {
-        3
+        return 2
     }
     
     
@@ -208,26 +208,26 @@ class SideNavigationViewController: UIViewController,UITableViewDelegate,UITable
             }
             break
             
-        case "Surgery History":
+        case "About Us":
 //            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
 //            if let bookForSurgeryHistory = storyBoard.instantiateViewController(withIdentifier: "BookingSurgeryHistoryViewController") as? BookingSurgeryHistoryViewController {
 //                self.navigationController?.pushViewController(bookForSurgeryHistory, animated: true)
 //            }
             break
-        case "Contact Us":
+        case "Terms and Conditions":
 //            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
 //            if let getcontact = storyBoard.instantiateViewController(withIdentifier: "ContactUsViewController") as? ContactUsViewController {
 //                self.navigationController?.pushViewController(getcontact, animated: true)
 //            }
             break
-        case "About Us":
+        case "Policy":
 //            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
 //            if let aboutus = storyBoard.instantiateViewController(withIdentifier: "AboutUsViewController") as? AboutUsViewController {
 //                self.navigationController?.pushViewController(aboutus, animated: true)
 //            }
             break
             
-        case "Suggestion/Complaint":
+        case "Complaint":
 //            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
 //            if let suggestion = storyBoard.instantiateViewController(withIdentifier: "SuggestionViewController") as? SuggestionViewController {
 //                self.navigationController?.pushViewController(suggestion, animated: true)
@@ -237,15 +237,16 @@ class SideNavigationViewController: UIViewController,UITableViewDelegate,UITable
             
             
             
-        case "Asking a Question":
-//            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-//            if let askquestionVC = storyBoard.instantiateViewController(withIdentifier: "AskingQuestionViewController") as? AskingQuestionViewController {
-//                self.navigationController?.pushViewController(askquestionVC, animated: true)
-//            }
+        case "Contact Us":
+            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+            if let contact = storyBoard.instantiateViewController(withIdentifier: "ContactUsViewController") as? ContactUsViewController {
+                //deals.screen = "Discounted Product"
+                self.navigationController?.pushViewController(contact, animated: true)
+            }
             break
             
             
-        case "Question History":
+        case "Notification":
 //            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
 //            if let askquestionVC = storyBoard.instantiateViewController(withIdentifier: "QuestionHistoryViewController") as? QuestionHistoryViewController {
 //                self.navigationController?.pushViewController(askquestionVC, animated: true)

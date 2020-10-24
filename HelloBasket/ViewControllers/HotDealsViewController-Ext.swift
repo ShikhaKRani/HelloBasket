@@ -125,11 +125,15 @@ extension CatCollectionViewCell : UICollectionViewDelegate,UICollectionViewDataS
         return collectionCell ?? UICollectionViewCell()
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let prodDict = self.catList[indexPath.row]
-//        let cat_id = prodDict["id"] as? Int ?? 0
-//        NotificationCenter.default.post(name: Notification.Name("NotificationHotDealIdentifier"), object: nil, userInfo: ["cat_Id":"\(cat_id)"])
-//    }
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let prodDict = self.catList[indexPath.row]
+        let cat_id = prodDict["id"] as? Int ?? 0
+        NotificationCenter.default.post(name: Notification.Name("cat"), object: nil, userInfo: ["cat_Id":"\(cat_id)"])
+        
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)

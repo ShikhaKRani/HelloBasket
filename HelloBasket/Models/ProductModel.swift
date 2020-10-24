@@ -26,7 +26,7 @@ class ProductModel {
     let stock : Int?
     
     var sizeprice = [SizePrice]()
-    var sizeNumber : Int?
+    var sizeItemNumber : Int?
     var itemSelected : Int?
     
     init(dict : [String : Any]) {

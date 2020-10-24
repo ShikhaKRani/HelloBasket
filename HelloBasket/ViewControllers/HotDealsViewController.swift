@@ -29,12 +29,19 @@ class HotDealsViewController: UIViewController {
         self.navView.backgroundColor = AppColor.themeColor
         backBtn.addTarget(self, action: #selector(backbtnAction), for: .touchUpInside)
         self.navTitle.text = screen
+        NotificationCenter.default.addObserver(self, selector: #selector(self.productCat(notification:)), name: Notification.Name("cat"), object: nil)
+
         
         self.fetchHotDealsData()
         
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name("cat"), object: nil)
+
+    }
     @objc func backbtnAction() { self.navigationController?.popViewController(animated: true)    }
     
     
@@ -66,6 +73,47 @@ class HotDealsViewController: UIViewController {
                 print(self.homeDataDict ?? [:])
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
+                }
+            }
+        }
+    }
+    
+    //for detail screen
+    @objc func productCat(notification: Notification) {
+
+        print(notification.userInfo ?? [:])
+
+        if let cat_id = notification.userInfo?["cat_Id"] {
+            let catId = "\(cat_id )"
+            print(cat_id)
+            self.fetchProductList(categoryId: "\(catId )")
+        }
+    }
+    
+    
+    func fetchProductList(categoryId : String) {
+        var param: [String: Any] = [:]
+        param = ["category_id" : categoryId]
+        Loader.showHud()
+        ServiceClient.sendRequestPOSTBearer(apiUrl: APIEndPoints.shared.PRODUCT_LIST, postdatadictionary: param, isArray: false) { (response) in
+            Loader.dismissHud()
+            if let res = response as? [String : Any] {
+                if res["status"] as? String == "success" {
+                    
+                    if let productDict = res["data"] as? [String : Any] {
+                        if let productList = productDict["data"] as? [[String : Any]] {
+                            self.productList.removeAll()
+                            for item in productList {
+                                let model = ProductModel(dict: item)
+                                self.productList.append(model)
+                            }
+
+                            DispatchQueue.main.async {
+                                self.tblView.reloadData()
+                            }
+
+                        }
+                    }
                 }
             }
         }
