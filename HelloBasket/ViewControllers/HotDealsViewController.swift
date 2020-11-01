@@ -32,10 +32,15 @@ class HotDealsViewController: UIViewController {
         self.navTitle.text = screen
         NotificationCenter.default.addObserver(self, selector: #selector(self.productCat(notification:)), name: Notification.Name("cat"), object: nil)
 
-        
-        self.fetchHotDealsData()
-        
-        // Do any additional setup after loading the view.
+        if screen == "Hot Deals" {
+            self.fetchHotDealsData(apiUrl: APIEndPoints.shared.HOTDEALS_LIST)
+        }
+        else if screen == "Discounted Product" {
+            self.fetchHotDealsData(apiUrl: APIEndPoints.shared.DISCOUNTED_PRODUCT)
+        }
+        else if screen == "New Arrival" {
+            self.fetchHotDealsData(apiUrl: APIEndPoints.shared.NEWARIVAL_PRODUCTS)
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -51,10 +56,10 @@ class HotDealsViewController: UIViewController {
     }
     
     //MARK:- Fetch user details after login
-    func fetchHotDealsData() {
+    func fetchHotDealsData(apiUrl : String) {
         Loader.showHud()
         let params = [:] as Dictionary<String, String>
-        ServiceClient.sendRequestGET(apiUrl: APIEndPoints.shared.HOTDEALS_LIST, postdatadictionary: params, isArray: false) { (response) in
+        ServiceClient.sendRequestGET(apiUrl: apiUrl, postdatadictionary: params, isArray: false) { (response) in
             Loader.dismissHud()
             if let res = response as? [String : Any] {
                 self.homeDataDict = res

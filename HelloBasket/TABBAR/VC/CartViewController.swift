@@ -49,9 +49,11 @@ class CartViewController: UIViewController {
         Loader.showHud()
         ServiceClient.sendRequestGET(apiUrl: APIEndPoints.shared.GET_CART_DETAILS, postdatadictionary: param, isArray: false) { (response) in
             Loader.dismissHud()
+            self.cartModelStored = nil
             if let res = response as? [String : Any] {
                 let model = CartModel(dict: res)
                 self.cartModelStored = model
+                
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                     self.totalAmountLbl.text = "Total : \(StringConstant.RupeeSymbol)\(self.cartModelStored?.price_total ?? 0)"
@@ -63,6 +65,7 @@ class CartViewController: UIViewController {
     
     @objc func placeOrderBtnAction(sender : UIButton) {
         
+        
     }
     
     //MARK:- Remove & Save later
@@ -70,71 +73,60 @@ class CartViewController: UIViewController {
     
     @objc func removeBtnAction(sender : UIButton) {
         
+        
+    }
+    
+    func removeProductFromCart(model : CartModel, tag : Int) {
+        
     }
     
     @objc func saveLaterBtnAction(sender : UIButton) {
         
+        let model =  self.cartModelStored?.cartitem[sender.tag]
+        let param: [String: Any] =  ["product_id" : "\(model?.product_id ?? 0)","size_id" : model?.size_id ?? 0]
+        Loader.showHud()
+        ServiceClient.sendRequestPOSTBearer(apiUrl: APIEndPoints.shared.SAVE_LATER_CART_PRODUCT, postdatadictionary: param, isArray: false) { (response) in
+            Loader.dismissHud()
+            if let res = response as? [String : Any] {
+                if res["status"] as? String == "success" {
+                    self.fetchCartDetailList()
+                }else{
+                    print(res["message"] ?? "")
+                }
+            }
+        }
     }
     
     //MARK:- Add and Minus product
     @objc func plusBtnAction(sender : UIButton) {
         
-        let cell = sender.superview?.superview?.superview?.superview as? CartItemCollectionCell
         let model =  self.cartModelStored?.cartitem[sender.tag]
         var count = 0
         count = model?.quantity ?? 0
+        if model?.itemSelected ?? 0 > 0 {
+            count = model?.itemSelected ?? 0
+        }
+        count = count + 1
         model?.itemSelected = count
-        
-        if model?.min_qty ?? 0 > model?.itemSelected ?? 0 {
-            count = count + 1
-        }
-        else {
-            count = model?.min_qty ?? 0
-        }
-        
-        
-        model?.itemSelected = count
-        
-        if count == 0 {
-            //remove product
-        }else{
-            cell?.btnPlus.isHidden = false
-            cell?.btnMinus.isHidden = false
-            cell?.countLbl.isHidden = false
-        }
-        
-        
         self.addProductToCart(model: self.cartModelStored!, tag: sender.tag)
     }
     
     
     @objc func minusBtnAction(sender : UIButton) {
         
-        let cell = sender.superview?.superview?.superview?.superview as? CartItemCollectionCell
         let model =  self.cartModelStored?.cartitem[sender.tag]
         var count = 0
         count = model?.quantity ?? 0
-        model?.itemSelected = count
-        
-        if model?.min_qty ?? 0 > model?.itemSelected ?? 0 {
+        if model?.itemSelected ?? 0 > 0 {
+            count = model?.itemSelected ?? 0
+        }
+        if count > 0 {
             count = count - 1
         }
-        else {
-            count = model?.min_qty ?? 0
-        }
-        
-        
         model?.itemSelected = count
-        
         if count == 0 {
             //remove product
-        }else{
-            cell?.btnPlus.isHidden = false
-            cell?.btnMinus.isHidden = false
-            cell?.countLbl.isHidden = false
         }
-        
-        
         self.addProductToCart(model: self.cartModelStored!, tag: sender.tag)
     }
     
@@ -197,7 +189,7 @@ extension CartViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return self.cartModelStored?.cartitem.count ?? 0
         }
         if section == 1 {
-            return self.cartModelStored?.savelater.count ?? 0
+            return 1
         }
         
         return 0
@@ -228,13 +220,6 @@ extension CartViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        if section == 0 {
-            CGSize(width: collectionView.frame.width, height: 0)
-        } else if section == 1{
-            
-        } else if section == 2 {
-            
-        }
         return CGSize(width: collectionView.frame.width, height: 0)
     }
     
@@ -262,13 +247,17 @@ extension CartViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell?.imgView.sd_setImage(with: URL(string: urlString ?? ""), placeholderImage: UIImage(named: "medicine.jpeg") ,options: .refreshCached, completed: nil)
             
             
-            cell?.countLbl.text = "\(model?.quantity ?? 0)"
-            
+            if model?.itemSelected ?? 0 > 0 {
+                cell?.countLbl.text = "\(model?.itemSelected ?? 0)"
+            }else{
+                cell?.countLbl.text = "\(model?.quantity ?? 0)"
+            }
+                        
             cell?.btnPlus.addTarget(self, action: #selector(plusBtnAction(sender:)), for: .touchUpInside)
             cell?.btnMinus.addTarget(self, action: #selector(minusBtnAction(sender:)), for: .touchUpInside)
             
-            cell?.saveLaterBtn.addTarget(self, action: #selector(minusBtnAction(sender:)), for: .touchUpInside)
-            cell?.removebtn.addTarget(self, action: #selector(minusBtnAction(sender:)), for: .touchUpInside)
+            cell?.saveLaterBtn.addTarget(self, action: #selector(saveLaterBtnAction(sender:)), for: .touchUpInside)
+            cell?.removebtn.addTarget(self, action: #selector(removeBtnAction(sender:)), for: .touchUpInside)
             
             
             

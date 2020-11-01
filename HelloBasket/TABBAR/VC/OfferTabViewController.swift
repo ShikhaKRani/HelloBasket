@@ -52,7 +52,7 @@ class OfferTabViewController: UIViewController {
     func fetchHotDealsData() {
         Loader.showHud()
         let params = [:] as Dictionary<String, String>
-        ServiceClient.sendRequestGET(apiUrl: APIEndPoints.shared.HOTDEALS_LIST, postdatadictionary: params, isArray: false) { (response) in
+        ServiceClient.sendRequestGET(apiUrl: APIEndPoints.shared.OFFER_PRODUCT, postdatadictionary: params, isArray: false) { (response) in
             Loader.dismissHud()
             if let res = response as? [String : Any] {
                 self.homeDataDict = res

@@ -214,7 +214,14 @@ class ProductCategoryViewController: UIViewController {
                     count = model.itemSelected ?? 0
                 }
                 count = count + 1
+                
+                if count > model.sizeprice[sizeNum].max_qty ?? 0 {
+                    count = model.sizeprice[sizeNum].max_qty ?? 0
+                    model.sizeprice[sizeNum].quantity = count
+                }
+                
                 model.itemSelected = count
+
             }
         }
         
@@ -250,14 +257,12 @@ class ProductCategoryViewController: UIViewController {
         if model.sizeprice.count >= sizeNum {
 
             count = model.sizeprice[sizeNum].quantity ?? 0
-//min quantity
             if model.sizeprice[sizeNum].min_qty ?? 0 > 0 {
                 count = model.sizeprice[sizeNum].min_qty ?? 0
                 model.itemSelected = count
+                model.sizeprice[sizeNum].quantity = count
             }
         }
-                    
-             
        
         
         if count == 0 {
@@ -288,17 +293,19 @@ class ProductCategoryViewController: UIViewController {
         let lblcount = model.sizeprice[sizeNum].quantity
         var count = lblcount ?? 0
 
-        if model.itemSelected ?? 0 > 0 {
-            count = model.itemSelected ?? 0
-        }
         
-        
-        if count > 0 {
+        if model.sizeprice[sizeNum].min_qty ?? 0 > 0 {
+            if model.itemSelected ?? 0 > 0 {
+                count = model.itemSelected ?? 0
+            }
+            
             count = count - 1
             model.itemSelected =  count
             self.addProductToCart(model: model, tag: sender.tag)
+            model.sizeprice[sizeNum].quantity = count
+            
         }
-        
+       
         if count == 0 {
             cell?.plusBtn.isHidden = true
             cell?.minusBtn.isHidden = true
@@ -341,10 +348,25 @@ class ProductCategoryViewController: UIViewController {
                     
                     let model = model
                     let mod = model.sizeprice[sizeNum]
+                    if model.itemSelected ?? 0 <  mod.min_qty ?? 0{
+                        model.itemSelected = 0
+                        mod.quantity = 0
+                        
+                        // remove from cart
+                    }
+                    
+                    if model.itemSelected ?? 0 > mod.max_qty ?? 0 {
+                        model.itemSelected = mod.max_qty
+                        mod.quantity = mod.max_qty
+                    }
+                    
+                    
                     if mod.in_stocks ?? 0 > 0 {
                         model.itemSelected = mod.quantity
                     }else{
+                        
                         model.itemSelected = 0
+                        mod.quantity = 0
                     }
                     
                     //alert
@@ -403,8 +425,11 @@ extension ProductCategoryViewController : UITableViewDelegate, UITableViewDataSo
             cell?.likeBtn.setBackgroundImage(UIImage(named: "favGrey"), for: .normal)
         }
        
+        let sizeNum = model.sizeItemNumber ?? 0
+
+        
         if model.sizeprice.count > 0 {
-            let mod = model.sizeprice[0]
+            let mod = model.sizeprice[sizeNum]
             cell?.priceSale.text = "Price: \(StringConstant.RupeeSymbol)\(mod.price ?? 0)"
             cell?.priceCut.text = "MRP: \(StringConstant.RupeeSymbol)\(mod.cut_price ?? 0)"
             cell?.quantityField.text = "\(mod.size?.capitalized ?? "")"
@@ -420,7 +445,7 @@ extension ProductCategoryViewController : UITableViewDelegate, UITableViewDataSo
                 cell?.itemCountLbl.text = "\(mod.quantity ?? 0)"
 
             }
-        
+            
             // add func
             if mod.quantity ?? 0 > 0 {
                 cell?.addFirstTopConstraint.constant = 100
@@ -436,7 +461,6 @@ extension ProductCategoryViewController : UITableViewDelegate, UITableViewDataSo
                 cell?.minusBtn.isHidden = true
                 cell?.itemCountLbl.isHidden = true
             }
-            
         }
      
         return cell!

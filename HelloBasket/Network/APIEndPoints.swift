@@ -50,11 +50,23 @@ class APIEndPoints: NSObject, Codable { // checkpoint
     var PRODUCT_LIST = "\(mainUrl)products"
     var SUBCATEGORY_LIST = "\(mainUrl)sub-category"
     var HOTDEALS_LIST = "\(mainUrl)hotdeals-product"
+    var NEWARIVAL_PRODUCTS = "\(mainUrl)newarrical-product"
+    var DISCOUNTED_PRODUCT = "\(mainUrl)discounted-product"
+    var OFFER_PRODUCT = "\(mainUrl)offer-products"
+
+    
     var ADD_CART = "\(mainUrl)add-cart"
     var ADD_FAVORITE = "\(mainUrl)add-favorite-product"
     var GET_FAVOURITE_LIST = "\(mainUrl)favorite-product"
     var DELETE_FAVOURITE_LIST = "\(mainUrl)delete-favorite-product"
-    var GET_CART_DETAILS = "\(mainUrl)cart-details"    
+    var GET_CART_DETAILS = "\(mainUrl)cart-details"
+    var SAVE_LATER_CART_PRODUCT = "\(mainUrl)save-later-product"
+
+    
+    
+    
+    
+    
     override init() {}
     
     required init(from _: Decoder) throws {}

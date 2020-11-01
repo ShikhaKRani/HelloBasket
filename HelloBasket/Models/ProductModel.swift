@@ -74,7 +74,7 @@ class SizePrice {
     let max_qty : Int?
     let consumed_units : Int?
     let in_stocks : Int?
-    let quantity : Int?
+    var quantity : Int?
     let discount : Int?
     
     
