@@ -385,7 +385,7 @@ extension RecomCollectionCell : UICollectionViewDelegate,UICollectionViewDataSou
         cell?.discountLbl.text = "Rating : \(ratings ?? 0.0)"
 
         
-        cell?.offerLbl.layer.cornerRadius = 25
+        cell?.offerLbl.layer.cornerRadius = 20
         cell?.offerLbl.layer.masksToBounds = true
 
         

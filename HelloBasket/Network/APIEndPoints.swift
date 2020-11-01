@@ -54,7 +54,7 @@ class APIEndPoints: NSObject, Codable { // checkpoint
     var ADD_FAVORITE = "\(mainUrl)add-favorite-product"
     var GET_FAVOURITE_LIST = "\(mainUrl)favorite-product"
     var DELETE_FAVOURITE_LIST = "\(mainUrl)delete-favorite-product"
-
+    var GET_CART_DETAILS = "\(mainUrl)cart-details"    
     override init() {}
     
     required init(from _: Decoder) throws {}

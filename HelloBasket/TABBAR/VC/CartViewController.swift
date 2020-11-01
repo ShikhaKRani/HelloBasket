@@ -12,217 +12,141 @@ class CartViewController: UIViewController {
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var navTitle: UILabel!
-    
-    @IBOutlet weak var tblView: UITableView!
-    
-    
+    @IBOutlet weak var totalAmountLbl: UILabel!
+    @IBOutlet weak var placeOrderbtn: UIButton!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var productList = [ProductModel]()
-    
+    var cartModelStored : CartModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         registerCell()
-        self.tblView.tableFooterView = UIView()
         self.navView.backgroundColor = AppColor.themeColor
         backBtn.addTarget(self, action: #selector(backbtnAction), for: .touchUpInside)
         self.navTitle.text = "Cart"
+        self.placeOrderbtn.backgroundColor = AppColor.themeColor
+        self.placeOrderbtn.addTarget(self, action: #selector(placeOrderBtnAction(sender:)), for: .touchUpInside)
+
         
+        self.fetchCartDetailList()
         
     }
+    //MARK:-
     
     @objc func backbtnAction() { self.navigationController?.popViewController(animated: true)    }
     
     func registerCell() {
-        tblView.register(UINib(nibName: "ProductCell", bundle: nil), forCellReuseIdentifier: "ProductCell")
+        //        tblView.register(UINib(nibName: "ProductCell", bundle: nil), forCellReuseIdentifier: "ProductCell")
     }
+    //MARK:-
+    //MARK:- fetchCartDetailList
     
-    
-    
-    func fetchFavouriteProductData() {
+    func fetchCartDetailList() {
         
         let param: [String: Any] = [:]
         Loader.showHud()
-        ServiceClient.sendRequestGET(apiUrl: APIEndPoints.shared.GET_FAVOURITE_LIST, postdatadictionary: param, isArray: false) { (response) in
+        ServiceClient.sendRequestGET(apiUrl: APIEndPoints.shared.GET_CART_DETAILS, postdatadictionary: param, isArray: false) { (response) in
             Loader.dismissHud()
             if let res = response as? [String : Any] {
-                if let prod = res["favoriteproduct"] as? [[String : Any]] {
-                    print(prod)
-                    for item in prod {
-                        let model = ProductModel(dict: item)
-                        self.productList.append(model)
-                    }
-                    DispatchQueue.main.async {
-                        //                                                self.tblView.reloadData()
-                    }
-                }
-            }
-        }
-    }
-    
-    func deleteFovoriteProduct(model : ProductModel, tag : Int) {
-        var param: [String: Any] = [:]
-        
-        param = ["product_id" : "\(model.product_id ?? 1)"]
-        Loader.showHud()
-        ServiceClient.sendRequestPOSTBearer(apiUrl: APIEndPoints.shared.DELETE_FAVOURITE_LIST, postdatadictionary: param, isArray: false) { (response) in
-            Loader.dismissHud()
-            if let res = response as? [String : Any] {
-                if res["status"] as? String == "success" {
-                    print(res["message"] ?? "")
-                    self.fetchFavouriteProductData()
-                }else{
+                let model = CartModel(dict: res)
+                self.cartModelStored = model
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                    self.totalAmountLbl.text = "Total : \(StringConstant.RupeeSymbol)\(self.cartModelStored?.price_total ?? 0)"
                 }
             }
         }
     }
     
     
-    //MARK:-
-    //MARK:-     //Button Action
-    
-    @objc func addFavoriteBtnAction(sender : UIButton) {
+    @objc func placeOrderBtnAction(sender : UIButton) {
         
-        let model =  self.productList[sender.tag]
-        print(model.sizeprice.count)
-        self.deleteFovoriteProduct(model: model, tag: sender.tag)
     }
     
+    //MARK:- Remove & Save later
     
-    @objc func dropdownBtnAction(sender : UIButton) {
-        let model =  self.productList[sender.tag]
-        print(model.sizeprice.count)
-        if model.sizeprice.count > 1 {
-            // code
-            
-        }
+    
+    @objc func removeBtnAction(sender : UIButton) {
+        
     }
     
-    //MARK:-
+    @objc func saveLaterBtnAction(sender : UIButton) {
+        
+    }
+    
+    //MARK:- Add and Minus product
     @objc func plusBtnAction(sender : UIButton) {
         
-        let cell = sender.superview?.superview?.superview?.superview as? ProductCell
-        let model =  self.productList[sender.tag]
+        let cell = sender.superview?.superview?.superview?.superview as? CartItemCollectionCell
+        let model =  self.cartModelStored?.cartitem[sender.tag]
         var count = 0
-        let sizeNum = model.sizeItemNumber ?? 0
-        if model.sizeprice.count >= sizeNum {
-            count = model.sizeprice[sizeNum].quantity ?? 0
-            if model.sizeprice[sizeNum].min_qty ?? 0 > 0 {
-                
-                let mod = model.sizeprice[sizeNum]
-                if mod.stock ?? 0 <  model.itemSelected ?? 0 {
-                    model.itemSelected = mod.stock
-                }
-                count = model.sizeprice[sizeNum].quantity ?? 0
-                if model.itemSelected ?? 0 > 0 {
-                    count = model.itemSelected ?? 0
-                }
-                count = count + 1
-                model.itemSelected = count
-            }
+        count = model?.quantity ?? 0
+        model?.itemSelected = count
+        
+        if model?.min_qty ?? 0 > model?.itemSelected ?? 0 {
+            count = count + 1
         }
+        else {
+            count = model?.min_qty ?? 0
+        }
+        
+        
+        model?.itemSelected = count
+        
         if count == 0 {
-            cell?.plusBtn.isHidden = true
-            cell?.minusBtn.isHidden = true
-            cell?.itemCountLbl.isHidden = true
-            cell?.AddFirstBtn.isHidden = false
-            cell?.addFirstTopConstraint.constant = 22.5
+            //remove product
         }else{
-            cell?.plusBtn.isHidden = false
-            cell?.minusBtn.isHidden = false
-            cell?.itemCountLbl.isHidden = false
-            cell?.AddFirstBtn.isHidden = true
-            cell?.addFirstTopConstraint.constant = 100
+            cell?.btnPlus.isHidden = false
+            cell?.btnMinus.isHidden = false
+            cell?.countLbl.isHidden = false
         }
-        self.addProductToCart(model: model, tag: sender.tag)
+        
+        
+        self.addProductToCart(model: self.cartModelStored!, tag: sender.tag)
     }
     
-    
-    
-    @objc func addFirstBtnAction(sender : UIButton) {
-        
-        let cell = sender.superview?.superview?.superview?.superview as? ProductCell
-        let model =  self.productList[sender.tag]
-        var count = 0
-        let sizeNum = model.sizeItemNumber ?? 0
-        if model.sizeprice.count >= sizeNum {
-            count = model.sizeprice[sizeNum].quantity ?? 0
-            //min quantity
-            if model.sizeprice[sizeNum].min_qty ?? 0 > 0 {
-                count = model.sizeprice[sizeNum].min_qty ?? 0
-                model.itemSelected = count
-            }
-        }
-        if count == 0 {
-            cell?.plusBtn.isHidden = true
-            cell?.minusBtn.isHidden = true
-            cell?.itemCountLbl.isHidden = true
-            cell?.AddFirstBtn.isHidden = false
-            cell?.addFirstTopConstraint.constant = 22.5
-        }else{
-            
-            cell?.plusBtn.isHidden = false
-            cell?.minusBtn.isHidden = false
-            cell?.itemCountLbl.isHidden = false
-            cell?.AddFirstBtn.isHidden = true
-            cell?.addFirstTopConstraint.constant = 100
-        }
-        
-        self.addProductToCart(model: model, tag: sender.tag)
-        
-    }
     
     @objc func minusBtnAction(sender : UIButton) {
         
-        let cell = sender.superview?.superview?.superview?.superview as? ProductCell
+        let cell = sender.superview?.superview?.superview?.superview as? CartItemCollectionCell
+        let model =  self.cartModelStored?.cartitem[sender.tag]
+        var count = 0
+        count = model?.quantity ?? 0
+        model?.itemSelected = count
         
-        let model =  self.productList[sender.tag]
-        let sizeNum = model.sizeItemNumber ?? 0
-        let lblcount = model.sizeprice[sizeNum].quantity
-        var count = lblcount ?? 0
-        
-        if model.itemSelected ?? 0 > 0 {
-            count = model.itemSelected ?? 0
-        }
-        
-        
-        if count > 0 {
+        if model?.min_qty ?? 0 > model?.itemSelected ?? 0 {
             count = count - 1
-            model.itemSelected =  count
-            self.addProductToCart(model: model, tag: sender.tag)
         }
+        else {
+            count = model?.min_qty ?? 0
+        }
+        
+        
+        model?.itemSelected = count
         
         if count == 0 {
-            cell?.plusBtn.isHidden = true
-            cell?.minusBtn.isHidden = true
-            cell?.itemCountLbl.isHidden = true
-            cell?.AddFirstBtn.isHidden = false
-            cell?.addFirstTopConstraint.constant = 22.5
+            //remove product
         }else{
-            
-            cell?.plusBtn.isHidden = false
-            cell?.minusBtn.isHidden = false
-            cell?.itemCountLbl.isHidden = false
-            cell?.AddFirstBtn.isHidden = true
-            cell?.addFirstTopConstraint.constant = 100
+            cell?.btnPlus.isHidden = false
+            cell?.btnMinus.isHidden = false
+            cell?.countLbl.isHidden = false
         }
         
+        
+        self.addProductToCart(model: self.cartModelStored!, tag: sender.tag)
     }
     
     
-    func addProductToCart(model :ProductModel, tag : Int) {
+    func addProductToCart(model :CartModel, tag : Int) {
         //        ADD_CART
         //product_id
         //size_id
         //quantity
-        let sizeNum = model.sizeItemNumber ?? 0
-        var productSizeId = 0
-        if model.sizeprice.count > 0 {
-            productSizeId = model.sizeprice[sizeNum].productSize_id ?? 0
-        }
+        let mod =  model.cartitem[tag]
         var param: [String: Any] = [:]
-        param = ["quantity" : "\(model.itemSelected ?? 0)","product_id" : "\(model.product_id ?? 0)","size_id" : productSizeId]
+        param = ["quantity" : "\(mod.itemSelected ?? 0)","product_id" : "\(mod.product_id ?? 0)","size_id" : mod.size_id ?? 0]
         
         Loader.showHud()
         ServiceClient.sendRequestPOSTBearer(apiUrl: APIEndPoints.shared.ADD_CART, postdatadictionary: param, isArray: false) { (response) in
@@ -230,13 +154,13 @@ class CartViewController: UIViewController {
             if let res = response as? [String : Any] {
                 if res["status"] as? String == "success" {
                     DispatchQueue.main.async {
-                        self.tblView.reloadRows(at: [IndexPath(row: tag, section: 0)], with: .none)
+                        let indexPath = IndexPath(item: tag, section: 0)
+                        self.collectionView.reloadItems(at: [indexPath])
                     }
                 }else{
                     
-                    let model = model
-                    let mod = model.sizeprice[sizeNum]
-                    if mod.in_stocks ?? 0 > 0 {
+                    let model = mod
+                    if model.stock ?? 0 > 0 {
                         model.itemSelected = mod.quantity
                     }else{
                         model.itemSelected = 0
@@ -245,7 +169,8 @@ class CartViewController: UIViewController {
                     //alert
                     print(res["message"] ?? "")
                     DispatchQueue.main.async {
-                        self.tblView.reloadRows(at: [IndexPath(row: tag, section: 0)], with: .none)
+                        let indexPath = IndexPath(item: tag, section: 0)
+                        self.collectionView.reloadItems(at: [indexPath])
                     }
                     
                 }
@@ -259,21 +184,109 @@ class CartViewController: UIViewController {
     
 }
 
-extension CartViewController : UITableViewDelegate, UITableViewDataSource  {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+extension CartViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell") as? ProductCell
+        if section == 0 {
+            return self.cartModelStored?.cartitem.count ?? 0
+        }
+        if section == 1 {
+            return self.cartModelStored?.savelater.count ?? 0
+        }
         
-        return cell!
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        if indexPath.section == 0 {
+            let rowCount = self.cartModelStored?.cartitem.count ?? 0
+            if rowCount > 0 {
+                return CGSize(width: Constants.windowWidth, height: CGFloat(rowCount * 185))
+            }
+            return CGSize(width: Constants.windowWidth, height: CGFloat(0))
+        }
+        
+        else if indexPath.section == 1 {
+            let rowCount = self.cartModelStored?.savelater.count
+            if rowCount ?? 0 > 0 {
+                return CGSize(width: Constants.windowWidth, height: 360)
+            }
+            return CGSize(width: Constants.windowWidth, height: 0)
+        }
+        
+        
+        return CGSize(width: Constants.windowWidth, height: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if section == 0 {
+            CGSize(width: collectionView.frame.width, height: 0)
+        } else if section == 1{
+            
+        } else if section == 2 {
+            
+        }
+        return CGSize(width: collectionView.frame.width, height: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: 0.0, height: 0.0)
     }
     
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return  186
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        var collectionCell: UICollectionViewCell?
+        
+        if indexPath.section == 0 {
+            let cell = collectionView
+                .dequeueReusableCell(withReuseIdentifier: "\(CartItemCollectionCell.self)", for: indexPath) as? CartItemCollectionCell
+            let model = self.cartModelStored?.cartitem[indexPath.row]
+            cell?.lblDiscount.backgroundColor = AppColor.themeColorSecond
+            cell?.lblDiscount.textColor = .white
+            cell?.lblName.text = "\(model?.name ?? "") (\(model?.company ?? ""))"
+            cell?.lblMrp.text = "MRP \(model?.cut_price ?? "")"
+            cell?.lblDiscount.text = "\(model?.discount ?? 0) % OFF"
+            cell?.lblSize.text = "\(model?.size ?? "1") for  \(StringConstant.RupeeSymbol)\(model?.price ?? "0")"
+            
+            let urlString  =  model?.image
+            cell?.imgView.sd_setImage(with: URL(string: urlString ?? ""), placeholderImage: UIImage(named: "medicine.jpeg") ,options: .refreshCached, completed: nil)
+            
+            
+            cell?.countLbl.text = "\(model?.quantity ?? 0)"
+            
+            cell?.btnPlus.addTarget(self, action: #selector(plusBtnAction(sender:)), for: .touchUpInside)
+            cell?.btnMinus.addTarget(self, action: #selector(minusBtnAction(sender:)), for: .touchUpInside)
+            
+            cell?.saveLaterBtn.addTarget(self, action: #selector(minusBtnAction(sender:)), for: .touchUpInside)
+            cell?.removebtn.addTarget(self, action: #selector(minusBtnAction(sender:)), for: .touchUpInside)
+            
+            
+            
+            collectionCell = cell
+        }
+        
+        
+        if indexPath.section == 1 {
+            let cell = collectionView
+                .dequeueReusableCell(withReuseIdentifier: "\(SavelaterCollectionCell.self)", for: indexPath) as? SavelaterCollectionCell
+            cell?.headerLbl.text = "Saved For Later"
+            cell?.configureCell(model: self.cartModelStored)
+            collectionCell = cell
+        }
+        
+        
+        return collectionCell ?? UICollectionViewCell()
     }
+    
+    
 }
-

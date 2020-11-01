@@ -33,7 +33,6 @@
 		BF2EE6F12529CAD600D1099F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2EE6F02529CAD600D1099F /* LoginViewController.swift */; };
 		BF2EE7252529E8CC00D1099F /* HBTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2EE7242529E8CC00D1099F /* HBTabBarViewController.swift */; };
 		BF33C6992532EFB100F24EEA /* ServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF33C6972532EFB000F24EEA /* ServiceClient.swift */; };
-		BF33C69A2532EFB100F24EEA /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF33C6982532EFB100F24EEA /* APIClient.swift */; };
 		BF33C6A125333C4500F24EEA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF33C6A025333C4500F24EEA /* Constants.swift */; };
 		BF33C6A525333DEE00F24EEA /* BJAutoScrollingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF33C6A425333DED00F24EEA /* BJAutoScrollingCollectionView.swift */; };
 		BF33C6A82533443400F24EEA /* HomeViewController-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF33C6A72533443400F24EEA /* HomeViewController-Ext.swift */; };
@@ -42,6 +41,8 @@
 		BF8334882541AC2F0012D6A0 /* HotDealsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8334872541AC2F0012D6A0 /* HotDealsViewController.swift */; };
 		BF83349C2541B7980012D6A0 /* HotDealsViewController-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83349B2541B7980012D6A0 /* HotDealsViewController-Ext.swift */; };
 		BFAE9AE525308212003091FB /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAE9AE425308212003091FB /* Home.swift */; };
+		BFC145A7254E88A5004F3035 /* CartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC145A6254E88A5004F3035 /* CartModel.swift */; };
+		BFC145AA254E9189004F3035 /* CartViewController-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC145A9254E9189004F3035 /* CartViewController-Ext.swift */; };
 		BFCFC4AB2529F39A0015E011 /* TabbarMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFCFC4AA2529F39A0015E011 /* TabbarMenu.storyboard */; };
 		BFCFC4CD2529F42A0015E011 /* sideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFC4BB2529F4290015E011 /* sideMenuTableViewCell.swift */; };
 		BFCFC4CE2529F42A0015E011 /* SidemenuBottomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFCFC4BC2529F4290015E011 /* SidemenuBottomTableViewCell.xib */; };
@@ -95,7 +96,6 @@
 		BF2EE6F02529CAD600D1099F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BF2EE7242529E8CC00D1099F /* HBTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBTabBarViewController.swift; sourceTree = "<group>"; };
 		BF33C6972532EFB000F24EEA /* ServiceClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceClient.swift; sourceTree = "<group>"; };
-		BF33C6982532EFB100F24EEA /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		BF33C6A025333C4500F24EEA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BF33C6A425333DED00F24EEA /* BJAutoScrollingCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BJAutoScrollingCollectionView.swift; sourceTree = "<group>"; };
 		BF33C6A72533443400F24EEA /* HomeViewController-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController-Ext.swift"; sourceTree = "<group>"; };
@@ -104,6 +104,8 @@
 		BF8334872541AC2F0012D6A0 /* HotDealsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotDealsViewController.swift; sourceTree = "<group>"; };
 		BF83349B2541B7980012D6A0 /* HotDealsViewController-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HotDealsViewController-Ext.swift"; sourceTree = "<group>"; };
 		BFAE9AE425308212003091FB /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		BFC145A6254E88A5004F3035 /* CartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartModel.swift; sourceTree = "<group>"; };
+		BFC145A9254E9189004F3035 /* CartViewController-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CartViewController-Ext.swift"; sourceTree = "<group>"; };
 		BFCFC4AA2529F39A0015E011 /* TabbarMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabbarMenu.storyboard; sourceTree = "<group>"; };
 		BFCFC4BB2529F4290015E011 /* sideMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sideMenuTableViewCell.swift; sourceTree = "<group>"; };
 		BFCFC4BC2529F4290015E011 /* SidemenuBottomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidemenuBottomTableViewCell.xib; sourceTree = "<group>"; };
@@ -165,7 +167,6 @@
 		BF2DA8C32530357700F6B65B /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				BF33C6982532EFB100F24EEA /* APIClient.swift */,
 				BF33C6972532EFB000F24EEA /* ServiceClient.swift */,
 				BF2DA8C42530357700F6B65B /* UserDetails.swift */,
 				BF2DA8C72530357700F6B65B /* Loader.swift */,
@@ -180,6 +181,7 @@
 				BFAE9AE425308212003091FB /* Home.swift */,
 				BF2D77A62536E7BD0013F7D8 /* CategoryModels.swift */,
 				BF2D77CC253B423C0013F7D8 /* ProductModel.swift */,
+				BFC145A6254E88A5004F3035 /* CartModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -300,6 +302,7 @@
 				BF33C6A72533443400F24EEA /* HomeViewController-Ext.swift */,
 				BF2D77C92538248A0013F7D8 /* PaymentViewController.swift */,
 				BF2D21EB254476740034F99A /* CartViewController.swift */,
+				BFC145A9254E9189004F3035 /* CartViewController-Ext.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -445,11 +448,11 @@
 				BFCFC5182529FE320015E011 /* SideMenuInteractionController.swift in Sources */,
 				BF2DA8A3252B433800F6B65B /* RegisterViewController.swift in Sources */,
 				BF2D21E9254470670034F99A /* FavouriteViewController.swift in Sources */,
+				BFC145A7254E88A5004F3035 /* CartModel.swift in Sources */,
 				BFCFC51A2529FE320015E011 /* SideMenuPushCoordinator.swift in Sources */,
 				BFCFC50E2529FE320015E011 /* Extensions.swift in Sources */,
 				BF2DA8A6252DA1EE00F6B65B /* CategoryTabViewController.swift in Sources */,
 				BF2DA8C92530357800F6B65B /* UserDetails.swift in Sources */,
-				BF33C69A2532EFB100F24EEA /* APIClient.swift in Sources */,
 				BF2D77CD253B423D0013F7D8 /* ProductModel.swift in Sources */,
 				BF33C6A525333DEE00F24EEA /* BJAutoScrollingCollectionView.swift in Sources */,
 				BF33C6AB2533707000F24EEA /* ProductCategoryViewController.swift in Sources */,
@@ -478,6 +481,7 @@
 				BF2D77CA2538248A0013F7D8 /* PaymentViewController.swift in Sources */,
 				BFCFC5172529FE320015E011 /* SideMenuPresentationController.swift in Sources */,
 				BF2EE6D42529C69100D1099F /* AppDelegate.swift in Sources */,
+				BFC145AA254E9189004F3035 /* CartViewController-Ext.swift in Sources */,
 				BFCFC4F82529F9690015E011 /* HomeViewController.swift in Sources */,
 				BF33C6A82533443400F24EEA /* HomeViewController-Ext.swift in Sources */,
 				BF10C236253C6D2500FE068C /* ProductCell.swift in Sources */,

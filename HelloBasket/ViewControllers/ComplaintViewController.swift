@@ -33,12 +33,14 @@ class ComplaintViewController: UIViewController {
 
 extension ComplaintViewController : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        return 5
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        let cell  = self.complaintTableView.dequeueReusableCell(withIdentifier: "ComplaintTableViewCell") as? ComplaintTableViewCell
+        
+        return cell!
     }
-    
-    
+
+
 }

@@ -1329,11 +1329,11 @@
                                                                                 </constraints>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xh-8I-mCn">
-                                                                                <rect key="frame" x="5" y="10" width="50" height="50"/>
+                                                                                <rect key="frame" x="5" y="10" width="40" height="40"/>
                                                                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="height" constant="50" id="Hr6-Ug-Qrd"/>
-                                                                                    <constraint firstAttribute="width" constant="50" id="XXU-5W-Ffk"/>
+                                                                                    <constraint firstAttribute="height" constant="40" id="Hr6-Ug-Qrd"/>
+                                                                                    <constraint firstAttribute="width" constant="40" id="XXU-5W-Ffk"/>
                                                                                 </constraints>
                                                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

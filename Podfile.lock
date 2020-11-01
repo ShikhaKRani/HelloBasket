@@ -15,7 +15,6 @@ PODS:
   - SideMenu (6.4.9)
   - SVProgressHUD (2.2.5)
   - SwiftPhoneNumberFormatter (1.5)
-  - XLPagerTabStrip (5.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.8)
@@ -32,7 +31,6 @@ DEPENDENCIES:
   - SideMenu
   - SVProgressHUD
   - SwiftPhoneNumberFormatter
-  - XLPagerTabStrip (from `https://github.com/KelvinJin/XLPagerTabStrip`, branch `swift3`)
 
 SPEC REPOS:
   trunk:
@@ -51,16 +49,6 @@ SPEC REPOS:
     - SVProgressHUD
     - SwiftPhoneNumberFormatter
 
-EXTERNAL SOURCES:
-  XLPagerTabStrip:
-    :branch: swift3
-    :git: https://github.com/KelvinJin/XLPagerTabStrip
-
-CHECKOUT OPTIONS:
-  XLPagerTabStrip:
-    :commit: 99e3cbd5e6b99bb6b1fdf25f4af58fe2e38ad308
-    :git: https://github.com/KelvinJin/XLPagerTabStrip
-
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   Cosmos: 2795b36ad4bbea1af3050d6d65576ed63875f86a
@@ -76,8 +64,7 @@ SPEC CHECKSUMS:
   SideMenu: 8ef57a3cfc024a2d3fc1c036c7fe98537baec9e0
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftPhoneNumberFormatter: 0cc91f4daa06dd606a9defb21048a75c36a771a2
-  XLPagerTabStrip: 87b8b705f9a7178e76a063ffaa2d70045944a965
 
-PODFILE CHECKSUM: 01537d919ca5c376fb5ba8fa2db87773b1bf60c8
+PODFILE CHECKSUM: b31f0888d86e0319ae15718a9c53012ace7281ba
 
 COCOAPODS: 1.10.0.beta.2
