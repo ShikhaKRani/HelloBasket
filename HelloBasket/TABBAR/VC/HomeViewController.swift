@@ -127,16 +127,16 @@ class HomeViewController: UIViewController{
     }
     //for detail screen
     @objc func productDetailNotification(notification: Notification) {
-
         print(notification.userInfo ?? [:])
-//for detail screen direct
         let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-        if let catgScreen = storyBoard.instantiateViewController(withIdentifier: "ProductCategoryViewController") as? ProductCategoryViewController {
-            catgScreen.prevDict = notification.userInfo as? [String : Any]
-            catgScreen.screen = "home"
-            self.navigationController?.pushViewController(catgScreen, animated: true)
+        if let detail = storyBoard.instantiateViewController(withIdentifier: "ProductDetailViewController") as? ProductDetailViewController {
+            if let cat_id = notification.userInfo?["cat_Id"] {
+                detail.product_id = "\(cat_id )"
+                print(cat_id)
+                detail.screen = "home"
+                self.navigationController?.pushViewController(detail, animated: true)
+            }
         }
-        
     }
     
     

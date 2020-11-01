@@ -77,6 +77,7 @@ class ProductCategoryViewController: UIViewController {
         var param: [String: Any] = [:]
         param = ["product_id" : "\(model.product_id ?? 1)"]
         Loader.showHud()
+        print(UserDetails.shared.getAccessToken())
         ServiceClient.sendRequestPOSTBearer(apiUrl: APIEndPoints.shared.ADD_FAVORITE, postdatadictionary: param, isArray: false) { (response) in
             Loader.dismissHud()
             if let res = response as? [String : Any] {
@@ -470,6 +471,24 @@ extension ProductCategoryViewController : UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return  186
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let model =  self.wholeProductList[indexPath.row]
+        let sizeNum = model.sizeItemNumber ?? 0
+        let mod = model.sizeprice[sizeNum]
+
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        
+            if let detail = storyBoard.instantiateViewController(withIdentifier: "ProductDetailViewController") as? ProductDetailViewController {
+                if let cat_id = mod.product_id {
+                    detail.product_id = "\(cat_id )"
+                    print(cat_id)
+                    detail.screen = "home"
+                    self.navigationController?.pushViewController(detail, animated: true)
+                }
+            }
+    }
+    
 }
 
 

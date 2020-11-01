@@ -62,9 +62,8 @@ class APIEndPoints: NSObject, Codable { // checkpoint
     var GET_CART_DETAILS = "\(mainUrl)cart-details"
     var SAVE_LATER_CART_PRODUCT = "\(mainUrl)save-later-product"
 
-    
-    
-    
+    var ADD_DELIVERY_ADDRESS = "\(mainUrl)add-delivery-address"
+    var PRODUCT_DETAILS = "\(mainUrl)product-detail"    
     
     
     override init() {}
