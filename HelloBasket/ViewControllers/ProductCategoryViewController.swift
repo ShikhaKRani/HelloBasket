@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Toast_Swift
 
 class SubCategoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLbl: UILabel!
@@ -304,18 +305,18 @@ class ProductCategoryViewController: UIViewController {
         let sizeNum = model.sizeItemNumber ?? 0
         let lblcount = model.sizeprice[sizeNum].quantity
         var count = lblcount ?? 0
-
-        
         if model.sizeprice[sizeNum].min_qty ?? 0 > 0 {
             if model.itemSelected ?? 0 > 0 {
                 count = model.itemSelected ?? 0
             }
-            
             count = count - 1
             model.itemSelected =  count
+            if model.itemSelected ?? 0 < model.sizeprice[sizeNum].min_qty ?? 0 {
+                count = 0
+                model.itemSelected = 0
+            }
             self.addProductToCart(model: model, tag: sender.tag)
             model.sizeprice[sizeNum].quantity = count
-            
         }
        
         if count == 0 {
@@ -352,6 +353,7 @@ class ProductCategoryViewController: UIViewController {
         ServiceClient.sendRequestPOSTBearer(apiUrl: APIEndPoints.shared.ADD_CART, postdatadictionary: param, isArray: false) { (response) in
             Loader.dismissHud()
             if let res = response as? [String : Any] {
+                let msg = res["message"] as? String
                 if res["status"] as? String == "success" {
                     DispatchQueue.main.async {
                         self.tblView.reloadRows(at: [IndexPath(row: tag, section: 0)], with: .none)
@@ -382,8 +384,8 @@ class ProductCategoryViewController: UIViewController {
                     }
                     
                     //alert
-                    print(res["message"] ?? "")
                     DispatchQueue.main.async {
+                        self.view.makeToast("\(msg ?? "")", duration: 3.0, position: .bottom)
                         self.tblView.reloadRows(at: [IndexPath(row: tag, section: 0)], with: .none)
                     }
                     

@@ -72,14 +72,11 @@ class CartViewController: UIViewController {
     
     
     @objc func removeBtnAction(sender : UIButton) {
-        
-        
+        let model =  self.cartModelStored?.cartitem[sender.tag]
+        model?.itemSelected = 0
+        self.addProductToCart(model: self.cartModelStored!, tag: sender.tag)
     }
-    
-    func removeProductFromCart(model : CartModel, tag : Int) {
-        
-    }
-    
+
     @objc func saveLaterBtnAction(sender : UIButton) {
         
         let model =  self.cartModelStored?.cartitem[sender.tag]
@@ -123,10 +120,19 @@ class CartViewController: UIViewController {
         if count > 0 {
             count = count - 1
         }
+        
         model?.itemSelected = count
+        
         if count == 0 {
             //remove product
         }
+        
+        
+        if model?.itemSelected ?? 0 < model?.min_qty ?? 0 {
+            count = 0
+            model?.itemSelected = count
+        }
+        
         self.addProductToCart(model: self.cartModelStored!, tag: sender.tag)
     }
     
@@ -144,13 +150,18 @@ class CartViewController: UIViewController {
         ServiceClient.sendRequestPOSTBearer(apiUrl: APIEndPoints.shared.ADD_CART, postdatadictionary: param, isArray: false) { (response) in
             Loader.dismissHud()
             if let res = response as? [String : Any] {
+                let msg = res["message"] as? String
                 if res["status"] as? String == "success" {
-                    DispatchQueue.main.async {
-                        let indexPath = IndexPath(item: tag, section: 0)
-                        self.collectionView.reloadItems(at: [indexPath])
+                    
+                    if mod.itemSelected ?? 0 < mod.min_qty ?? 0 {
+                        self.fetchCartDetailList()
+                    }else{
+                        DispatchQueue.main.async {
+                            let indexPath = IndexPath(item: tag, section: 0)
+                            self.collectionView.reloadItems(at: [indexPath])
+                        }
                     }
                 }else{
-                    
                     let model = mod
                     if model.stock ?? 0 > 0 {
                         model.itemSelected = mod.quantity
@@ -158,9 +169,8 @@ class CartViewController: UIViewController {
                         model.itemSelected = 0
                     }
                     
-                    //alert
-                    print(res["message"] ?? "")
                     DispatchQueue.main.async {
+                        self.view.makeToast("\(msg ?? "")", duration: 3.0, position: .bottom)
                         let indexPath = IndexPath(item: tag, section: 0)
                         self.collectionView.reloadItems(at: [indexPath])
                     }
@@ -252,7 +262,12 @@ extension CartViewController: UICollectionViewDelegate, UICollectionViewDataSour
             }else{
                 cell?.countLbl.text = "\(model?.quantity ?? 0)"
             }
-                        
+                 
+            cell?.btnPlus.tag = indexPath.row
+            cell?.btnMinus.tag = indexPath.row
+            cell?.saveLaterBtn.tag = indexPath.row
+            cell?.removebtn.tag = indexPath.row
+            
             cell?.btnPlus.addTarget(self, action: #selector(plusBtnAction(sender:)), for: .touchUpInside)
             cell?.btnMinus.addTarget(self, action: #selector(minusBtnAction(sender:)), for: .touchUpInside)
             
