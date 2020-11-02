@@ -109,9 +109,13 @@ extension CategoryTabViewController: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        let id = self.categoryData[indexPath.section].subCatModelArray[indexPath.row].category_id
+
+        
         let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
         if let catgScreen = storyBoard.instantiateViewController(withIdentifier: "ProductCategoryViewController") as? ProductCategoryViewController {
             
+            catgScreen.catId = "\(id ?? 0)"
             self.navigationController?.pushViewController(catgScreen, animated: true)
         }
     }

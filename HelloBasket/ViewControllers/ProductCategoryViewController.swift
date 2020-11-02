@@ -56,7 +56,9 @@ class ProductCategoryViewController: UIViewController {
             }
         }
         else{
-            
+            self.fetchSubCategoryForProductList()
+            self.fetchProductList(categoryId: "\(catId ?? "0")")
+
         }
         
     }
