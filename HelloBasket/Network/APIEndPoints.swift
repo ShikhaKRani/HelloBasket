@@ -63,9 +63,12 @@ class APIEndPoints: NSObject, Codable { // checkpoint
     var SAVE_LATER_CART_PRODUCT = "\(mainUrl)save-later-product"
 
     var ADD_DELIVERY_ADDRESS = "\(mainUrl)add-delivery-address"
-    var PRODUCT_DETAILS = "\(mainUrl)product-detail"    
-    
-    
+    var PRODUCT_DETAILS = "\(mainUrl)product-detail"
+    var NOTIFICATIONS = "\(mainUrl)notifications"
+    var ORDER_HISTORY = "\(mainUrl)orders-history"
+    var ORDER_HISTORY_DETAILS = "\(mainUrl)order-details"
+    var CANCEL_ORDER = "\(mainUrl)cancel-order"
+
     override init() {}
     
     required init(from _: Decoder) throws {}

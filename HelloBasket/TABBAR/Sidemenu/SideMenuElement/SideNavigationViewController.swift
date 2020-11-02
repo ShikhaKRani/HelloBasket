@@ -176,10 +176,13 @@ class SideNavigationViewController: UIViewController,UITableViewDelegate,UITable
             break
             
         case "Order History":
-//            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-//            if let vc = storyBoard.instantiateViewController(withIdentifier: "ServiceOrderViewController") as? ServiceOrderViewController {
-//            self.navigationController?.pushViewController(vc, animated: true)
-//            }
+
+            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+            if let deals = storyBoard.instantiateViewController(withIdentifier: "OrderHistoryViewController") as? OrderHistoryViewController {
+
+                self.navigationController?.pushViewController(deals, animated: true)
+            }
+            
             
             break
         case "Hot Deals":
@@ -247,10 +250,14 @@ class SideNavigationViewController: UIViewController,UITableViewDelegate,UITable
             
             
         case "Notification":
-//            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-//            if let askquestionVC = storyBoard.instantiateViewController(withIdentifier: "QuestionHistoryViewController") as? QuestionHistoryViewController {
-//                self.navigationController?.pushViewController(askquestionVC, animated: true)
-//            }
+            
+            //http://hallobasket.local/api/notifications
+            
+            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+            if let contact = storyBoard.instantiateViewController(withIdentifier: "NotificationViewController") as? NotificationViewController {
+                self.navigationController?.pushViewController(contact, animated: true)
+            }
+
             break
             
         case "Logout":
