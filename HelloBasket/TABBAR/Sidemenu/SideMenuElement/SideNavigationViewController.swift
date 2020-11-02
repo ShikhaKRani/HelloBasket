@@ -231,10 +231,11 @@ class SideNavigationViewController: UIViewController,UITableViewDelegate,UITable
             break
             
         case "Complaint":
-//            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-//            if let suggestion = storyBoard.instantiateViewController(withIdentifier: "SuggestionViewController") as? SuggestionViewController {
-//                self.navigationController?.pushViewController(suggestion, animated: true)
-//            }
+            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+            if let complaint = storyBoard.instantiateViewController(withIdentifier: "ComplaintViewController") as? ComplaintViewController {
+                
+                self.navigationController?.pushViewController(complaint, animated: true)
+            }
             break
             
             

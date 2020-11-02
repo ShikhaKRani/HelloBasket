@@ -68,9 +68,11 @@ class APIEndPoints: NSObject, Codable { // checkpoint
     var ORDER_HISTORY = "\(mainUrl)orders-history"
     var ORDER_HISTORY_DETAILS = "\(mainUrl)order-details"
     var CANCEL_ORDER = "\(mainUrl)cancel-order"
-
+    var COMPLAINT_LIST = "\(mainUrl)complaints"
     override init() {}
     
     required init(from _: Decoder) throws {}
 
 }
+
+
