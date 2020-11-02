@@ -22,7 +22,8 @@ class ProductCategoryViewController: UIViewController {
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    
+    @IBOutlet weak var cartBtn: UIButton!
+
     
     
     var prevDict : [String: Any]?
@@ -42,6 +43,8 @@ class ProductCategoryViewController: UIViewController {
         backBtn.addTarget(self, action: #selector(backbtnAction), for: .touchUpInside)
         self.navTitle.text = "Product Category"
         headerView.backgroundColor = AppColor.themeColorSecond
+        
+        cartBtn.addTarget(self, action: #selector(redirectToCart(sender:)), for: .touchUpInside)
         self.totalItemslbl.text = ""
         if screen == "home" {
             if let cat_id = prevDict?["cat_Id"] {
@@ -56,6 +59,14 @@ class ProductCategoryViewController: UIViewController {
         }
         
     }
+    
+    @objc func redirectToCart(sender : UIButton) {
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        if let catgScreen = storyBoard.instantiateViewController(withIdentifier: "CartViewController") as? CartViewController {
+            self.navigationController?.pushViewController(catgScreen, animated: true)
+        }
+    }
+    
     
     @objc func backbtnAction() { self.navigationController?.popViewController(animated: true)    }
     

@@ -202,7 +202,7 @@ extension CartViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if indexPath.section == 0 {
             let rowCount = self.cartModelStored?.cartitem.count ?? 0
             if rowCount > 0 {
-                return CGSize(width: Constants.windowWidth, height: CGFloat(rowCount * 185))
+                return CGSize(width: Constants.windowWidth, height: CGFloat(1 * 185))
             }
             return CGSize(width: Constants.windowWidth, height: CGFloat(0))
         }

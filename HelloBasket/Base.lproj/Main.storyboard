@@ -991,6 +991,7 @@
                     </view>
                     <connections>
                         <outlet property="backBtn" destination="kfN-nP-Tgo" id="J9R-CJ-Zhv"/>
+                        <outlet property="cartBtn" destination="FhZ-L7-vlV" id="trf-ib-BhZ"/>
                         <outlet property="collectionView" destination="OBu-z5-eYU" id="873-f5-5DO"/>
                         <outlet property="filterBtn" destination="6yF-8o-vrt" id="O0Q-jn-EQK"/>
                         <outlet property="headerView" destination="XUr-pC-ZDT" id="t3J-CZ-XuU"/>
@@ -1765,6 +1766,7 @@
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dPn-iV-lmv">
                                                             <rect key="frame" x="286" y="2" width="108" height="88"/>
                                                             <constraints>
+                                                                <constraint firstAttribute="height" constant="88" id="9bI-Jj-Kun"/>
                                                                 <constraint firstAttribute="width" constant="108" id="RMA-uA-wbj"/>
                                                             </constraints>
                                                         </imageView>
