@@ -772,34 +772,49 @@
                                             <constraint firstAttribute="height" constant="25" id="dRN-41-Ka3"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p2A-4V-hZ0">
-                                        <rect key="frame" x="354" y="37" width="40" height="40"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="CyE-DH-mN6"/>
-                                            <constraint firstAttribute="width" constant="40" id="U5C-X4-YXK"/>
-                                        </constraints>
-                                        <color key="tintColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" image="cart.fill" catalog="system"/>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shop By Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJA-p2-R5i">
                                         <rect key="frame" x="67" y="43.5" width="155" height="21.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VB5-rI-OjF">
+                                        <rect key="frame" x="354" y="29" width="50" height="50"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="Rhg-Yc-TCj"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="rVi-YE-pWX"/>
+                                        </constraints>
+                                        <color key="tintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="favRed_nav">
+                                            <color key="titleColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IiW-gC-cAg">
+                                        <rect key="frame" x="304" y="29" width="50" height="50"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="cart.fill" catalog="system">
+                                            <color key="titleColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                 <constraints>
                                     <constraint firstItem="1RZ-Lm-uwA" firstAttribute="centerY" secondItem="qsB-TS-Wry" secondAttribute="centerY" id="26E-Vs-HFx"/>
                                     <constraint firstItem="qsB-TS-Wry" firstAttribute="top" secondItem="cNr-iW-ehL" secondAttribute="top" constant="29" id="8m6-oD-9fS"/>
+                                    <constraint firstItem="IiW-gC-cAg" firstAttribute="width" secondItem="VB5-rI-OjF" secondAttribute="width" id="Alv-4o-nh6"/>
+                                    <constraint firstItem="IiW-gC-cAg" firstAttribute="centerY" secondItem="VB5-rI-OjF" secondAttribute="centerY" id="CVM-fA-JjI"/>
+                                    <constraint firstItem="IiW-gC-cAg" firstAttribute="centerY" secondItem="VB5-rI-OjF" secondAttribute="centerY" id="NeV-On-ttn"/>
                                     <constraint firstItem="jJA-p2-R5i" firstAttribute="centerY" secondItem="1RZ-Lm-uwA" secondAttribute="centerY" id="T31-Jw-Exe"/>
-                                    <constraint firstAttribute="trailing" secondItem="p2A-4V-hZ0" secondAttribute="trailing" constant="20" id="fn0-xB-YLS"/>
+                                    <constraint firstItem="IiW-gC-cAg" firstAttribute="height" secondItem="VB5-rI-OjF" secondAttribute="height" id="UDc-na-sBl"/>
+                                    <constraint firstItem="VB5-rI-OjF" firstAttribute="leading" secondItem="IiW-gC-cAg" secondAttribute="trailing" id="Vwh-9a-6YI"/>
                                     <constraint firstItem="qsB-TS-Wry" firstAttribute="leading" secondItem="cNr-iW-ehL" secondAttribute="leading" constant="9" id="jtV-FJ-IxI"/>
                                     <constraint firstItem="jJA-p2-R5i" firstAttribute="leading" secondItem="qsB-TS-Wry" secondAttribute="trailing" constant="8" symbolic="YES" id="khz-ED-yHi"/>
+                                    <constraint firstAttribute="trailing" secondItem="VB5-rI-OjF" secondAttribute="trailing" constant="10" id="ojQ-3H-wFi"/>
                                     <constraint firstAttribute="height" constant="84" id="spU-vs-e6d"/>
+                                    <constraint firstItem="IiW-gC-cAg" firstAttribute="centerY" secondItem="1RZ-Lm-uwA" secondAttribute="centerY" id="tRI-C2-r4I"/>
                                     <constraint firstItem="1RZ-Lm-uwA" firstAttribute="centerX" secondItem="qsB-TS-Wry" secondAttribute="centerX" id="wD1-ot-VKp"/>
-                                    <constraint firstAttribute="bottom" secondItem="p2A-4V-hZ0" secondAttribute="bottom" constant="7" id="zAZ-vX-b6T"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HDy-Bx-aUX">
@@ -918,6 +933,8 @@
                         <imageReference key="selectedImage" image="square.grid.2x2.fill" catalog="system" renderingMode="template"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="cartBtn" destination="IiW-gC-cAg" id="Bjf-lb-HOU"/>
+                        <outlet property="favouritebtn" destination="VB5-rI-OjF" id="05g-qc-3Am"/>
                         <outlet property="navigationView" destination="cNr-iW-ehL" id="AOD-Fp-u52"/>
                         <outlet property="tblView" destination="HDy-Bx-aUX" id="1Zt-W9-bQi"/>
                     </connections>
@@ -1776,8 +1793,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BgF-Sd-xOr">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="84"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Offer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgg-Vj-uX1">
-                                        <rect key="frame" x="69" y="42.5" width="276" height="23.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Offer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgg-Vj-uX1">
+                                        <rect key="frame" x="69" y="43" width="129" height="24"/>
                                         <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1809,15 +1826,42 @@
                                             <constraint firstAttribute="height" constant="25" id="p3J-3S-zXJ"/>
                                         </constraints>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GKD-qZ-6rR">
+                                        <rect key="frame" x="354" y="29" width="50" height="50"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="27c-dy-9ot"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="NfM-br-wo1"/>
+                                        </constraints>
+                                        <color key="tintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="favRed_nav">
+                                            <color key="titleColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QhK-ZD-fmZ">
+                                        <rect key="frame" x="304" y="29" width="50" height="50"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="cart.fill" catalog="system">
+                                            <color key="titleColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                 <constraints>
                                     <constraint firstItem="iA0-dT-e2w" firstAttribute="top" secondItem="BgF-Sd-xOr" secondAttribute="top" constant="29" id="29n-CD-l3h"/>
+                                    <constraint firstItem="QhK-ZD-fmZ" firstAttribute="width" secondItem="GKD-qZ-6rR" secondAttribute="width" id="56A-f4-qnI"/>
                                     <constraint firstItem="hgg-Vj-uX1" firstAttribute="centerX" secondItem="BgF-Sd-xOr" secondAttribute="centerX" id="A38-Lm-HBJ"/>
                                     <constraint firstItem="hgg-Vj-uX1" firstAttribute="leading" secondItem="iA0-dT-e2w" secondAttribute="trailing" constant="10" id="BXG-pP-Fbr"/>
+                                    <constraint firstAttribute="trailing" secondItem="GKD-qZ-6rR" secondAttribute="trailing" constant="10" id="F7Q-Fi-IFc"/>
+                                    <constraint firstItem="QhK-ZD-fmZ" firstAttribute="centerY" secondItem="GKD-qZ-6rR" secondAttribute="centerY" id="JRW-cX-QL0"/>
                                     <constraint firstItem="SOp-9Z-ICt" firstAttribute="centerX" secondItem="iA0-dT-e2w" secondAttribute="centerX" id="LGW-km-GWz"/>
+                                    <constraint firstItem="GKD-qZ-6rR" firstAttribute="leading" secondItem="QhK-ZD-fmZ" secondAttribute="trailing" id="Qji-mz-60V"/>
+                                    <constraint firstItem="QhK-ZD-fmZ" firstAttribute="height" secondItem="GKD-qZ-6rR" secondAttribute="height" id="R0J-em-8Xa"/>
                                     <constraint firstItem="iA0-dT-e2w" firstAttribute="leading" secondItem="BgF-Sd-xOr" secondAttribute="leading" constant="9" id="R69-cu-2av"/>
                                     <constraint firstAttribute="height" constant="84" id="fWk-Mx-AK1"/>
+                                    <constraint firstItem="GKD-qZ-6rR" firstAttribute="centerY" secondItem="SOp-9Z-ICt" secondAttribute="centerY" id="hfU-UB-nsX"/>
+                                    <constraint firstItem="QhK-ZD-fmZ" firstAttribute="centerY" secondItem="GKD-qZ-6rR" secondAttribute="centerY" id="hzy-j1-wlS"/>
                                     <constraint firstItem="hgg-Vj-uX1" firstAttribute="centerY" secondItem="SOp-9Z-ICt" secondAttribute="centerY" id="qh5-Cx-WMS"/>
                                     <constraint firstItem="SOp-9Z-ICt" firstAttribute="centerY" secondItem="iA0-dT-e2w" secondAttribute="centerY" id="zMS-vy-af9"/>
                                 </constraints>
@@ -2039,7 +2083,9 @@
                         <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="cartBtn" destination="QhK-ZD-fmZ" id="3x8-gK-Lda"/>
                         <outlet property="collectionView" destination="e2N-UB-pEP" id="MRU-3z-7Lz"/>
+                        <outlet property="favouritebtn" destination="GKD-qZ-6rR" id="m5V-Oe-U0q"/>
                         <outlet property="navTitle" destination="hgg-Vj-uX1" id="Ou9-2x-jfA"/>
                         <outlet property="navigationView" destination="BgF-Sd-xOr" id="DG7-9B-pVt"/>
                         <outlet property="tblView" destination="7az-W1-bNM" id="8Kp-LQ-FBd"/>
@@ -2047,11 +2093,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bCl-A6-EgD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2712" y="3968"/>
+            <point key="canvasLocation" x="2711.594202898551" y="3967.6339285714284"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6tu-Zv-Qat"/>
+        <segue reference="krZ-Qa-sdn"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="applelogo" catalog="system" width="128" height="121"/>

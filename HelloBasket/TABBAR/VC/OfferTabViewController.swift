@@ -15,6 +15,10 @@ class OfferTabViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tblView: UITableView!
     
+    @IBOutlet weak var cartBtn: UIButton!
+    @IBOutlet weak var favouritebtn: UIButton!
+
+    
     var homeDataDict : [String: Any]?
     var productList = [ProductModel]()
     
@@ -29,11 +33,30 @@ class OfferTabViewController: UIViewController {
         self.navigationView.backgroundColor = AppColor.themeColor
         self.navTitle.text = "Offer"
         NotificationCenter.default.addObserver(self, selector: #selector(self.productCat(notification:)), name: Notification.Name("cat"), object: nil)
-
+        setUpUI()
         
         self.fetchHotDealsData()
         
         // Do any additional setup after loading the view.
+    }
+    
+    func setUpUI() {
+        cartBtn.addTarget(self, action: #selector(redirectToCart(sender:)), for: .touchUpInside)
+        favouritebtn.addTarget(self, action: #selector(redirectToFavourite(sender:)), for: .touchUpInside)
+
+    }
+    @objc func redirectToCart(sender : UIButton) {
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        if let catgScreen = storyBoard.instantiateViewController(withIdentifier: "CartViewController") as? CartViewController {
+            self.navigationController?.pushViewController(catgScreen, animated: true)
+        }
+    }
+    @objc func redirectToFavourite(sender : UIButton) {
+        
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        if let catgScreen = storyBoard.instantiateViewController(withIdentifier: "FavouriteViewController") as? FavouriteViewController {
+            self.navigationController?.pushViewController(catgScreen, animated: true)
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -52,7 +75,7 @@ class OfferTabViewController: UIViewController {
     func fetchHotDealsData() {
         Loader.showHud()
         let params = [:] as Dictionary<String, String>
-        ServiceClient.sendRequestGET(apiUrl: APIEndPoints.shared.OFFER_PRODUCT, postdatadictionary: params, isArray: false) { (response) in
+        ServiceClient.sendRequestGET(apiUrl: APIEndPoints.shared.DISCOUNTED_PRODUCT, postdatadictionary: params, isArray: false) { (response) in
             Loader.dismissHud()
             if let res = response as? [String : Any] {
                 self.homeDataDict = res
@@ -136,13 +159,12 @@ class OfferTabViewController: UIViewController {
     @objc func plusBtnAction(sender : UIButton) {
         
         let cell = sender.superview?.superview?.superview?.superview as? ProductCell
-        
         let model =  self.productList[sender.tag]
         var count = 0
         let sizeNum = model.sizeItemNumber ?? 0
-
+        
         if model.sizeprice.count >= sizeNum {
-
+            
             count = model.sizeprice[sizeNum].quantity ?? 0
             if model.sizeprice[sizeNum].min_qty ?? 0 > 0 {
                 
@@ -156,7 +178,14 @@ class OfferTabViewController: UIViewController {
                     count = model.itemSelected ?? 0
                 }
                 count = count + 1
+                
+                if count > model.sizeprice[sizeNum].max_qty ?? 0 {
+                    count = model.sizeprice[sizeNum].max_qty ?? 0
+                    model.sizeprice[sizeNum].quantity = count
+                }
+                
                 model.itemSelected = count
+                
             }
         }
         
@@ -181,7 +210,6 @@ class OfferTabViewController: UIViewController {
     }
     
     
-    
     @objc func addFirstBtnAction(sender : UIButton) {
         
         let cell = sender.superview?.superview?.superview?.superview as? ProductCell
@@ -189,19 +217,17 @@ class OfferTabViewController: UIViewController {
         var count = 0
         
         let sizeNum = model.sizeItemNumber ?? 0
-
+        
         if model.sizeprice.count >= sizeNum {
-
+            
             count = model.sizeprice[sizeNum].quantity ?? 0
-//min quantity
             if model.sizeprice[sizeNum].min_qty ?? 0 > 0 {
                 count = model.sizeprice[sizeNum].min_qty ?? 0
                 model.itemSelected = count
+                model.sizeprice[sizeNum].quantity = count
             }
         }
-                    
-             
-       
+        
         
         if count == 0 {
             cell?.plusBtn.isHidden = true
@@ -219,7 +245,7 @@ class OfferTabViewController: UIViewController {
         }
         
         self.addProductToCart(model: model, tag: sender.tag)
-
+        
     }
     
     @objc func minusBtnAction(sender : UIButton) {
@@ -230,16 +256,18 @@ class OfferTabViewController: UIViewController {
         let sizeNum = model.sizeItemNumber ?? 0
         let lblcount = model.sizeprice[sizeNum].quantity
         var count = lblcount ?? 0
-
-        if model.itemSelected ?? 0 > 0 {
-            count = model.itemSelected ?? 0
-        }
-        
-        
-        if count > 0 {
+        if model.sizeprice[sizeNum].min_qty ?? 0 > 0 {
+            if model.itemSelected ?? 0 > 0 {
+                count = model.itemSelected ?? 0
+            }
             count = count - 1
             model.itemSelected =  count
+            if model.itemSelected ?? 0 < model.sizeprice[sizeNum].min_qty ?? 0 {
+                count = 0
+                model.itemSelected = 0
+            }
             self.addProductToCart(model: model, tag: sender.tag)
+            model.sizeprice[sizeNum].quantity = count
         }
         
         if count == 0 {
@@ -258,7 +286,6 @@ class OfferTabViewController: UIViewController {
         }
         
     }
-    
     
     func addProductToCart(model :ProductModel, tag : Int) {
         //        ADD_CART
@@ -277,6 +304,7 @@ class OfferTabViewController: UIViewController {
         ServiceClient.sendRequestPOSTBearer(apiUrl: APIEndPoints.shared.ADD_CART, postdatadictionary: param, isArray: false) { (response) in
             Loader.dismissHud()
             if let res = response as? [String : Any] {
+                let msg = res["message"] as? String
                 if res["status"] as? String == "success" {
                     DispatchQueue.main.async {
                         self.tblView.reloadRows(at: [IndexPath(row: tag, section: 0)], with: .none)
@@ -285,15 +313,30 @@ class OfferTabViewController: UIViewController {
                     
                     let model = model
                     let mod = model.sizeprice[sizeNum]
+                    if model.itemSelected ?? 0 <  mod.min_qty ?? 0{
+                        model.itemSelected = 0
+                        mod.quantity = 0
+                        
+                        // remove from cart
+                    }
+                    
+                    if model.itemSelected ?? 0 > mod.max_qty ?? 0 {
+                        model.itemSelected = mod.max_qty
+                        mod.quantity = mod.max_qty
+                    }
+                    
+                    
                     if mod.in_stocks ?? 0 > 0 {
                         model.itemSelected = mod.quantity
                     }else{
+                        
                         model.itemSelected = 0
+                        mod.quantity = 0
                     }
                     
                     //alert
-                    print(res["message"] ?? "")
                     DispatchQueue.main.async {
+                        self.view.makeToast("\(msg ?? "")", duration: 3.0, position: .bottom)
                         self.tblView.reloadRows(at: [IndexPath(row: tag, section: 0)], with: .none)
                     }
                     

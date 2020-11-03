@@ -22,7 +22,8 @@ class SideNavigationViewController: UIViewController,UITableViewDelegate,UITable
     @IBOutlet weak var unselectedProfileBtn: UIButton!
     
     var dataArr : Array<Dictionary<String,AnyObject>> = [
-        ["title":"All Category" as AnyObject,"image": "category" as AnyObject]
+//        ["title":"All Category" as AnyObject,"image": "category" as AnyObject]
+        ["title":"Membership" as AnyObject,"image": "profile" as AnyObject]
         ,["title":"My Account" as AnyObject,"image": "profile" as AnyObject]
         ,["title":"Order History" as AnyObject,"image": "orderHistory" as AnyObject]
         ,["title":"Hot Deals" as AnyObject,"image": "hotDeals" as AnyObject]
@@ -157,14 +158,23 @@ class SideNavigationViewController: UIViewController,UITableViewDelegate,UITable
         let menuItem =  dataArr[indexPath.row]["title"] as? String ?? ""
         
         switch menuItem {
-        case "All Category":
+//        case "All Category":
+//
+//          let storyBoard = UIStoryboard.init(name: "TabbarMenu", bundle: nil)
+//            if let orderVC = storyBoard.instantiateViewController(withIdentifier: "CategoryTabViewController") as? CategoryTabViewController {
+//                self.navigationController?.pushViewController(orderVC, animated: true)
+//            }
+//
+//            break
+        case "Membership":
             
-          let storyBoard = UIStoryboard.init(name: "TabbarMenu", bundle: nil)
-            if let orderVC = storyBoard.instantiateViewController(withIdentifier: "CategoryTabViewController") as? CategoryTabViewController {
+          let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+            if let orderVC = storyBoard.instantiateViewController(withIdentifier: "MembershipViewController") as? MembershipViewController {
                 self.navigationController?.pushViewController(orderVC, animated: true)
             }
             
             break
+            
         case "My Account":
             
             //OrderViewController

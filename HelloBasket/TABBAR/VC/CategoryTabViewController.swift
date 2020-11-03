@@ -15,6 +15,8 @@ class CategoryTabViewController: UIViewController {
     @IBOutlet weak var navigationView: UIView!
 
     var categoryData = [CategoryModels]()
+    @IBOutlet weak var cartBtn: UIButton!
+    @IBOutlet weak var favouritebtn: UIButton!
 
     
     override func viewDidLoad() {
@@ -22,7 +24,29 @@ class CategoryTabViewController: UIViewController {
         navigationView.backgroundColor = AppColor.themeColor
 
         tblView.tableFooterView = UIView()
+        self.setUpUI()
         self.fetchCategoryData()
+        
+    }
+    
+    func setUpUI() {
+        cartBtn.addTarget(self, action: #selector(redirectToCart(sender:)), for: .touchUpInside)
+        favouritebtn.addTarget(self, action: #selector(redirectToFavourite(sender:)), for: .touchUpInside)
+
+    }
+    @objc func redirectToCart(sender : UIButton) {
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        if let catgScreen = storyBoard.instantiateViewController(withIdentifier: "CartViewController") as? CartViewController {
+            self.navigationController?.pushViewController(catgScreen, animated: true)
+        }
+    }
+    
+    @objc func redirectToFavourite(sender : UIButton) {
+        
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        if let catgScreen = storyBoard.instantiateViewController(withIdentifier: "FavouriteViewController") as? FavouriteViewController {
+            self.navigationController?.pushViewController(catgScreen, animated: true)
+        }
     }
     
     func fetchCategoryData() {
@@ -131,7 +155,6 @@ extension CategoryTabViewController {
     }
 }
 //MARK:- Side Menu Set up
-
 
 //MARK:- Cell
 

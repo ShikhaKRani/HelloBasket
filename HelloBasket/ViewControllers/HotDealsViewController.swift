@@ -31,7 +31,7 @@ class HotDealsViewController: UIViewController {
         backBtn.addTarget(self, action: #selector(backbtnAction), for: .touchUpInside)
         self.navTitle.text = screen
         NotificationCenter.default.addObserver(self, selector: #selector(self.productCat(notification:)), name: Notification.Name("cat"), object: nil)
-
+        
         if screen == "Hot Deals" {
             self.fetchHotDealsData(apiUrl: APIEndPoints.shared.HOTDEALS_LIST)
         }
@@ -46,7 +46,7 @@ class HotDealsViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: Notification.Name("cat"), object: nil)
-
+        
     }
     @objc func backbtnAction() { self.navigationController?.popViewController(animated: true)    }
     
@@ -86,9 +86,9 @@ class HotDealsViewController: UIViewController {
     
     //for detail screen
     @objc func productCat(notification: Notification) {
-
+        
         print(notification.userInfo ?? [:])
-
+        
         if let cat_id = notification.userInfo?["cat_Id"] {
             let catId = "\(cat_id )"
             print(cat_id)
@@ -113,11 +113,11 @@ class HotDealsViewController: UIViewController {
                                 let model = ProductModel(dict: item)
                                 self.productList.append(model)
                             }
-
+                            
                             DispatchQueue.main.async {
                                 self.tblView.reloadData()
                             }
-
+                            
                         }
                     }
                 }
@@ -174,18 +174,16 @@ class HotDealsViewController: UIViewController {
     }
     
     
-
-    
+    //MARK:-
     @objc func plusBtnAction(sender : UIButton) {
         
         let cell = sender.superview?.superview?.superview?.superview as? ProductCell
-        
         let model =  self.productList[sender.tag]
         var count = 0
         let sizeNum = model.sizeItemNumber ?? 0
-
+        
         if model.sizeprice.count >= sizeNum {
-
+            
             count = model.sizeprice[sizeNum].quantity ?? 0
             if model.sizeprice[sizeNum].min_qty ?? 0 > 0 {
                 
@@ -199,7 +197,14 @@ class HotDealsViewController: UIViewController {
                     count = model.itemSelected ?? 0
                 }
                 count = count + 1
+                
+                if count > model.sizeprice[sizeNum].max_qty ?? 0 {
+                    count = model.sizeprice[sizeNum].max_qty ?? 0
+                    model.sizeprice[sizeNum].quantity = count
+                }
+                
                 model.itemSelected = count
+                
             }
         }
         
@@ -224,7 +229,6 @@ class HotDealsViewController: UIViewController {
     }
     
     
-    
     @objc func addFirstBtnAction(sender : UIButton) {
         
         let cell = sender.superview?.superview?.superview?.superview as? ProductCell
@@ -232,19 +236,17 @@ class HotDealsViewController: UIViewController {
         var count = 0
         
         let sizeNum = model.sizeItemNumber ?? 0
-
+        
         if model.sizeprice.count >= sizeNum {
-
+            
             count = model.sizeprice[sizeNum].quantity ?? 0
-//min quantity
             if model.sizeprice[sizeNum].min_qty ?? 0 > 0 {
                 count = model.sizeprice[sizeNum].min_qty ?? 0
                 model.itemSelected = count
+                model.sizeprice[sizeNum].quantity = count
             }
         }
-                    
-             
-       
+        
         
         if count == 0 {
             cell?.plusBtn.isHidden = true
@@ -262,7 +264,7 @@ class HotDealsViewController: UIViewController {
         }
         
         self.addProductToCart(model: model, tag: sender.tag)
-
+        
     }
     
     @objc func minusBtnAction(sender : UIButton) {
@@ -273,16 +275,18 @@ class HotDealsViewController: UIViewController {
         let sizeNum = model.sizeItemNumber ?? 0
         let lblcount = model.sizeprice[sizeNum].quantity
         var count = lblcount ?? 0
-
-        if model.itemSelected ?? 0 > 0 {
-            count = model.itemSelected ?? 0
-        }
-        
-        
-        if count > 0 {
+        if model.sizeprice[sizeNum].min_qty ?? 0 > 0 {
+            if model.itemSelected ?? 0 > 0 {
+                count = model.itemSelected ?? 0
+            }
             count = count - 1
             model.itemSelected =  count
+            if model.itemSelected ?? 0 < model.sizeprice[sizeNum].min_qty ?? 0 {
+                count = 0
+                model.itemSelected = 0
+            }
             self.addProductToCart(model: model, tag: sender.tag)
+            model.sizeprice[sizeNum].quantity = count
         }
         
         if count == 0 {
@@ -301,7 +305,6 @@ class HotDealsViewController: UIViewController {
         }
         
     }
-    
     
     func addProductToCart(model :ProductModel, tag : Int) {
         //        ADD_CART
@@ -320,6 +323,7 @@ class HotDealsViewController: UIViewController {
         ServiceClient.sendRequestPOSTBearer(apiUrl: APIEndPoints.shared.ADD_CART, postdatadictionary: param, isArray: false) { (response) in
             Loader.dismissHud()
             if let res = response as? [String : Any] {
+                let msg = res["message"] as? String
                 if res["status"] as? String == "success" {
                     DispatchQueue.main.async {
                         self.tblView.reloadRows(at: [IndexPath(row: tag, section: 0)], with: .none)
@@ -328,15 +332,30 @@ class HotDealsViewController: UIViewController {
                     
                     let model = model
                     let mod = model.sizeprice[sizeNum]
+                    if model.itemSelected ?? 0 <  mod.min_qty ?? 0{
+                        model.itemSelected = 0
+                        mod.quantity = 0
+                        
+                        // remove from cart
+                    }
+                    
+                    if model.itemSelected ?? 0 > mod.max_qty ?? 0 {
+                        model.itemSelected = mod.max_qty
+                        mod.quantity = mod.max_qty
+                    }
+                    
+                    
                     if mod.in_stocks ?? 0 > 0 {
                         model.itemSelected = mod.quantity
                     }else{
+                        
                         model.itemSelected = 0
+                        mod.quantity = 0
                     }
                     
                     //alert
-                    print(res["message"] ?? "")
                     DispatchQueue.main.async {
+                        self.view.makeToast("\(msg ?? "")", duration: 3.0, position: .bottom)
                         self.tblView.reloadRows(at: [IndexPath(row: tag, section: 0)], with: .none)
                     }
                     

@@ -58,6 +58,9 @@ class OrderDetaiViewController: UIViewController {
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var navTitle: UILabel!
     
+    @IBOutlet weak var cartBtn: UIButton!
+    @IBOutlet weak var favouritebtn: UIButton!
+
     var orderId : String?
     var wholeDataDict : [String:  Any]?
 
@@ -68,13 +71,32 @@ class OrderDetaiViewController: UIViewController {
         self.navView.backgroundColor = AppColor.themeColor
         backBtn.addTarget(self, action: #selector(backbtnAction), for: .touchUpInside)
         self.navTitle.text = "Order History"
-        
+        setUpUI()
         self.fetchOrderHistoryDetails(orderId: self.orderId ?? "44")
         
     }
 
     @objc func backbtnAction() { self.navigationController?.popViewController(animated: true)    }
     
+    func setUpUI() {
+        cartBtn.addTarget(self, action: #selector(redirectToCart(sender:)), for: .touchUpInside)
+        favouritebtn.addTarget(self, action: #selector(redirectToFavourite(sender:)), for: .touchUpInside)
+
+    }
+    @objc func redirectToCart(sender : UIButton) {
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        if let catgScreen = storyBoard.instantiateViewController(withIdentifier: "CartViewController") as? CartViewController {
+            self.navigationController?.pushViewController(catgScreen, animated: true)
+        }
+    }
+    
+    @objc func redirectToFavourite(sender : UIButton) {
+        
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        if let catgScreen = storyBoard.instantiateViewController(withIdentifier: "FavouriteViewController") as? FavouriteViewController {
+            self.navigationController?.pushViewController(catgScreen, animated: true)
+        }
+    }
     
     func fetchOrderHistoryDetails(orderId: String) {
         

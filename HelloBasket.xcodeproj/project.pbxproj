@@ -30,6 +30,7 @@
 		BF2DA8CC2530357800F6B65B /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2DA8C72530357700F6B65B /* Loader.swift */; };
 		BF2DA8CD2530357800F6B65B /* APIEndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2DA8C82530357700F6B65B /* APIEndPoints.swift */; };
 		BF2E411E2551286500F3EC69 /* WalletHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2E411D2551286500F3EC69 /* WalletHistoryViewController.swift */; };
+		BF2E4158255139CB00F3EC69 /* MembershipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2E4157255139CB00F3EC69 /* MembershipViewController.swift */; };
 		BF2EE6D42529C69100D1099F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2EE6D32529C69100D1099F /* AppDelegate.swift */; };
 		BF2EE6DB2529C69100D1099F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF2EE6D92529C69100D1099F /* Main.storyboard */; };
 		BF2EE6DD2529C69500D1099F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF2EE6DC2529C69500D1099F /* Assets.xcassets */; };
@@ -95,6 +96,7 @@
 		BF2DA8C72530357700F6B65B /* Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		BF2DA8C82530357700F6B65B /* APIEndPoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIEndPoints.swift; sourceTree = "<group>"; };
 		BF2E411D2551286500F3EC69 /* WalletHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WalletHistoryViewController.swift; path = ../TABBAR/VC/WalletHistoryViewController.swift; sourceTree = "<group>"; };
+		BF2E4157255139CB00F3EC69 /* MembershipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipViewController.swift; sourceTree = "<group>"; };
 		BF2EE6D02529C69100D1099F /* HelloBasket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloBasket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF2EE6D32529C69100D1099F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF2EE6DA2529C69100D1099F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				BF19F265254FCAC9006F3A56 /* NotificationViewController.swift */,
 				BF19F268254FD121006F3A56 /* OrderHistoryViewController.swift */,
 				BF19F26B254FD802006F3A56 /* OrderDetaiViewController.swift */,
+				BF2E4157255139CB00F3EC69 /* MembershipViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				BFCFC5142529FE320015E011 /* Initializable.swift in Sources */,
 				BF2E411E2551286500F3EC69 /* WalletHistoryViewController.swift in Sources */,
 				BFCFC5182529FE320015E011 /* SideMenuInteractionController.swift in Sources */,
+				BF2E4158255139CB00F3EC69 /* MembershipViewController.swift in Sources */,
 				BF2DA8A3252B433800F6B65B /* RegisterViewController.swift in Sources */,
 				BF2D21E9254470670034F99A /* FavouriteViewController.swift in Sources */,
 				BFC145A7254E88A5004F3035 /* CartModel.swift in Sources */,
