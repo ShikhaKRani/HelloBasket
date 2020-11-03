@@ -258,35 +258,28 @@
                                             <outlet property="twoThousandBtn" destination="Ae8-6H-rVC" id="UDO-8s-9yF"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="commonCell" rowHeight="60" id="QRC-YF-OTj" customClass="WalletCell" customModule="HelloBasket" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="317" width="414" height="60"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="commonCell" rowHeight="83" id="QRC-YF-OTj" customClass="WalletCell" customModule="HelloBasket" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="317" width="414" height="83"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QRC-YF-OTj" id="jVt-Ic-h2p">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="83"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afN-g3-TNk">
-                                                    <rect key="frame" x="0.0" y="5" width="414" height="50"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="oUY-w3-JkR"/>
-                                                    </constraints>
-                                                </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wallet" translatesAutoresizingMaskIntoConstraints="NO" id="ThO-rk-6we">
-                                                    <rect key="frame" x="10" y="17.5" width="30" height="30"/>
+                                                    <rect key="frame" x="10" y="26.5" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="B4d-M2-Y3z"/>
                                                         <constraint firstAttribute="width" constant="30" id="Vax-Lw-KCZ"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Balance Hiistory" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T09-iW-OTu">
-                                                    <rect key="frame" x="67" y="19.5" width="130" height="21"/>
+                                                    <rect key="frame" x="50" y="31" width="319" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.forward" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="NXh-PC-Lcs">
-                                                    <rect key="frame" x="379" y="19.5" width="25" height="21.5"/>
+                                                    <rect key="frame" x="379" y="31" width="25" height="21.5"/>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="25" id="4fu-nP-0Lt"/>
@@ -295,19 +288,16 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="ThO-rk-6we" firstAttribute="top" secondItem="NXh-PC-Lcs" secondAttribute="top" id="2dJ-L6-JJi"/>
-                                                <constraint firstItem="T09-iW-OTu" firstAttribute="centerY" secondItem="afN-g3-TNk" secondAttribute="centerY" id="2q2-L4-e7q"/>
-                                                <constraint firstItem="afN-g3-TNk" firstAttribute="centerY" secondItem="jVt-Ic-h2p" secondAttribute="centerY" id="H4W-Lv-HIU"/>
-                                                <constraint firstItem="NXh-PC-Lcs" firstAttribute="trailing" secondItem="afN-g3-TNk" secondAttribute="trailing" constant="-10" id="H8L-dO-DW3"/>
-                                                <constraint firstItem="afN-g3-TNk" firstAttribute="leading" secondItem="jVt-Ic-h2p" secondAttribute="leading" id="Qr0-PE-krf"/>
-                                                <constraint firstAttribute="trailing" secondItem="afN-g3-TNk" secondAttribute="trailing" id="Udd-9N-skH"/>
-                                                <constraint firstItem="ThO-rk-6we" firstAttribute="leading" secondItem="jVt-Ic-h2p" secondAttribute="leadingMargin" constant="-10" id="eyK-P2-V1c"/>
-                                                <constraint firstItem="T09-iW-OTu" firstAttribute="leading" secondItem="ThO-rk-6we" secondAttribute="trailing" constant="27" id="gmD-XW-yAm"/>
-                                                <constraint firstItem="NXh-PC-Lcs" firstAttribute="centerY" secondItem="afN-g3-TNk" secondAttribute="centerY" id="pbt-Uu-XcF"/>
+                                                <constraint firstItem="NXh-PC-Lcs" firstAttribute="centerY" secondItem="jVt-Ic-h2p" secondAttribute="centerY" id="100-gw-xHd"/>
+                                                <constraint firstItem="T09-iW-OTu" firstAttribute="centerY" secondItem="ThO-rk-6we" secondAttribute="centerY" id="ERS-YD-Z8m"/>
+                                                <constraint firstItem="NXh-PC-Lcs" firstAttribute="leading" secondItem="T09-iW-OTu" secondAttribute="trailing" constant="10" id="HKz-uG-SZQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="NXh-PC-Lcs" secondAttribute="trailing" constant="10" id="VIR-Rv-PtY"/>
+                                                <constraint firstItem="ThO-rk-6we" firstAttribute="centerY" secondItem="jVt-Ic-h2p" secondAttribute="centerY" id="eIA-pa-oqd"/>
+                                                <constraint firstItem="T09-iW-OTu" firstAttribute="leading" secondItem="ThO-rk-6we" secondAttribute="trailing" constant="10" id="guC-fb-wBH"/>
+                                                <constraint firstItem="ThO-rk-6we" firstAttribute="leading" secondItem="jVt-Ic-h2p" secondAttribute="leading" constant="10" id="mZ6-MV-b5s"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="commonBtn" destination="afN-g3-TNk" id="huY-BS-fML"/>
                                             <outlet property="commonLbl" destination="T09-iW-OTu" id="PUS-Ba-oQp"/>
                                             <outlet property="commonimg" destination="ThO-rk-6we" id="ml3-Ub-CQO"/>
                                         </connections>
@@ -2061,7 +2051,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="U0P-zr-M21"/>
+        <segue reference="6tu-Zv-Qat"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="applelogo" catalog="system" width="128" height="121"/>

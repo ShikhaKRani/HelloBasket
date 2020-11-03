@@ -29,6 +29,7 @@
 		BF2DA8C92530357800F6B65B /* UserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2DA8C42530357700F6B65B /* UserDetails.swift */; };
 		BF2DA8CC2530357800F6B65B /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2DA8C72530357700F6B65B /* Loader.swift */; };
 		BF2DA8CD2530357800F6B65B /* APIEndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2DA8C82530357700F6B65B /* APIEndPoints.swift */; };
+		BF2E411E2551286500F3EC69 /* WalletHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2E411D2551286500F3EC69 /* WalletHistoryViewController.swift */; };
 		BF2EE6D42529C69100D1099F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2EE6D32529C69100D1099F /* AppDelegate.swift */; };
 		BF2EE6DB2529C69100D1099F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF2EE6D92529C69100D1099F /* Main.storyboard */; };
 		BF2EE6DD2529C69500D1099F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF2EE6DC2529C69500D1099F /* Assets.xcassets */; };
@@ -40,7 +41,6 @@
 		BF33C6A525333DEE00F24EEA /* BJAutoScrollingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF33C6A425333DED00F24EEA /* BJAutoScrollingCollectionView.swift */; };
 		BF33C6A82533443400F24EEA /* HomeViewController-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF33C6A72533443400F24EEA /* HomeViewController-Ext.swift */; };
 		BF33C6AB2533707000F24EEA /* ProductCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF33C6AA2533707000F24EEA /* ProductCategoryViewController.swift */; };
-		BF40B742254AD16A00A57252 /* WalletHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF40B741254AD16A00A57252 /* WalletHistoryViewController.swift */; };
 		BF8334882541AC2F0012D6A0 /* HotDealsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8334872541AC2F0012D6A0 /* HotDealsViewController.swift */; };
 		BF83349C2541B7980012D6A0 /* HotDealsViewController-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83349B2541B7980012D6A0 /* HotDealsViewController-Ext.swift */; };
 		BFAE9AE525308212003091FB /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAE9AE425308212003091FB /* Home.swift */; };
@@ -94,6 +94,7 @@
 		BF2DA8C42530357700F6B65B /* UserDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetails.swift; sourceTree = "<group>"; };
 		BF2DA8C72530357700F6B65B /* Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		BF2DA8C82530357700F6B65B /* APIEndPoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIEndPoints.swift; sourceTree = "<group>"; };
+		BF2E411D2551286500F3EC69 /* WalletHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WalletHistoryViewController.swift; path = ../TABBAR/VC/WalletHistoryViewController.swift; sourceTree = "<group>"; };
 		BF2EE6D02529C69100D1099F /* HelloBasket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloBasket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF2EE6D32529C69100D1099F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF2EE6DA2529C69100D1099F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -107,7 +108,6 @@
 		BF33C6A425333DED00F24EEA /* BJAutoScrollingCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BJAutoScrollingCollectionView.swift; sourceTree = "<group>"; };
 		BF33C6A72533443400F24EEA /* HomeViewController-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController-Ext.swift"; sourceTree = "<group>"; };
 		BF33C6AA2533707000F24EEA /* ProductCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCategoryViewController.swift; sourceTree = "<group>"; };
-		BF40B741254AD16A00A57252 /* WalletHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletHistoryViewController.swift; sourceTree = "<group>"; };
 		BF8334872541AC2F0012D6A0 /* HotDealsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotDealsViewController.swift; sourceTree = "<group>"; };
 		BF83349B2541B7980012D6A0 /* HotDealsViewController-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HotDealsViewController-Ext.swift"; sourceTree = "<group>"; };
 		BFAE9AE425308212003091FB /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -233,6 +233,7 @@
 		BF2EE6EF2529CAB000D1099F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				BF2E411D2551286500F3EC69 /* WalletHistoryViewController.swift */,
 				BF2EE6F02529CAD600D1099F /* LoginViewController.swift */,
 				BF2DA8A2252B433800F6B65B /* RegisterViewController.swift */,
 				BF2DA8C0252EF84700F6B65B /* MyAccountViewController.swift */,
@@ -242,7 +243,6 @@
 				BF2D21E2254441D20034F99A /* ContactUsViewController.swift */,
 				BF2D21E8254470670034F99A /* FavouriteViewController.swift */,
 				BF2CBE2C2546EF3600C7D0B6 /* ComplaintViewController.swift */,
-				BF40B741254AD16A00A57252 /* WalletHistoryViewController.swift */,
 				BFB1100D254EF7B800042E03 /* ProductDetailViewController.swift */,
 				BF19F265254FCAC9006F3A56 /* NotificationViewController.swift */,
 				BF19F268254FD121006F3A56 /* OrderHistoryViewController.swift */,
@@ -457,6 +457,7 @@
 			files = (
 				BF2EE6F12529CAD600D1099F /* LoginViewController.swift in Sources */,
 				BFCFC5142529FE320015E011 /* Initializable.swift in Sources */,
+				BF2E411E2551286500F3EC69 /* WalletHistoryViewController.swift in Sources */,
 				BFCFC5182529FE320015E011 /* SideMenuInteractionController.swift in Sources */,
 				BF2DA8A3252B433800F6B65B /* RegisterViewController.swift in Sources */,
 				BF2D21E9254470670034F99A /* FavouriteViewController.swift in Sources */,
@@ -477,7 +478,6 @@
 				BF2DA8C1252EF84700F6B65B /* MyAccountViewController.swift in Sources */,
 				BF2D21E3254441D20034F99A /* ContactUsViewController.swift in Sources */,
 				BF33C6992532EFB100F24EEA /* ServiceClient.swift in Sources */,
-				BF40B742254AD16A00A57252 /* WalletHistoryViewController.swift in Sources */,
 				BFCFC51B2529FE320015E011 /* UITableViewVibrantCell.swift in Sources */,
 				BFCFC4D02529F42A0015E011 /* SideNavigationViewController.swift in Sources */,
 				BF83349C2541B7980012D6A0 /* HotDealsViewController-Ext.swift in Sources */,
