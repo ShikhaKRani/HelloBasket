@@ -65,7 +65,10 @@ class CartViewController: UIViewController {
     
     @objc func placeOrderBtnAction(sender : UIButton) {
         
-        
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        if let vc = storyBoard.instantiateViewController(withIdentifier: "CustomerAddressListViewController") as? CustomerAddressListViewController {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     //MARK:- Remove & Save later

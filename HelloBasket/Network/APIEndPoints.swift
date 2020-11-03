@@ -73,6 +73,8 @@ class APIEndPoints: NSObject, Codable { // checkpoint
     var WALLET_HISTORY = "\(mainUrl)wallet-history"
     var WALLET_BALANCE = "\(mainUrl)wallet-balance"
 
+    
+    
     override init() {}
     
     required init(from _: Decoder) throws {}
