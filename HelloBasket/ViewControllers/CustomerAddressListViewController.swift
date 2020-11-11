@@ -85,7 +85,6 @@ class CustomerAddressListViewController: UIViewController {
 
         let dict = self.addressList[selectedInd]
         let address_id = dict["id"] as? Int
-        let user_id = dict["user_id"] as? Int
 
         
         ServiceClient.sendRequestPOSTBearer(apiUrl:"\(APIEndPoints.shared.ADD_DELIVERY_ADDRESS)/\(address_id ?? 0)" , postdatadictionary: ["address_id":"\(address_id ?? 0)"], isArray: false) { (response) in

@@ -24,6 +24,8 @@ class MembershipViewController: UIViewController {
     @IBOutlet weak var navTitle: UILabel!
     
     
+    var membershipList = [[String : Any]]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tblView.tableFooterView = UIView()
@@ -31,11 +33,35 @@ class MembershipViewController: UIViewController {
         backBtn.addTarget(self, action: #selector(backbtnAction), for: .touchUpInside)
         self.navTitle.text = "Membership"
         
-        // Do any additional setup after loading the view.
+        self.fetchMemberShipList()
     }
     
     @objc func backbtnAction() { self.navigationController?.popViewController(animated: true)    }
 
+    
+    func fetchMemberShipList() {
+        
+        Loader.showHud()
+        ServiceClient.sendRequestGET(apiUrl:APIEndPoints.shared.MEMBERSHIP , postdatadictionary: [:], isArray: false) { (response) in
+            Loader.dismissHud()
+            if let res = response as? [String : Any] {
+                if res["message"] as? String == "success" {
+                    if let data = res["data"] as? [[String: Any]] {
+                        
+//                        self.addressList.removeAll()
+//                        self.addressList = data
+//                        print("===>> address list - > \(self.addressList)")
+                    }
+                }
+                DispatchQueue.main.async {
+                    self.tblView.reloadData()
+                }
+            }
+        }
+    }
+    
+    
+    
 }
 
 extension MembershipViewController : UITableViewDataSource, UITableViewDelegate {
