@@ -459,8 +459,8 @@ extension ProductCategoryViewController : UITableViewDelegate, UITableViewDataSo
         
         if model.sizeprice.count > 0 {
             let mod = model.sizeprice[sizeNum]
-            cell?.priceSale.text = "Price: \(StringConstant.RupeeSymbol)\(mod.price ?? 0)"
-            cell?.priceCut.text = "MRP: \(StringConstant.RupeeSymbol)\(mod.cut_price ?? 0)"
+            cell?.priceSale.text = "Price: \(StringConstant.RupeeSymbol)\(mod.price ?? "0")"
+            cell?.priceCut.text = "MRP: \(StringConstant.RupeeSymbol)\(mod.cut_price ?? "0")"
             cell?.quantityField.text = "\(mod.size?.capitalized ?? "")"
             let urlString  =  mod.image
             cell?.titleImg.sd_setImage(with: URL(string: urlString ?? ""), placeholderImage: UIImage(named: "medicine.jpeg") ,options: .refreshCached, completed: nil)

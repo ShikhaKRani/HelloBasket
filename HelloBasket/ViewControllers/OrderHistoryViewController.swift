@@ -51,6 +51,7 @@ class OrderHistoryViewController: UIViewController {
             if let res = response as? [String : Any] {
                 if res["status"] as? String == "success" {
                     if let data = res["data"] as? [[String: Any]] {
+                        print(data)
                         self.orderList.removeAll()
                         for item in data {
                             self.orderList.append(item)

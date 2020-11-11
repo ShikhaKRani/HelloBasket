@@ -67,8 +67,8 @@ class SizePrice {
     let product_id: Int?
     let size: String?
     let image: String?
-    let price : Int?
-    let cut_price : Int?
+    let price : String?
+    let cut_price : String?
     let stock : Int?
     let min_qty : Int?
     let max_qty : Int?
@@ -84,8 +84,8 @@ class SizePrice {
         self.productSize_id = dict["id"] as? Int ?? 0
         self.product_id = dict["product_id"] as? Int ?? 0
         self.size = dict["size"] as? String ?? ""
-        self.price = dict["price"] as? Int ?? 0
-        self.cut_price = dict["cut_price"] as? Int ?? 0
+        self.price = dict["price"] as? String ?? "0"
+        self.cut_price = dict["cut_price"] as? String ?? "0"
         self.image = dict["image"] as? String ?? ""
         self.stock = dict["stock"] as? Int ?? 0
         self.min_qty = dict["min_qty"] as? Int ?? 0

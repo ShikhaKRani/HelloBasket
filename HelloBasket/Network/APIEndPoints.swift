@@ -72,8 +72,12 @@ class APIEndPoints: NSObject, Codable { // checkpoint
     var CUSTOMER_ADDRESS = "\(mainUrl)customer-address"
     var WALLET_HISTORY = "\(mainUrl)wallet-history"
     var WALLET_BALANCE = "\(mainUrl)wallet-balance"
-
+    var GET_PAYMENT_INFO = "\(mainUrl)get-payment-info"
+    var INITIATE_ORDER = "\(mainUrl)initiate-order"
+    var INITIATE_PAYMENT = "\(mainUrl)initiate-payment"    
     
+    var VERIFY_PAYMENT = "\(mainUrl)verify-payment"
+
     
     override init() {}
     
