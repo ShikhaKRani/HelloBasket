@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DropDown
 
 class SearchViewController: UIViewController {
 
@@ -20,7 +21,9 @@ class SearchViewController: UIViewController {
 
     var searchedString : String?
     var wholeProductList = [ProductModel]()
+    let dropDown = DropDown();
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,6 +31,7 @@ class SearchViewController: UIViewController {
         self.tblView.tableFooterView = UIView()
         searchedString = ""
         searchField.delegate = self
+        searchField.autocorrectionType = .no
         self.navView.backgroundColor = AppColor.themeColor
         backBtn.addTarget(self, action: #selector(backbtnAction), for: .touchUpInside)
         searchBtn.addTarget(self, action: #selector(searchbtnAction), for: .touchUpInside)
@@ -84,15 +88,26 @@ class SearchViewController: UIViewController {
     @objc func dropdownBtnAction(sender : UIButton) {
         
         let model =  self.wholeProductList[sender.tag]
+        let cell = sender.superview?.superview?.superview as? ProductCell
         print(model.sizeprice.count)
-        
         if model.sizeprice.count > 1 {
-            
-            // code
-            
-            
+            var sizeList = [String]()
+            for item in model.sizeprice {
+                let size = item.size
+                sizeList.append(size ?? "")
+            }
+            print(sizeList)
+            self.dropDown.anchorView = cell?.dropDownBtn.plainView
+            self.dropDown.bottomOffset = CGPoint(x: 0, y: (sender).bounds.height)
+            self.dropDown.dataSource.removeAll()
+            self.dropDown.dataSource = sizeList
+            self.dropDown.selectionAction = { [unowned self] (index, item) in
+                print(item)
+                cell?.quantityField.text = item
+                model.sizeItemNumber = index
+            }
+            self.dropDown.show()
         }
-        
     }
     
     //MARK:-

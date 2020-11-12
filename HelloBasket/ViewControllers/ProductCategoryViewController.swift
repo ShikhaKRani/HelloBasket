@@ -7,7 +7,7 @@
 
 import UIKit
 import Toast_Swift
-
+import DropDown
 class SubCategoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLbl: UILabel!
 }
@@ -31,7 +31,8 @@ class ProductCategoryViewController: UIViewController {
     var prevDict : [String: Any]?
     var catId : String?
     var screen : String?
-    
+    let dropDown = DropDown();
+
     var prodcutCategory : ProdcutListCategory?
     var wholeProductList = [ProductModel]()
     
@@ -207,15 +208,26 @@ class ProductCategoryViewController: UIViewController {
     @objc func dropdownBtnAction(sender : UIButton) {
         
         let model =  self.wholeProductList[sender.tag]
+        let cell = sender.superview?.superview?.superview as? ProductCell
         print(model.sizeprice.count)
-        
         if model.sizeprice.count > 1 {
-            
-            // code
-            
-            
+            var sizeList = [String]()
+            for item in model.sizeprice {
+                let size = item.size
+                sizeList.append(size ?? "")
+            }
+            print(sizeList)
+            self.dropDown.anchorView = cell?.dropDownBtn.plainView
+            self.dropDown.bottomOffset = CGPoint(x: 0, y: (sender).bounds.height)
+            self.dropDown.dataSource.removeAll()
+            self.dropDown.dataSource = sizeList
+            self.dropDown.selectionAction = { [unowned self] (index, item) in
+                print(item)
+                cell?.quantityField.text = item
+                model.sizeItemNumber = index
+            }
+            self.dropDown.show()
         }
-        
     }
     
     //MARK:-

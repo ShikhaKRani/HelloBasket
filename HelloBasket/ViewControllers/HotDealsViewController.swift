@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import DropDown
 class HotDealsViewController: UIViewController {
     
     @IBOutlet weak var backBtn: UIButton!
@@ -15,10 +15,14 @@ class HotDealsViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tblView: UITableView!
+    @IBOutlet weak var cartBtn: UIButton!
+    @IBOutlet weak var favouritebtn: UIButton!
+
     
     var homeDataDict : [String: Any]?
     var productList = [ProductModel]()
-    
+    let dropDown = DropDown();
+
     var screen : String?
     
     override func viewDidLoad() {
@@ -26,6 +30,8 @@ class HotDealsViewController: UIViewController {
         self.registerCell()
         print(UserDetails.shared.getAccessToken())
         registerCell()
+        setUpUI()
+        
         self.tblView.tableFooterView = UIView()
         self.navView.backgroundColor = AppColor.themeColor
         backBtn.addTarget(self, action: #selector(backbtnAction), for: .touchUpInside)
@@ -48,6 +54,29 @@ class HotDealsViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: Notification.Name("cat"), object: nil)
         
     }
+    
+    
+    func setUpUI() {
+        cartBtn.addTarget(self, action: #selector(redirectToCart(sender:)), for: .touchUpInside)
+        favouritebtn.addTarget(self, action: #selector(redirectToFavourite(sender:)), for: .touchUpInside)
+    }
+    
+    @objc func redirectToCart(sender : UIButton) {
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        if let catgScreen = storyBoard.instantiateViewController(withIdentifier: "CartViewController") as? CartViewController {
+            self.navigationController?.pushViewController(catgScreen, animated: true)
+        }
+    }
+    
+    @objc func redirectToFavourite(sender : UIButton) {
+        
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        if let catgScreen = storyBoard.instantiateViewController(withIdentifier: "FavouriteViewController") as? FavouriteViewController {
+            self.navigationController?.pushViewController(catgScreen, animated: true)
+        }
+    }
+    
+    
     @objc func backbtnAction() { self.navigationController?.popViewController(animated: true)    }
     
     
@@ -151,15 +180,26 @@ class HotDealsViewController: UIViewController {
     @objc func dropdownBtnAction(sender : UIButton) {
         
         let model =  self.productList[sender.tag]
+        let cell = sender.superview?.superview?.superview as? ProductCell
         print(model.sizeprice.count)
-        
         if model.sizeprice.count > 1 {
-            
-            // code
-            
-            
+            var sizeList = [String]()
+            for item in model.sizeprice {
+                let size = item.size
+                sizeList.append(size ?? "")
+            }
+            print(sizeList)
+            self.dropDown.anchorView = cell?.dropDownBtn.plainView
+            self.dropDown.bottomOffset = CGPoint(x: 0, y: (sender).bounds.height)
+            self.dropDown.dataSource.removeAll()
+            self.dropDown.dataSource = sizeList
+            self.dropDown.selectionAction = { [unowned self] (index, item) in
+                print(item)
+                cell?.quantityField.text = item
+                model.sizeItemNumber = index
+            }
+            self.dropDown.show()
         }
-        
     }
     
     //MARK:-

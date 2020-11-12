@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DropDown
 
 class FavouriteViewController: UIViewController {
     
@@ -18,7 +19,8 @@ class FavouriteViewController: UIViewController {
     
     
     var productList = [ProductModel]()
-    
+    let dropDown = DropDown();
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,11 +96,27 @@ class FavouriteViewController: UIViewController {
     
     
     @objc func dropdownBtnAction(sender : UIButton) {
+        
         let model =  self.productList[sender.tag]
+        let cell = sender.superview?.superview?.superview as? ProductCell
         print(model.sizeprice.count)
         if model.sizeprice.count > 1 {
-            // code
-            
+            var sizeList = [String]()
+            for item in model.sizeprice {
+                let size = item.size
+                sizeList.append(size ?? "")
+            }
+            print(sizeList)
+            self.dropDown.anchorView = cell?.dropDownBtn.plainView
+            self.dropDown.bottomOffset = CGPoint(x: 0, y: (sender).bounds.height)
+            self.dropDown.dataSource.removeAll()
+            self.dropDown.dataSource = sizeList
+            self.dropDown.selectionAction = { [unowned self] (index, item) in
+                print(item)
+                cell?.quantityField.text = item
+                model.sizeItemNumber = index
+            }
+            self.dropDown.show()
         }
     }
     
