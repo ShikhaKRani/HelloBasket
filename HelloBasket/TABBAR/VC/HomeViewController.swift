@@ -141,7 +141,10 @@ class HomeViewController: UIViewController{
     
     
     @objc func searchBtnAction(sender: UIButton) {
-        
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        if let detail = storyBoard.instantiateViewController(withIdentifier: "SearchViewController") as? SearchViewController {
+            self.navigationController?.pushViewController(detail, animated: true)
+        }
     }
     
 }

@@ -96,7 +96,6 @@ class MembershipViewController: UIViewController {
                         self.view.makeToast("\(msg ?? "")", duration: 3.0, position: .bottom)
                     }
                 }
-               
             }
         }
     }

@@ -37,6 +37,7 @@
 		BF2EE6E02529C69500D1099F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF2EE6DE2529C69500D1099F /* LaunchScreen.storyboard */; };
 		BF2EE6F12529CAD600D1099F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2EE6F02529CAD600D1099F /* LoginViewController.swift */; };
 		BF2EE7252529E8CC00D1099F /* HBTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2EE7242529E8CC00D1099F /* HBTabBarViewController.swift */; };
+		BF336126255D627800C628AD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF336125255D627800C628AD /* SearchViewController.swift */; };
 		BF3392922551756300AA8F10 /* CustomerAddressListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3392912551756300AA8F10 /* CustomerAddressListViewController.swift */; };
 		BF33C6992532EFB100F24EEA /* ServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF33C6972532EFB000F24EEA /* ServiceClient.swift */; };
 		BF33C6A125333C4500F24EEA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF33C6A025333C4500F24EEA /* Constants.swift */; };
@@ -107,6 +108,7 @@
 		BF2EE6E12529C69500D1099F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF2EE6F02529CAD600D1099F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BF2EE7242529E8CC00D1099F /* HBTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBTabBarViewController.swift; sourceTree = "<group>"; };
+		BF336125255D627800C628AD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		BF3392912551756300AA8F10 /* CustomerAddressListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerAddressListViewController.swift; sourceTree = "<group>"; };
 		BF33C6972532EFB000F24EEA /* ServiceClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceClient.swift; sourceTree = "<group>"; };
 		BF33C6A025333C4500F24EEA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				BF2E4157255139CB00F3EC69 /* MembershipViewController.swift */,
 				BF3392912551756300AA8F10 /* CustomerAddressListViewController.swift */,
 				BFA1D1AE255C051C009DC5CE /* PaymentDetailsViewController.swift */,
+				BF336125255D627800C628AD /* SearchViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				BF2DA8A6252DA1EE00F6B65B /* CategoryTabViewController.swift in Sources */,
 				BF2DA8C92530357800F6B65B /* UserDetails.swift in Sources */,
 				BF2D77CD253B423D0013F7D8 /* ProductModel.swift in Sources */,
+				BF336126255D627800C628AD /* SearchViewController.swift in Sources */,
 				BF33C6A525333DEE00F24EEA /* BJAutoScrollingCollectionView.swift in Sources */,
 				BF19F26C254FD802006F3A56 /* OrderDetaiViewController.swift in Sources */,
 				BF33C6AB2533707000F24EEA /* ProductCategoryViewController.swift in Sources */,
