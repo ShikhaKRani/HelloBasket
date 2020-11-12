@@ -78,6 +78,8 @@ class APIEndPoints: NSObject, Codable { // checkpoint
     
     var VERIFY_PAYMENT = "\(mainUrl)verify-payment"
     var MEMBERSHIP = "\(mainUrl)memberships"
+    var SUBSCRIBE = "\(mainUrl)subscribe"
+
     
     override init() {}
     
