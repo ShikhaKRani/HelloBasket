@@ -25,10 +25,18 @@ class HomeViewController: UIViewController{
 
     @IBOutlet weak var cartBtn: UIButton!
     @IBOutlet weak var favouritebtn: UIButton!
+    @IBOutlet weak var cartLbl: UILabel!
 
     var homeDataDict : [String: Any]?
     var sectionBanners = [[String : Any]]()
 
+    var product_quantity = ""
+    var product_id = ""
+    var product_size_id = 0
+    var fProductsModel =  [HomeRecomModel]()
+
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("NotificationHomeIdentifier"), object: nil)
@@ -40,10 +48,20 @@ class HomeViewController: UIViewController{
 
         navigationView.backgroundColor = AppColor.themeColor
         self.view.backgroundColor = .white
-        self.fetchHomeData()
+        
+        cartLbl.layer.cornerRadius = 10
+        cartLbl.layer.borderWidth = 0.5
+        cartLbl.layer.masksToBounds = true
+        cartLbl.layer.borderColor  = UIColor.white.cgColor
+        self.cartLbl.isHidden = true
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.fetchHomeData()
+
+    }
     
     @objc func redirectToCart(sender : UIButton) {
         let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
@@ -71,7 +89,15 @@ class HomeViewController: UIViewController{
             if let res = response as? [String : Any] {
                 self.homeDataDict = res
                 self.sectionBanners.removeAll()
+                print(res)
                 
+                if let cartItem = self.homeDataDict?["cart_total"] as? Int {
+                    DispatchQueue.main.async {
+                        self.cartLbl.isHidden = false
+                        self.cartLbl.text  = "\(cartItem)"
+                    }
+                    
+                }
                 let sections = self.homeDataDict?["sections"] as? [[String : Any]]
                 if sections?.count ?? 0 > 0 {
                     

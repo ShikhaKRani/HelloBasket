@@ -7,6 +7,87 @@
 
 import UIKit
 
+class HomeRecomModel {
+    
+    let product_id : Int?
+    let company: String?
+    let name: String?
+    let image : String?
+    let is_newarrival : Int?
+    let isactive : Int?
+    let max_qty : Int?
+    let min_qty : Int?
+    let is_offer : Int?
+    let ratings : String?
+    var sizeprice = [SizePriceHome]()
+    var sizeItemNumber : Int?
+    var itemSelected : Int?
+
+    
+    init(dict : [String : Any]) {
+        
+        self.company = dict["company"] as? String ?? ""
+        self.name = dict["name"] as? String ?? ""
+        self.product_id = dict["id"] as? Int ?? 0
+        self.is_newarrival = dict["is_newarrival"] as? Int ?? 0
+        self.isactive = dict["isactive"] as? Int ?? 0
+        self.max_qty = dict["max_qty"] as? Int ?? 0
+        self.ratings = dict["ratings"] as? String ?? ""
+        self.min_qty = dict["min_qty"] as? Int ?? 0
+        self.is_offer = dict["is_offer"] as? Int ?? 0
+
+        self.image = dict["image"] as? String ?? ""
+
+        
+        if let s = dict["sizeprice"] as? [[String : Any]] {
+            sizeprice.removeAll()
+            for item  in s {
+                let item1 = SizePriceHome(dict: item)
+                sizeprice.append(item1)
+            }
+        }
+    }
+    
+}
+
+class SizePriceHome {
+    
+    let productSize_id : Int?
+    let product_id: Int?
+    let size: String?
+    let image: String?
+    let price : String?
+    let cut_price : String?
+    let stock : Int?
+    let min_qty : Int?
+    let max_qty : Int?
+    let consumed_units : Int?
+    let in_stocks : Int?
+    var quantity : Int?
+    let discount : Int?
+    
+    
+    
+    init(dict : [String : Any]) {
+        
+        self.productSize_id = dict["id"] as? Int ?? 0
+        self.product_id = dict["product_id"] as? Int ?? 0
+        self.size = dict["size"] as? String ?? ""
+        self.price = dict["price"] as? String ?? "0"
+        self.cut_price = dict["cut_price"] as? String ?? "0"
+        self.image = dict["image"] as? String ?? ""
+        self.stock = dict["stock"] as? Int ?? 0
+        self.min_qty = dict["min_qty"] as? Int ?? 0
+        self.max_qty = dict["max_qty"] as? Int ?? 0
+        self.consumed_units = dict["consumed_units"] as? Int ?? 0
+        self.quantity = dict["quantity"] as? Int ?? 0
+        self.in_stocks = dict["in_stocks"] as? Int ?? 0
+        self.discount = dict["discount"] as? Int ?? 0
+        
+    }
+}
+
+
 class CartModel {
 
     let price_total : Int?
@@ -14,7 +95,6 @@ class CartModel {
     let quantity : Int?
     var cartitem = [CartItem]()
     var savelater = [SaveLaterModel]()
-
     
     init(dict : [String : Any]) {
         
@@ -43,6 +123,8 @@ class CartModel {
     
 }
 
+
+
 class SaveLaterModel {
   
     let savelaterId : Int?
@@ -60,7 +142,9 @@ class SaveLaterModel {
     let cut_price: String?
     let stock : Int?
     let ratings : String?
+    var itemSelected : Int?
 
+    
     init(dict : [String : Any]) {
         
         self.savelaterId = dict["id"] as? Int ?? 0

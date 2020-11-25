@@ -28,12 +28,39 @@ class CartViewController: UIViewController {
         self.navTitle.text = "Cart"
         self.placeOrderbtn.backgroundColor = AppColor.themeColor
         self.placeOrderbtn.addTarget(self, action: #selector(placeOrderBtnAction(sender:)), for: .touchUpInside)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.saveLaterNotification(notification:)), name: Notification.Name("SaveLater"), object: nil)
 
         
         self.fetchCartDetailList()
         
     }
     //MARK:-
+    
+    
+    
+    //for detail screen
+    @objc func saveLaterNotification(notification: Notification) {
+        print(notification.userInfo ?? [:])
+       
+        if let status = notification.userInfo?["status"] as? String{
+            print(status)
+
+            if status == "1" {
+                self.fetchCartDetailList()
+
+            }else{
+                if let msg = notification.userInfo?["msg"] as? String {
+                    print(msg)
+                    DispatchQueue.main.async {
+
+                    self.view.makeToast(msg)
+                    }
+                    
+                }
+            }
+        }
+    }
     
     @objc func backbtnAction() { self.navigationController?.popViewController(animated: true)    }
     
@@ -288,6 +315,8 @@ extension CartViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 .dequeueReusableCell(withReuseIdentifier: "\(SavelaterCollectionCell.self)", for: indexPath) as? SavelaterCollectionCell
             cell?.headerLbl.text = "Saved For Later"
             cell?.configureCell(model: self.cartModelStored)
+            
+            
             collectionCell = cell
         }
         

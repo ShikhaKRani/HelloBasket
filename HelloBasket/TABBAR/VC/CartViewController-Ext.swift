@@ -27,6 +27,66 @@ class SavelaterCollectionCell: UICollectionViewCell {
         collectionView.reloadData()
     }
     
+    @objc func addFirstBtnAction(sender : UIButton) {
+        
+        if let model =  self.cartModel?.savelater[sender.tag] {
+            var count = 0
+            count = model.quantity ?? 0
+            if model.min_qty ?? 0 > 0 {
+                count = model.min_qty ?? 0
+                model.itemSelected = count
+            }
+            
+            self.addProductToCart(model: model, tag: sender.tag)
+        }
+    }
+    
+    //MARK:-
+    func addProductToCart(model :SaveLaterModel, tag : Int) {
+        //        ADD_CART
+        //product_id
+        //size_id
+        //quantity
+        
+        var param: [String: Any] = [:]
+        param = ["quantity" : "\(model.itemSelected ?? 0)","product_id" : "\(model.product_id ?? 0)","size_id" : model.size_id ?? 0]
+        
+        Loader.showHud()
+        ServiceClient.sendRequestPOSTBearer(apiUrl: APIEndPoints.shared.ADD_CART, postdatadictionary: param, isArray: false) { (response) in
+            Loader.dismissHud()
+            if let res = response as? [String : Any] {
+                let msg = res["message"] as? String
+
+                if res["status"] as? String == "success" {
+                    
+                        NotificationCenter.default.post(name: Notification.Name("SaveLater"), object: nil, userInfo: ["status":"1", "msg" : msg ?? ""])
+
+                        DispatchQueue.main.async {
+                            let indexPath = IndexPath(item: tag, section: 0)
+                            self.collectionView.reloadItems(at: [indexPath])
+                        }
+                }else{
+                    let model = model
+                    if model.stock ?? 0 > 0 {
+                        model.itemSelected = model.quantity
+                    }else{
+                        model.itemSelected = 0
+                    }
+                    NotificationCenter.default.post(name: Notification.Name("SaveLater"), object: nil, userInfo: ["status":"0", "msg" : msg ?? ""])
+
+                    
+                    DispatchQueue.main.async {
+
+                        let indexPath = IndexPath(item: tag, section: 0)
+                        self.collectionView.reloadItems(at: [indexPath])
+                    }
+                    
+                }
+            }
+        }
+        
+    }
+    
 }
 
 //CategoryCollectionCell
@@ -72,6 +132,10 @@ extension SavelaterCollectionCell : UICollectionViewDelegate,UICollectionViewDat
         cell?.offerLbl.layer.cornerRadius = 20
         cell?.offerLbl.layer.masksToBounds = true
         
+        cell?.addbtn.tag = indexPath.row
+        cell?.addbtn.addTarget(self, action: #selector(addFirstBtnAction(sender:)), for: .touchUpInside)
+
+    
         collectionCell = cell
         return collectionCell ?? UICollectionViewCell()
     }
