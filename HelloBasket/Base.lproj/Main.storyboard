@@ -2042,12 +2042,12 @@
                                                                     <rect key="frame" x="3" y="3" width="94" height="40"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
-                                                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="dOT-vc-3zC" secondAttribute="trailing" constant="3" id="09A-KX-WS5"/>
                                                                 <constraint firstItem="dOT-vc-3zC" firstAttribute="leading" secondItem="SfE-tB-s8m" secondAttribute="leading" constant="3" id="12K-cv-0Gu"/>
@@ -2364,7 +2364,8 @@
                                                                 <constraint firstAttribute="height" constant="30" id="3BW-Fl-dKl"/>
                                                                 <constraint firstAttribute="width" constant="30" id="Ed6-pC-7XT"/>
                                                             </constraints>
-                                                            <state key="normal" title="Button" image="discount"/>
+                                                            <color key="tintColor" red="0.11261492820000001" green="0.31263880080000001" blue="0.080789999409999994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <state key="normal" title="Button" image="radioselected"/>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -4803,7 +4804,6 @@ TE9HSU4DA
         <image name="back" width="100" height="100"/>
         <image name="cart.fill" catalog="system" width="128" height="102"/>
         <image name="chevron.forward" catalog="system" width="96" height="128"/>
-        <image name="discount" width="100" height="100"/>
         <image name="favRed" width="144" height="144"/>
         <image name="favRed_nav" width="24" height="24"/>
         <image name="forward" width="100" height="100"/>
@@ -4812,6 +4812,7 @@ TE9HSU4DA
         <image name="minus" catalog="system" width="128" height="24"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="profile" width="90" height="90"/>
+        <image name="radioselected" width="96" height="96"/>
         <image name="server.rack" catalog="system" width="128" height="93"/>
         <image name="slider.horizontal.3" catalog="system" width="128" height="100"/>
         <image name="whatsapp" width="144" height="144"/>

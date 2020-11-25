@@ -174,7 +174,7 @@ extension ProductDetailViewController : UITableViewDelegate, UITableViewDataSour
                 let dis = self.sizeData[packSize ?? 0]["discount"] as? Int
                 let pr = self.sizeData[packSize ?? 0]["price"] as? String
                 let cut_price = self.sizeData[packSize ?? 0]["cut_price"] as? String
-                cell?.mrpLbl.text = "\(StringConstant.RupeeSymbol)\(pr ?? "0")"
+                cell?.mrpLbl.text = "MRP : \(StringConstant.RupeeSymbol)\(pr ?? "0")"
                 cell?.disLbl.text = "\(dis ?? 0) % OFF"
                 cell?.cutPriceLbl.text = "\(StringConstant.RupeeSymbol)\(cut_price ?? "0")"
 
