@@ -21,6 +21,7 @@ target 'HelloBasket' do
   pod "SwiftPhoneNumberFormatter"
   pod 'razorpay-pod', '~> 1.1.5'
   pod 'Toast-Swift', '~> 5.0.0'
+  pod 'DPOTPView'
 
 # pod 'CalendarDateRangePickerViewController'
   # Pods for HelloBasket

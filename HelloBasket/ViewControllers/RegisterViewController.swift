@@ -82,7 +82,7 @@ extension RegisterViewController : UITableViewDelegate, UITableViewDataSource {
         
         let cell = self.registertblView.dequeueReusableCell(withIdentifier: "RegisterTableViewCell") as? RegisterTableViewCell
         
-        
+        cell?.registerSubmibutton.backgroundColor =  AppColor.themeColor
         cell?.selectionStyle = .none
         return cell!
     }

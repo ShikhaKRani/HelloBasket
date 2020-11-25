@@ -31,6 +31,9 @@
 		BF2DA8CD2530357800F6B65B /* APIEndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2DA8C82530357700F6B65B /* APIEndPoints.swift */; };
 		BF2E411E2551286500F3EC69 /* WalletHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2E411D2551286500F3EC69 /* WalletHistoryViewController.swift */; };
 		BF2E4158255139CB00F3EC69 /* MembershipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2E4157255139CB00F3EC69 /* MembershipViewController.swift */; };
+		BF2EE0ED256E840100DC1961 /* NewLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2EE0EC256E840100DC1961 /* NewLoginViewController.swift */; };
+		BF2EE103256E880000DC1961 /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2EE102256E880000DC1961 /* OTPViewController.swift */; };
+		BF2EE106256E935900DC1961 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2EE105256E935900DC1961 /* AboutUsViewController.swift */; };
 		BF2EE6D42529C69100D1099F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2EE6D32529C69100D1099F /* AppDelegate.swift */; };
 		BF2EE6DB2529C69100D1099F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF2EE6D92529C69100D1099F /* Main.storyboard */; };
 		BF2EE6DD2529C69500D1099F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF2EE6DC2529C69500D1099F /* Assets.xcassets */; };
@@ -100,6 +103,9 @@
 		BF2DA8C82530357700F6B65B /* APIEndPoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIEndPoints.swift; sourceTree = "<group>"; };
 		BF2E411D2551286500F3EC69 /* WalletHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WalletHistoryViewController.swift; path = ../TABBAR/VC/WalletHistoryViewController.swift; sourceTree = "<group>"; };
 		BF2E4157255139CB00F3EC69 /* MembershipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipViewController.swift; sourceTree = "<group>"; };
+		BF2EE0EC256E840100DC1961 /* NewLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLoginViewController.swift; sourceTree = "<group>"; };
+		BF2EE102256E880000DC1961 /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
+		BF2EE105256E935900DC1961 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		BF2EE6D02529C69100D1099F /* HelloBasket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloBasket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF2EE6D32529C69100D1099F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF2EE6DA2529C69100D1099F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -259,6 +265,9 @@
 				BF3392912551756300AA8F10 /* CustomerAddressListViewController.swift */,
 				BFA1D1AE255C051C009DC5CE /* PaymentDetailsViewController.swift */,
 				BF336125255D627800C628AD /* SearchViewController.swift */,
+				BF2EE0EC256E840100DC1961 /* NewLoginViewController.swift */,
+				BF2EE102256E880000DC1961 /* OTPViewController.swift */,
+				BF2EE105256E935900DC1961 /* AboutUsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -487,6 +496,7 @@
 				BF33C6AB2533707000F24EEA /* ProductCategoryViewController.swift in Sources */,
 				BFCFC50F2529FE320015E011 /* SideMenuTransitionController.swift in Sources */,
 				BFCFC5192529FE320015E011 /* SideMenuManager.swift in Sources */,
+				BF2EE106256E935900DC1961 /* AboutUsViewController.swift in Sources */,
 				BFCFC5122529FE320015E011 /* Print.swift in Sources */,
 				BF8334882541AC2F0012D6A0 /* HotDealsViewController.swift in Sources */,
 				BFB1100E254EF7B800042E03 /* ProductDetailViewController.swift in Sources */,
@@ -503,6 +513,7 @@
 				BFCFC4CD2529F42A0015E011 /* sideMenuTableViewCell.swift in Sources */,
 				BF2DA8AC252DA21400F6B65B /* OfferTabViewController.swift in Sources */,
 				BF19F269254FD121006F3A56 /* OrderHistoryViewController.swift in Sources */,
+				BF2EE103256E880000DC1961 /* OTPViewController.swift in Sources */,
 				BF2D21EC254476740034F99A /* CartViewController.swift in Sources */,
 				BFAE9AE525308212003091FB /* Home.swift in Sources */,
 				BFCFC51E252AEF030015E011 /* AppConstant.swift in Sources */,
@@ -520,6 +531,7 @@
 				BF2DA8CD2530357800F6B65B /* APIEndPoints.swift in Sources */,
 				BF19F266254FCAC9006F3A56 /* NotificationViewController.swift in Sources */,
 				BF2D21E62544691C0034F99A /* CatCollectionViewCell.swift in Sources */,
+				BF2EE0ED256E840100DC1961 /* NewLoginViewController.swift in Sources */,
 				BF2D77A72536E7BD0013F7D8 /* CategoryModels.swift in Sources */,
 				BFCFC5102529FE320015E011 /* Deprecations.swift in Sources */,
 				BFCFC5152529FE320015E011 /* SideMenuAnimationController.swift in Sources */,

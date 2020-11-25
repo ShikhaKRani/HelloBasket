@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     public func loadLoginScreen() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let mainViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
+        if let mainViewController = storyboard.instantiateViewController(withIdentifier: "NewLoginViewController") as? NewLoginViewController {
             let nav = UINavigationController.init(rootViewController: mainViewController)
             self.window?.rootViewController = nav
         }

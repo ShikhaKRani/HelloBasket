@@ -22,7 +22,6 @@ class SideNavigationViewController: UIViewController,UITableViewDelegate,UITable
     @IBOutlet weak var unselectedProfileBtn: UIButton!
     
     var dataArr : Array<Dictionary<String,AnyObject>> = [
-//        ["title":"All Category" as AnyObject,"image": "category" as AnyObject]
         ["title":"Membership" as AnyObject,"image": "profile" as AnyObject]
         ,["title":"My Account" as AnyObject,"image": "profile" as AnyObject]
         ,["title":"Order History" as AnyObject,"image": "orderHistory" as AnyObject]
@@ -33,7 +32,6 @@ class SideNavigationViewController: UIViewController,UITableViewDelegate,UITable
         ,["title":"About Us" as AnyObject,"image": "aboutus" as AnyObject]
         ,["title":"Terms and Conditions" as AnyObject,"image": "terms" as AnyObject]
         ,["title":"Policy" as AnyObject,"image": "privacypolicy" as AnyObject]
-        ,["title":"Complaint" as AnyObject,"image": "complaint" as AnyObject]
         ,["title":"Contact Us" as AnyObject,"image": "contactUs" as AnyObject]
         ,["title":"Notification" as AnyObject,"image": "notification" as AnyObject]]
     
@@ -158,14 +156,7 @@ class SideNavigationViewController: UIViewController,UITableViewDelegate,UITable
         let menuItem =  dataArr[indexPath.row]["title"] as? String ?? ""
         
         switch menuItem {
-//        case "All Category":
-//
-//          let storyBoard = UIStoryboard.init(name: "TabbarMenu", bundle: nil)
-//            if let orderVC = storyBoard.instantiateViewController(withIdentifier: "CategoryTabViewController") as? CategoryTabViewController {
-//                self.navigationController?.pushViewController(orderVC, animated: true)
-//            }
-//
-//            break
+
         case "Membership":
             
           let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
@@ -222,35 +213,27 @@ class SideNavigationViewController: UIViewController,UITableViewDelegate,UITable
             break
             
         case "About Us":
-//            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-//            if let bookForSurgeryHistory = storyBoard.instantiateViewController(withIdentifier: "BookingSurgeryHistoryViewController") as? BookingSurgeryHistoryViewController {
-//                self.navigationController?.pushViewController(bookForSurgeryHistory, animated: true)
-//            }
-            break
-        case "Terms and Conditions":
-//            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-//            if let getcontact = storyBoard.instantiateViewController(withIdentifier: "ContactUsViewController") as? ContactUsViewController {
-//                self.navigationController?.pushViewController(getcontact, animated: true)
-//            }
-            break
-        case "Policy":
-//            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-//            if let aboutus = storyBoard.instantiateViewController(withIdentifier: "AboutUsViewController") as? AboutUsViewController {
-//                self.navigationController?.pushViewController(aboutus, animated: true)
-//            }
-            break
-            
-        case "Complaint":
             let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-            if let complaint = storyBoard.instantiateViewController(withIdentifier: "ComplaintViewController") as? ComplaintViewController {
-                
-                self.navigationController?.pushViewController(complaint, animated: true)
+            if let vc = storyBoard.instantiateViewController(withIdentifier: "AboutUsViewController") as? AboutUsViewController {
+                vc.screen = "aboutus"
+                self.navigationController?.pushViewController(vc, animated: true)
             }
             break
-            
-            
-            
-            
+        case "Terms and Conditions":
+            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+            if let vc = storyBoard.instantiateViewController(withIdentifier: "AboutUsViewController") as? AboutUsViewController {
+                vc.screen = "tc"
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            break
+        case "Policy":
+            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+            if let vc = storyBoard.instantiateViewController(withIdentifier: "AboutUsViewController") as? AboutUsViewController {
+                vc.screen = "policy"
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            break            
+      
         case "Contact Us":
             let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
             if let contact = storyBoard.instantiateViewController(withIdentifier: "ContactUsViewController") as? ContactUsViewController {
@@ -261,9 +244,6 @@ class SideNavigationViewController: UIViewController,UITableViewDelegate,UITable
             
             
         case "Notification":
-            
-            //http://hallobasket.local/api/notifications
-            
             let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
             if let contact = storyBoard.instantiateViewController(withIdentifier: "NotificationViewController") as? NotificationViewController {
                 self.navigationController?.pushViewController(contact, animated: true)
@@ -288,15 +268,7 @@ class SideNavigationViewController: UIViewController,UITableViewDelegate,UITable
 //            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) {
 //                UIAlertAction in
 //
-//            }
-//
-//            // Add the actions
-//            alertController.addAction(okAction)
-//            alertController.addAction(cancelAction)
-//
-//            // Present the controller
-//            self.present(alertController, animated: true, completion: nil)
-            
+//  
             break
             
         default:

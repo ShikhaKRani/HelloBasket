@@ -81,8 +81,9 @@ class APIEndPoints: NSObject, Codable { // checkpoint
     var SUBSCRIBE = "\(mainUrl)subscribe"
     var SEARCH_PRODUCT = "\(mainUrl)search-products"
 
-    
-    
+    var VERIFY_OTP = "\(mainUrl)verify-otp"
+    var Login_OTP = "\(mainUrl)login-with-otp"
+
     override init() {}
     
     required init(from _: Decoder) throws {}
